@@ -39,7 +39,7 @@ Aplicația ajută utilizatorii să:
 | 🧭 Project Manager | Coordonare generală, planificare, prioritizare |
 | 🧑‍💼 Scrum Master | Monitorizare progres, rezolvarea blocajelor |
 | 🧑‍🎨 Designeri (2) | UI/UX, prototipare, stilizare componentelor |
-| 🧑‍💻 Developeri Backend (3) | API, baze de date, autentificare, Implementare interfață React |
+| 🧑‍💻 Developeri (3) | API, baze de date, autentificare, Implementare interfață React |
 | 🧩 Analiști (2) | Cerințe funcționale, specificații tehnice |
 | 🧪 Testeri (2) | Testare funcțională, bug tracking |
 | ➕ Alte roluri | Documentare, prezentare, deploy |
