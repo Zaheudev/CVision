@@ -2,10 +2,16 @@
 // Am generat cu copilot un script pt a pornit un server express foarte simplu dupa care il vom dezvolta pe parcurs
 // este pentru testare momentan
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const app = express();
 
+const corsOptions = {
+   origin: '*', // Replace with your frontend URL
+};
+
+app.use(cors(corsOptions))
 app.use(express.json()); // Middleware to parse JSON bodies
 dotenv.config();
 

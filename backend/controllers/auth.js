@@ -4,9 +4,13 @@ const bcrypt = require('bcryptjs');
 
 // Înregistrează un utilizator nou
 exports.registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
-    console.log(req.body);
+    // const { username, email, password } = req.body;
+    const name = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log({name, email, password});
     try {
+        console.log('test');
         // Verifică dacă emailul este deja folosit
         const existingUser = await User.findOne({ email });
         if (existingUser) {
