@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import LoginSignup from './Components/Login/Login'
+import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/" element={<LoginSignup />} />
+          <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>

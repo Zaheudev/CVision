@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-// import './Register.css';
- 
+import { useNavigate } from 'react-router-dom'
+import api from '../../utils/api.js';
+import './Register.css';
+
 const Register = () => {
+    const navigator = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -17,16 +20,21 @@ const Register = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
-        // Add your registration logic here
-        console.log('Form submitted:', formData);
-    };
+        try {
+            const res = await api.register({ username: e.target[0].value, email: e.target[1].value, password: e.target[2].value });
+            setTimeout(() => navigator('/'), 2000);
+            console.log("Registration successful: ", res);
+        } catch (error) {
+            console.log("Signup error: ", error);
+        }
+    }
 
     return (
         <div className="register-container">
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSignup}>
                 <div className="form-group">
                     <input
                         type="text"
