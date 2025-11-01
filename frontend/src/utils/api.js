@@ -10,6 +10,8 @@ const handlleError = (error) => {
     }else{
         console.log("API Error: ", error.message);
     }
+    // aruncam eroare pt ca sa putem afisa mesaj de eorare si asa mai departe clientului.
+    throw error;
 }
 
 export const login = async (email, password) => {

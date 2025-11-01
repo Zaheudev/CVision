@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import './LoginSignup.css'
+import { Link, useNavigate } from 'react-router-dom'
+import './Login.css'
 import email_icon from '../Assets/email.png'
 import password_icon from '../Assets/password.png'
 import user_icon from '../Assets/password.png'
@@ -9,10 +10,16 @@ import api from '../../utils/api.js';
 export const LoginSignup = () => {
 
     const [action, setAction] = useState("Sign Up");
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        api.login(e.target[1].value, e.target[2].value);
+        try{
+            const user = await api.login(e.target[1].value, e.target[2].value);
+            navigate('/dashboard');
+        }catch(error){
+            console.log("Login error: ", error);
+        }
     }
 
     const handleSignup =async (e) => {
@@ -26,7 +33,7 @@ export const LoginSignup = () => {
     }
 
     return (
-        <form className="container" onSubmit={handleSignup}>
+        <form className="container" onSubmit={handleLogin}>
             <div className="header">
                 <div className="text">{action}</div>
                 <div className="underline"></div>
@@ -47,9 +54,11 @@ export const LoginSignup = () => {
             </div>
             {action === "Sign Up" ? <div></div> : <div className="forgot-password">Ai uitat parola? <span>Apasa aici!</span></div>}
             <div className="submit-container">
-                <button className={action === "Login" ? "submit gray" : "submit"} type="submit">Sign Up</button>
-                <button className={action === "Sign Up" ? "submit gray" : "submit"}>Login</button>
+                <button className={action === "Login" ? "submit gray" : "submit"}>Sign Up</button>
+                <button className={action === "Sign Up" ? "submit gray" : "submit"}><Link to={"/register"}>Login</Link></button>
             </div>
         </form>
     )
 }
+
+export default LoginSignup;
