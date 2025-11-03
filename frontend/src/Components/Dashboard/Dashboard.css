@@ -1,0 +1,32 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.dashboard-card {
+  width: 90%;
+  max-width: 700px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.token-box {
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  padding: 8px 12px;
+}

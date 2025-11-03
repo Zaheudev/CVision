@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import api from '../../utils/api.js';
 import './Register.css';
+import AuthContext from '../../context/AuthContext';
 
 const Register = () => {
     const navigator = useNavigate();
+    const { saveToken } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -24,10 +26,23 @@ const Register = () => {
         e.preventDefault();
         try {
             const res = await api.register({ username: e.target[0].value, email: e.target[1].value, password: e.target[2].value });
-            setTimeout(() => navigator('/'), 2000);
-            console.log("Registration successful: ", res);
+            console.log('Registration successful: ', res);
+
+            // backend doesn't return token for register, so try auto-login
+            try {
+                const loginRes = await api.login(e.target[1].value, e.target[2].value);
+                if (loginRes && loginRes.token) {
+                    saveToken(loginRes.token);
+                    navigator('/dashboard');
+                    return;
+                }
+            } catch (err) {
+                console.log('Auto-login failed: ', err);
+            }
+
+            setTimeout(() => navigator('/'), 800);
         } catch (error) {
-            console.log("Signup error: ", error);
+            console.log('Signup error: ', error);
         }
     }
 

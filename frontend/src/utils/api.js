@@ -2,16 +2,24 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
-const handlleError = (error) => {
-    if(error.response){
-        console.log("API Errror: ", error.response.data || "An error occured");
-    }else if(error.request){
-        console.log("API Error: No response received from server");
-    }else{
-        console.log("API Error: ", error.message);
+const handleError = (error) => {
+    if (error.response) {
+        console.log('API Error: ', error.response.data || 'An error occured');
+    } else if (error.request) {
+        console.log('API Error: No response received from server');
+    } else {
+        console.log('API Error: ', error.message);
     }
-    // aruncam eroare pt ca sa putem afisa mesaj de eorare si asa mai departe clientului.
     throw error;
+}
+
+const getAuthHeaders = () => {
+    try {
+        const token = localStorage.getItem('token');
+        return token ? { Authorization: `Bearer ${token}` } : {};
+    } catch (e) {
+        return {};
+    }
 }
 
 export const login = async (email, password) => {
@@ -19,7 +27,7 @@ export const login = async (email, password) => {
     const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
     return response.data;
   } catch (error) {
-    handlleError(error);
+    handleError(error);
   }
 };
 
@@ -28,10 +36,18 @@ export const register = async (formData) => {
     const response = await axios.post(`${API_BASE_URL}/auth/register`, formData);
     return response.data;
   } catch (error) {
-    handlleError(error);
+    handleError(error);
   }
 };
 
-export default {
-    login,register
-};
+export const getProtected = async (path) => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.get(`${API_BASE_URL}${path}`, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+}
+
+export default { login, register, getProtected };
