@@ -6,7 +6,7 @@ import password_icon from '../Assets/password.png'
 import user_icon from '../Assets/password.png'
 
 import api from '../../utils/api.js';
-import AuthContext from '../../context/AuthContext';
+import useAuth from '../../hooks/useAuth';
 
 export const Login = () => {
 
@@ -14,16 +14,13 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const { saveToken } = useContext(AuthContext);
+    const { login } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await api.login(email, password);
-            console.log('Login successful: ', res);
-            if (res && res.token) {
-                saveToken(res.token);
-            }
+            login(res.user);
             navigate('/dashboard');
         } catch (error) {
             console.log('Login error: ', error);

@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import api from '../../utils/api.js';
 import './Register.css';
-import AuthContext from '../../context/AuthContext';
 
 const Register = () => {
     const navigator = useNavigate();
