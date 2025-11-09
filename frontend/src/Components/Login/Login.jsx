@@ -28,31 +28,36 @@ export const Login = () => {
     }
 
     return (
-        <form className="container" onSubmit={handleLogin}>
-            <div className="header">
-                <div className="text">{action}</div>
-                <div className="underline"></div>
-            </div>
-            <div className="inputs">
-                {action === "Login" ? <div></div> : <div className="input">
-                    <img src={user_icon} alt="" />
-                    <input type="text" placeholder='Nume și Prenume' />
-                </div>}
-                <div className="input">
-                    <img src={email_icon} alt="" />
-                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder='Adresa de email' required />
+         <div className="login-container">
+            <h2>Conectează-te</h2>
+            <form onSubmit={handleLogin}>
+                <div className="login-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        required
+                    />
                 </div>
-                <div className="input">
-                    <img src={password_icon} alt="" />
-                    <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder='Parola' required />
+                <div className="login-group">
+                   <label>Parola</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)} 
+                        required
+                    />
                 </div>
-            </div>
-            {action === "Sign Up" ? <div></div> : <div className="forgot-password">Ai uitat parola? <span>Apasa aici!</span></div>}
-            <div className="submit-container">
-                <button className={action === "Login" ? "submit gray" : "submit"}><Link to={"/register"}>Sign Up</Link></button>
-                <button className={action === "Sign Up" ? "submit gray" : "submit"} action="submit">Login</button>
-            </div>
-        </form>
+                <div className="container-button">
+                <button type="submit" >Conectează-te</button>
+                </div>
+                <p>Nu ai un cont? <Link to="/register">Înregistrează-te aici</Link></p>
+            </form>
+        </div>
+
     )
 }
 
