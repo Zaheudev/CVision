@@ -1,103 +1,57 @@
-.container{
+.login-container {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top:  200px;
+    margin-top: 100px;
     width: 600px;
-    background: white;
     padding-bottom: 30px;
-}
-
-.header{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.text{
-    color: rgb(55, 137, 178);
-    font-size: 48px;
-    font-weight: 700;
-}
-
-.underline{
-    width: 61px;
-    height: 6px;
-    background: rgb(55, 137, 178);
-    border-radius: 9px;
-}
-
-.inputs{
-    margin-top: 55px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
+    border-radius: 10px;
     
 }
 
-.input{
+.login-container label {
+    min-width: 110px;
+    margin-right: 20px;
+    font-size: 20px;
+    text-align: right;
+}
+
+.login-container h2 {
+    font-size: 40px;
+    font-weight: semibold;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+}
+
+.login-group {
     display: flex;
     align-items: center;
-    margin: auto;
-    width: 480px;
-    height: 80px;
-    background:#eaeaea;
-    border-radius: 6px;
+    justify-content: flex-start;
+    width: 600px;
+    margin: 0 auto 20px auto;
+    gap: 20px;
 }
 
-.input img{
-    margin: 0px 30px;
-
-}
-
-.input input{
-    height:50px;
-    width: 400px;
-    background: transparent;
+.login-container input{
+    height: 40px;
+    width: 300px;
+    background-color: #D9D9D9;
     border: none;
-    outline: none;
-    color: #000000;
-    font-size: 19px;
-
-}
-
-.forgot-password{
-    text-align: center;
-    margin-top: 27px;
-    color:#797979;
-    font-size:18px;
-
-}
-
-.forgot-password span{
-    color: rgb(55, 137, 178);
-    cursor: pointer;
-}
-
-.submit-container{
-    display: flex;
-    gap:30px;
-    margin: 60px auto;
-}
-
-.submit{
-    display: flex;
-    justify-content: center;
+    padding-left: 12px;
+    font-size: 20px;
     align-items: center;
-    width: 220px;
-    height: 59px;
-    color: #fff;
-    background: rgb(55, 137, 178);
-    border-radius: 50px;
-    font-size: 19px;
-    font-weight: 700px;
-    cursor: pointer;
 }
 
-.gray{
-    background: #eaeaea;
-    color:#676767;
+.login-container button {
+    margin-top: 30px;
+    width: 263px;
+    height: 64px;
+    background: #38B6FF;
+    border: none;
+    border-radius: 20px;
+    color: #000000;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
 }

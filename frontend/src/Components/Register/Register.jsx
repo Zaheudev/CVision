@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import api from '../../utils/api.js';
 import './Register.css';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 const Register = () => {
     const navigator = useNavigate();
@@ -10,7 +11,9 @@ const Register = () => {
         username: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        role: '', // default to empty string
+        roleDetail: ''
     });
 
     const handleChange = (e) => {
@@ -47,49 +50,68 @@ const Register = () => {
 
     return (
         <div className="register-container">
-            <h2>Register</h2>
+            <h2>Creează un cont</h2>
             <form onSubmit={handleSignup}>
                 <div className="form-group">
+                    <label>Nume și prenume</label>
                     <input
                         type="text"
                         name="username"
-                        placeholder="Username"
                         value={formData.username}
                         onChange={handleChange}
                         required
                     />
                 </div>
+                {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
+                iar dacă se alege candidat, să se afișeze un câmp suplimentar pentru detalii */}
                 <div className="form-group">
+                    <label>Candidat/Angajator</label>
+                    <select name="role" value={formData.role} onChange={handleChange} required>
+                        <option value="" disabled>Selectează o opțiune</option>
+                        <option value="candidate">Candidat</option>
+                        <option value="employer">Angajator</option>
+                    </select>
+                    {formData.role === "employer" && (
+                        <input
+                            type="text"
+                            name="roleDetail"
+                            placeholder="Nume companie / Domeniu"
+                            value={formData.roleDetail}
+                            onChange={handleChange}
+                        />
+                    )}
+                </div>
+                <div className="form-group">
+                    <label>Email</label>
                     <input
                         type="email"
                         name="email"
-                        placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="form-group">
+                   <label>Parola</label>
                     <input
                         type="password"
                         name="password"
-                        placeholder="Password"
                         value={formData.password}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="form-group">
+                    <label>Confirmă parola</label>
                     <input
                         type="password"
                         name="confirmPassword"
-                        placeholder="Confirm Password"
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Creare cont</button>
             </form>
         </div>
     );
