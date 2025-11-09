@@ -40,10 +40,24 @@ export const register = async (formData) => {
   }
 };
 
+
+// se poate folosi pentru a face request-uri get catre endpoint-urile protejate precum profilul unui candidat
 export const getProtected = async (path) => {
     try {
         const headers = getAuthHeaders();
         const response = await axios.get(`${API_BASE_URL}${path}`, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+}
+
+// asta poate fi folosit pentru a obtine profilul candidatului logat
+// dar si functia de mai sus getProtected poate fi folosita la fel de bine.
+export const getCandidateProfile = async () => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.get(`${API_BASE_URL}/candidate`, { headers });
         return response.data;
     } catch (err) {
         handleError(err);

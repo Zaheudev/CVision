@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // asta e modelul pentru useri in baza de date, urmeaza sa adaugam 
 // campuri pe masura ce dezvoltam aplicatia.
 
-const userSchema = new mongoose.Schema({
+const candidateSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -37,4 +37,4 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Candidate', candidateSchema);

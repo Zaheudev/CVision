@@ -27,7 +27,7 @@ const Register = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.register({ username: e.target[0].value, email: e.target[1].value, password: e.target[2].value });
+            const res = await api.register({ name: e.target[0].value, email: e.target[1].value, password: e.target[2].value });
             console.log('Registration successful: ', res);
 
             // backend doesn't return token for register, so try auto-login
