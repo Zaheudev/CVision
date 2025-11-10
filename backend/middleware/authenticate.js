@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken');
 
+// Middleware pentru autentificare folosind JWT
+// nu permite accesul la rutele protejate fara un token valid
+// pe scurt nu vrem sa se fure date de la utilizatori neautorizati
 const authenticate = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
 
-  // console.log(token);
+  const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) {
     return res.status(401).json({ error: 'Authentication token is required' });
   }

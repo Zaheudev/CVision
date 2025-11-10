@@ -1,19 +1,18 @@
-const User = require('../models/User');
+const Candidate = require('../models/Candidate');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 // Înregistrează un utilizator nou
-exports.registerUser = async (req, res) => {
+exports.registerCandidate = async (req, res) => {
     // const { username, email, password } = req.body;
-    const name = req.body.username;
+    const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
     console.log({name, email, password});
     try {
-        console.log('test');
         // Verifică dacă emailul este deja folosit
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        const existingCandidate = await Candidate.findOne({ email });
+        if (existingCandidate) {
             return res.status(400).json({ message: 'Email already in use' });
         }
 
@@ -21,8 +20,8 @@ exports.registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Creează un utilizator nou pe care îl salvează în baza de date
-        const newUser = new User({ name, email, passwordHash: hashedPassword });
-        await newUser.save();
+        const newCandidate = new Candidate({ name, email, passwordHash: hashedPassword });
+        await newCandidate.save();
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
@@ -32,27 +31,27 @@ exports.registerUser = async (req, res) => {
 };
 
 // Autentifică un utilizator
-exports.loginUser = async (req, res) => {
+exports.loginCandidate = async (req, res) => {
     const { email, password } = req.body;
 
     try {
         // Găsește utilizatorul după email
-        const user = await User.findOne({ email });
-        if (!user) {
+        const candidate = await Candidate.findOne({ email });
+        if (!candidate) {
             return res.status(404).json({ message: 'User not found' });
         }
 
         // Compară parola
-        const isMatch = await bcrypt.compare(password, user.passwordHash);
+        const isMatch = await bcrypt.compare(password, candidate.passwordHash);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
         // Generează un token JWT
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        console.log(user._id);
+        const token = jwt.sign({ id: candidate._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        console.log(candidate._id);
         res.status(200).json({
-            user: { token: token, id: user._id },
+            user: { token: token, id: candidate._id },
         });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });

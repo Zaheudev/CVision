@@ -29,6 +29,7 @@ mongoose
   });
 
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/candidate', require('./routes/candidate'));
 
 // Root
 app.get('/', (req, res) => {

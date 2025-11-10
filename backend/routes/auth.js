@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser } = require('../controllers/auth');
+const { registerCandidate, loginCandidate } = require('../controllers/authController');
 
 // endpoints pentru înregistrare și autentificare
-router.post('/register', registerUser);
-router.post('/login', loginUser);
+router.post('/register', registerCandidate);
+router.post('/login', loginCandidate);
 
 module.exports = router;
