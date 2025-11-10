@@ -1,0 +1,122 @@
+/* Mobile - până la 767px */
+@media (max-width: 767px) {
+  /* Stiluri pentru mobile */
+}
+
+/* Tablet - 768px până la 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Stiluri pentru tablet */
+  body{
+    background-color: lightgray;
+  }
+
+    .header-container {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    /* Lista elemente */
+    li{
+        list-style-type: none;
+    }
+
+    .lst-item {
+        color: black;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0px;
+    }
+}
+
+/* Laptop - 1024px până la 1439px */
+@media (min-width: 1024px) {
+  /* Stiluri pentru laptop */
+  .header-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* border: 1px solid red; */
+  }
+
+  /* Lista elemente */
+  .lst {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    width: 80%;
+  }
+
+  .lst-item {
+    /* margin-right: 20px; */
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    /* border: 1px solid blue; */
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+  li {
+    list-style-type: none;
+    /* border: 1px solid palegreen; */
+    width: 12.5%;
+    height: 100%;
+  }
+
+  /* Butoane */
+  .btn-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    /* border: 1px solid orange; */
+    width: 10%;
+    height: 13vh;
+  }
+
+  .btn-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid brown; */
+    margin: 5px;
+    height: 45%;
+    width: 90%;
+  }
+
+  .btn{
+    width: 100%;
+    height: 100%;
+    background-color: #38b6ff;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+  }
+
+  /* Logo */
+  .logo-png {
+    width: 100%;
+  }
+  .logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid purple; */
+    width: 10%;
+    height: 100%;
+    padding: 0px;
+  }
+}

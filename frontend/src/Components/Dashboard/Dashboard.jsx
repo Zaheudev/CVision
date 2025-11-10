@@ -22,16 +22,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div>
       <h2>Dashboard (Test)</h2>
-      <div className="dashboard-card">
-        <label>JWT token (local):</label>
-        <pre className="token-box">{getToken() || 'No token saved'}</pre>
-        <div className="actions">
-          <button onClick={handleCopy} disabled={!getToken()}>Copy token</button>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      </div>
     </div>
   );
 };
