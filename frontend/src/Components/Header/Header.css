@@ -1,11 +1,9 @@
 /* Mobile - până la 767px */
-@media (max-width: 767px) {
-  /* Stiluri pentru mobile */
-}
+
 
 /* Tablet - 768px până la 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Stiluri pentru tablet */
+@media (max-width: 1023px) {
+  /* Stiluri pentru tablet & mobile */
   body{
     background-color: lightgray;
   }
@@ -26,6 +24,10 @@
         text-decoration: none;
         font-weight: 500;
         padding: 0px;
+    }
+
+    .lst-item:hover {
+        color: #38b6ff;
     }
 }
 
@@ -68,6 +70,16 @@
     justify-content: space-evenly;
     padding: 0px;
   }
+
+  .lst-item:hover {
+    color: #38b6ff;
+  }
+
+  .lst-item:active {
+    font-size: 1rem;
+  }
+
+
   li {
     list-style-type: none;
     /* border: 1px solid palegreen; */
@@ -85,6 +97,7 @@
     /* border: 1px solid orange; */
     width: 10%;
     height: 13vh;
+    margin-right: 10px;
   }
 
   .btn-item {
@@ -105,6 +118,19 @@
     border-radius: 8px;
     border: none;
   }
+
+  .btn:hover {
+    background-color: #ffffff;
+    cursor: pointer;
+    border: #38b6ff 2px solid;
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+    color: #38b6ff;
+  }
+
+
 
   /* Logo */
   .logo-png {

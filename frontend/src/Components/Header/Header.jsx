@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 import logoPNG from "../Assets/logo.png";
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <div className="header-container">
       {" "}
@@ -65,13 +67,13 @@ export default function Header() {
         <div className="btn-section item">
           {" "}
           <div className="btn-item">
-          <button type="button" className="btn btn-Login">
-            Log In
+          <button type="button" className="btn btn-Login" onClick={() => navigate('/')}>
+            Autentificare
           </button>
           </div>{" "}
           <div className="btn-item">
-          <button type="button" className="btn btn-Signup">
-            Sign Up
+          <button type="button" className="btn btn-Signup" onClick={() => navigate('/register')}>
+            Înregistrare
           </button>
           </div>{" "}
         </div>{" "}

@@ -2,3 +2,56 @@ footer {
     background-color: #38b6ff;
     color: rgb(0, 0, 0);   
 }
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding:  0;
+    margin-top: 30px;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+.lst{
+    list-style-type: none;
+    /* border: 1px solid rgb(195, 21, 21); */
+    align-items: center;
+    padding: 0;
+}
+
+ul{
+    width: 100%;
+    /* border: 1px solid rgb(193, 255, 21); */
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    /* border: 1px solid rgb(21, 255, 195); */
+    width: 100%;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+    font-weight: 200;
+    font-size: 0.9rem;
+}
+li a:hover{
+    color: #ffffff;
+}
+
+.footer-item h3 {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
