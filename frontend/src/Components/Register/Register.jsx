@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import api from '../../utils/api.js';
 import './Register.css';
 import { AuthContext } from '../../context/AuthContext.jsx';
+import ButtonPrimary from '../Buttons/buttons.jsx';
+import { TextInput, SelectInput } from '../Inputs/inputs.jsx';
+import { FaBuilding } from "react-icons/fa6";
+import { IoPerson } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa6";
 
 const Register = () => {
     const navigator = useNavigate();
@@ -52,66 +58,85 @@ const Register = () => {
         <div className="register-container">
             <h2>Creează un cont</h2>
             <form onSubmit={handleSignup}>
-                <div className="form-group">
-                    <label>Nume și prenume</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
                 {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
                 iar dacă se alege candidat, să se afișeze un câmp suplimentar pentru detalii */}
-                <div className="form-group">
-                    <label>Candidat/Angajator</label>
-                    <select name="role" value={formData.role} onChange={handleChange} required>
-                        <option value="" disabled>Selectează o opțiune</option>
-                        <option value="candidate">Candidat</option>
-                        <option value="employer">Angajator</option>
-                    </select>
+                <div>
+                    <SelectInput
+                        name="role" 
+                        value={formData.role} 
+                        onChange={handleChange} 
+                        required
+                        options={[
+                            {value:"candidate", label:"Candidat"},   
+                            {value:"employer", label: "Angajator"}
+                        ]}
+                    
+                    />
+
                     {formData.role === "employer" && (
-                        <input
+                        <TextInput
                             type="text"
                             name="roleDetail"
                             placeholder="Nume companie / Domeniu"
                             value={formData.roleDetail}
                             onChange={handleChange}
-                        />
+                            >
+                            <FaBuilding />
+                        </TextInput>
                     )}
                 </div>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
+                {/* Daca utilizatorul selecteaza optiunea - angajator, 
+                automat dispare campul nume si prenume */ }
+                {formData.role !== "employer" && (
+                    <div>
+                        <TextInput
+                            type="text"
+                            name="username"
+                            placeholder='Nume si prenume'
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                            ><IoPerson />
+                        </TextInput>
+                    </div>
+                )}
+                <div>
+                    <TextInput
                         type="email"
                         name="email"
+                        placeholder='Email'
                         value={formData.email}
                         onChange={handleChange}
                         required
-                    />
+                        ><MdEmail />
+                    </TextInput>
                 </div>
-                <div className="form-group">
-                   <label>Parola</label>
-                    <input
+                <div>
+                    <TextInput
                         type="password"
                         name="password"
+                        placeholder='Parola'
                         value={formData.password}
                         onChange={handleChange}
                         required
-                    />
+                        ><FaLock/>
+                    </TextInput>
                 </div>
-                <div className="form-group">
-                    <label>Confirmă parola</label>
-                    <input
+                <div>
+                    <TextInput
                         type="password"
                         name="confirmPassword"
+                        placeholder='Confirmă parola'
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
-                    />
+                        ><FaLock/>
+                    </TextInput>
                 </div>
-                <button type="submit">Creare cont</button>
+                    <ButtonPrimary 
+                        type="submit"
+                        text="Creare cont"
+                    />
             </form>
         </div>
     );

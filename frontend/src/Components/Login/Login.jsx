@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
-import email_icon from '../Assets/email.png'
-import password_icon from '../Assets/password.png'
-import user_icon from '../Assets/password.png'
-
 import api from '../../utils/api.js';
 import useAuth from '../../hooks/useAuth';
+import ButtonPrimary from '../Buttons/buttons.jsx'
+import { TextInput } from '../Inputs/inputs.jsx'
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa6";
 
 export const Login = () => {
 
@@ -31,30 +31,36 @@ export const Login = () => {
          <div className="login-container">
             <h2>Conectează-te</h2>
             <form onSubmit={handleLogin}>
-                <div className="login-group">
-                    <label>Email</label>
-                    <input
+                <div>
+                    <TextInput
                         type="email"
                         name="email"
-                        value={email} 
-                        onChange={e => setEmail(e.target.value)} 
-                        required
-                    />
+                        id="email"
+                        placeholder='Email'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        required>
+                        <MdEmail/>
+                    </TextInput>
+                    
                 </div>
-                <div className="login-group">
-                   <label>Parola</label>
-                    <input
+                <div>
+                    <TextInput
                         type="password"
                         name="password"
+                        id="password"
+                        placeholder='Parola'
                         value={password}
                         onChange={e => setPassword(e.target.value)} 
-                        required
+                        required>
+                        <FaLock/>
+                    </TextInput>
+                </div>
+                    <ButtonPrimary 
+                        type="submit"
+                        text="Conectare"
                     />
-                </div>
-                <div className="container-button">
-                <button type="submit" >Conectează-te</button>
-                </div>
-                <p>Nu ai un cont? <Link to="/register">Înregistrează-te aici</Link></p>
+                <p>Nu ai un cont? <a className="link-register" href='/register'>Înregistrează-te aici</a></p>
             </form>
         </div>
 
