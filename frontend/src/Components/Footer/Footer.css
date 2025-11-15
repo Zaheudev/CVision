@@ -1,57 +1,89 @@
 footer {
-    background-color: #38b6ff;
-    color: rgb(0, 0, 0);   
+  background-color: #38b6ff;
+  color: rgb(0, 0, 0);
 }
 .footer-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding:  0;
-    margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0;
+  margin-top: 30px;
 }
 
 .footer-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    padding: 10px;
-    text-align: center;
-    /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  /* border: 1px solid black; */
 }
 
-.lst{
-    list-style-type: none;
-    /* border: 1px solid rgb(195, 21, 21); */
-    align-items: center;
-    padding: 0;
+.lst {
+  list-style-type: none;
+  /* border: 1px solid rgb(195, 21, 21); */
+  align-items: center;
+  padding: 0;
 }
 
-ul{
-    width: 100%;
-    /* border: 1px solid rgb(193, 255, 21); */
-    padding: 0;
-    margin: 0;
+.lst-ul {
+  width: 100%;
+  /* border: 1px solid rgb(193, 255, 21); */
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-li{
-    /* border: 1px solid rgb(21, 255, 195); */
-    width: 100%;
+.lst-ul li {
+  /* border: 1px solid rgb(21, 255, 195); */
+  width: 100%;
 }
 
-li a{
-    text-decoration: none;
-    color: black;
-    font-weight: 200;
-    font-size: 0.9rem;
+.lst-element-footer {
+  text-decoration: none;
+  color: black;
+  font-weight: 200;
+  font-size: 0.9rem;
 }
-li a:hover{
-    color: #ffffff;
+.lst-element-footer:hover {
+  color: #ffffff;
 }
 
 .footer-item h3 {
-    margin-bottom: 10px;
-    font-weight: 500;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* Mobile ----------------------------------------------------------------------------------------------------*/
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .footer-item {
+    flex: 1;
+    min-width: 120px;
+    padding: 5px;
+  }
+
+  .lst-footer {
+    display: block;
+    list-style-type: none;
+  }
+
+  .lst-element-footer {
+    font-size: 0.7rem;
+    text-decoration: none;
+  }
+
+  .footer-item h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
 }

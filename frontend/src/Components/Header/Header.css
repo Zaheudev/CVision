@@ -1,34 +1,95 @@
 /* Stiluri generale pentru Header */
 @media (max-width: 1023px) {
   /* Stiluri pentru tablet & mobile */
-  body{
-    background-color: lightgray;
+  body {
+    background-color: #ffffff;
   }
 
-    .header-container {
-        width: 100%;
-        margin: 0px;
-        padding: 0px;
-    }
+  .header-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+  }
 
-    /* Lista elemente */
-    li{
-        list-style-type: none;
-    }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #38b6ff;
+  }
 
-    .lst-item {
-        color: black;
-        text-decoration: none;
-        font-weight: 500;
-        padding: 0px;
-    }
+  .desktop-logo {
+    display: none;
+  }
 
-    .lst-item:hover {
-        color: #38b6ff;
-    }
+  .mobile-logo {
+    display: block;
+    width: 100%;
+  }
+
+  .lst,
+  .btn-section {
+    display: none;
+  }
+
+  .menu-btn {
+    background: #38b6ff;
+    border: none;
+    font-size: 16px;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .menu-btn:hover {
+    background: #2a9bd6;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: fit-content;
+    min-width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-item {
+    padding: 15px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .mobile-btn {
+    padding: 15px;
+    background-color: #38b6ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-btn:hover {
+    background-color: #ffffff;
+    border: 2px solid #38b6ff;
+    color: #38b6ff;
+  }
 }
 
-/* Laptop - 1024px până la 1439px */
+/* Laptop - 1024px până la 1439px-------------------------------------------------------------------------------------------- */
 @media (min-width: 1024px) {
   /* Stiluri pentru laptop */
   .header-container {
@@ -76,8 +137,7 @@
     font-size: 1rem;
   }
 
-
-  li {
+  .lst li {
     list-style-type: none;
     /* border: 1px solid palegreen; */
     width: 12.5%;
@@ -107,7 +167,7 @@
     width: 90%;
   }
 
-  .btn{
+  .btn {
     width: 100%;
     height: 100%;
     background-color: #38b6ff;
@@ -127,8 +187,6 @@
     color: #38b6ff;
   }
 
-
-
   /* Logo */
   .logo-png {
     width: 100%;
@@ -141,5 +199,17 @@
     width: 10%;
     height: 100%;
     padding: 0px;
+  }
+
+  .desktop-logo {
+    display: block;
+  }
+
+  .mobile-logo {
+    display: none;
+  }
+
+  .menu-btn {
+    display: none;
   }
 }
