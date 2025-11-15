@@ -1,12 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import api from '../../utils/api.js';
+import api, { login } from '../../utils/api.js';
 import './Register.css';
-import { AuthContext } from '../../context/AuthContext.jsx';
+import useAuth from '../../hooks/useAuth.js';
+import ButtonPrimary from '../Buttons/Button.jsx';
+import { TextInput, SelectInput } from '../Inputs/inputs.jsx';
+import { FaBuilding } from "react-icons/fa6";
+import { IoPerson } from "react-icons/io5";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa6";
+import AuthContainer from '../AuthContainer/AuthContainer.jsx';
 
 const Register = () => {
     const navigator = useNavigate();
-    const { saveToken } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -15,6 +21,7 @@ const Register = () => {
         role: '', // default to empty string
         roleDetail: ''
     });
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,98 +29,147 @@ const Register = () => {
             ...prevState,
             [name]: value
         }));
+        //Stergem eroarea daca utilizatorul selecteaza o optiune
+        if(name==="role"){
+            setError("");
+        }
+        //Eroarea apare daca emailul nu contine "@"
+    if (name === "email") {
+        if (!value.includes("@")) {
+            setError("Adresa de email trebuie să fie in formatul @exemplu.com!");
+        } else {
+            setError("");
+        } 
+    }
+
+    // Validare pentru parole care nu corespund. Eroarea apare in momentul in care utilizatorul modifica campul parola sau confirmare parola
+    if (name === "password" || name === "confirmPassword") {
+        const password = name === "password" ? value : formData.password;
+        const confirmPassword = name === "confirmPassword" ? value : formData.confirmPassword;
+            if (password !== confirmPassword) {
+            setError("Parolele nu corespund!");
+            } else {
+            setError("");
+            }
+        }
     };
+
 
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.register({ name: e.target[0].value, email: e.target[1].value, password: e.target[2].value });
+            const res = await api.register({ name: e.target[1].value, email: e.target[2].value, password: e.target[3].value }, e.target[0].value);
             console.log('Registration successful: ', res);
 
             // backend doesn't return token for register, so try auto-login
             try {
-                const loginRes = await api.login(e.target[1].value, e.target[2].value);
-                if (loginRes && loginRes.token) {
-                    saveToken(loginRes.token);
-                    navigator('/dashboard');
-                    return;
-                }
+                console.log('Attempting auto-login...');
+                const loginRes = await api.login(e.target[2].value, e.target[3].value, e.target[0].value);
+                console.log(loginRes)
+                login(loginRes.user);
+                navigator('/dashboard');
+                return;
             } catch (err) {
                 console.log('Auto-login failed: ', err);
             }
 
             setTimeout(() => navigator('/'), 800);
         } catch (error) {
+            //Daca mesajul de eroare de la backend contine email (exista deja un cont cu adresa respectiva), atunci afisam eroarea 
+            if(error?.response?.data?.message?.toLowerCase().includes("email")){
+                setError("Exista deja un cont înregistrat cu acest email!");
+            }else{
+                setError("A apărut o eroare la înregistrare. Te rugăm să încerci din nou.");
+            }
             console.log('Signup error: ', error);
         }
     }
 
+    const[error, setError]=useState("")
     return (
-        <div className="register-container">
-            <h2>Creează un cont</h2>
+        <AuthContainer title="Creează un cont">
+            {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSignup}>
-                <div className="form-group">
-                    <label>Nume și prenume</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
                 {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
                 iar dacă se alege candidat, să se afișeze un câmp suplimentar pentru detalii */}
-                <div className="form-group">
-                    <label>Candidat/Angajator</label>
-                    <select name="role" value={formData.role} onChange={handleChange} required>
-                        <option value="" disabled>Selectează o opțiune</option>
-                        <option value="candidate">Candidat</option>
-                        <option value="employer">Angajator</option>
-                    </select>
-                    {formData.role === "employer" && (
-                        <input
+                    <SelectInput
+                        name="role"
+                        value={formData.role}
+                        onChange={handleChange}
+                        required
+                        options={[
+                            { value: "Candidate", label: "Candidat" },
+                            { value: "Employer", label: "Angajator" }
+                        ]}
+
+                    />
+
+                    {formData.role === "Employer" && (
+                        <TextInput
                             type="text"
                             name="roleDetail"
                             placeholder="Nume companie / Domeniu"
                             value={formData.roleDetail}
                             onChange={handleChange}
-                        />
+                            ><FaBuilding />
+                        </TextInput>
                     )}
-                </div>
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
+                {/* Daca utilizatorul selecteaza optiunea - angajator, 
+                automat dispare campul nume si prenume */ }
+                {formData.role !== "Employer" && (
+                        <TextInput
+                            type="text"
+                            name="username"
+                            placeholder='Nume si prenume'
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                            disabled={!formData.role}
+                            onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
+                        ><IoPerson />
+                        </TextInput>
+                )}
+                    <TextInput
                         type="email"
                         name="email"
+                        placeholder='Email'
                         value={formData.email}
                         onChange={handleChange}
                         required
-                    />
-                </div>
-                <div className="form-group">
-                   <label>Parola</label>
-                    <input
+                        disabled={!formData.role}
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
+                        ><MdEmail />
+                    </TextInput>
+                    <TextInput
                         type="password"
                         name="password"
+                        placeholder='Parola'
                         value={formData.password}
                         onChange={handleChange}
                         required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Confirmă parola</label>
-                    <input
+                        disabled={!formData.role}
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
+                    ><FaLock />
+                    </TextInput>
+
+                    <TextInput
                         type="password"
                         name="confirmPassword"
+                        placeholder='Confirmă parola'
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
-                    />
-                </div>
-                <button type="submit">Creare cont</button>
+                        disabled={!formData.role}  
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
+                        ><FaLock />
+                    </TextInput>
+
+                <ButtonPrimary
+                    type="submit"
+                    text="Creare cont"
+                />
             </form>
-        </div>
+        </AuthContainer>
     );
 };
 

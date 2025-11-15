@@ -22,18 +22,18 @@ const getAuthHeaders = () => {
     }
 }
 
-export const login = async (email, password) => {
+export const login = async (email, password, role) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
+    const response = await axios.post(`${API_BASE_URL}/auth/login${role}`, { email, password });
     return response.data;
   } catch (error) {
     handleError(error);
   }
 };
 
-export const register = async (formData) => {
+export const register = async (formData, role) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/auth/register`, formData);
+    const response = await axios.post(`${API_BASE_URL}/auth/register${role}`, formData);
     return response.data;
   } catch (error) {
     handleError(error);
