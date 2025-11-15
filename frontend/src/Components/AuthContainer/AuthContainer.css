@@ -16,3 +16,11 @@
     margin-bottom: 50px;
     padding-bottom: 10px;
 }
+
+@media (max-width: 700px) {
+    .auth-container {
+        width: 98vw;
+        min-width: unset;
+        padding: 10px;
+    }
+}
