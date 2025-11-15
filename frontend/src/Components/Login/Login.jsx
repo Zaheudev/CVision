@@ -3,14 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import api from '../../utils/api.js';
 import useAuth from '../../hooks/useAuth';
-import ButtonPrimary from '../Buttons/buttons.jsx'
+import ButtonPrimary from '../Buttons/Button.jsx'
 import { TextInput } from '../Inputs/inputs.jsx'
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 
 export const Login = () => {
-
-    const [action, setAction] = useState('Login');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -19,7 +17,7 @@ export const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.login(email, password);
+            const res = await api.login(email, password, 'Candidate');
             login(res.user);
             navigate('/dashboard');
         } catch (error) {
