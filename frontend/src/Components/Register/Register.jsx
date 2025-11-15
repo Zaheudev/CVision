@@ -33,7 +33,27 @@ const Register = () => {
         if(name==="role"){
             setError("");
         }
+        //Eroarea apare daca emailul nu contine "@"
+    if (name === "email") {
+        if (!value.includes("@")) {
+            setError("Adresa de email trebuie să fie in formatul @exemplu.com!");
+        } else {
+            setError("");
+        } 
+    }
+
+    // Validare pentru parole care nu corespund. Eroarea apare in momentul in care utilizatorul modifica campul parola sau confirmare parola
+    if (name === "password" || name === "confirmPassword") {
+        const password = name === "password" ? value : formData.password;
+        const confirmPassword = name === "confirmPassword" ? value : formData.confirmPassword;
+            if (password !== confirmPassword) {
+            setError("Parolele nu corespund!");
+            } else {
+            setError("");
+            }
+        }
     };
+
 
     const handleSignup = async (e) => {
         e.preventDefault();
