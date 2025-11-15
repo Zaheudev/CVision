@@ -55,6 +55,12 @@ const Register = () => {
 
             setTimeout(() => navigator('/'), 800);
         } catch (error) {
+            //Daca mesajul de eroare de la backend contine email (exista deja un cont cu adresa respectiva), atunci afisam eroarea 
+            if(error?.response?.data?.message?.toLowerCase().includes("email")){
+                setError("Exista deja un cont înregistrat cu acest email!");
+            }else{
+                setError("A apărut o eroare la înregistrare. Te rugăm să încerci din nou.");
+            }
             console.log('Signup error: ', error);
         }
     }
@@ -85,8 +91,7 @@ const Register = () => {
                             placeholder="Nume companie / Domeniu"
                             value={formData.roleDetail}
                             onChange={handleChange}
-                        >
-                            <FaBuilding />
+                            ><FaBuilding />
                         </TextInput>
                     )}
                 {/* Daca utilizatorul selecteaza optiunea - angajator, 
@@ -113,7 +118,7 @@ const Register = () => {
                         required
                         disabled={!formData.role}
                         onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
-                    ><MdEmail />
+                        ><MdEmail />
                     </TextInput>
                     <TextInput
                         type="password"
@@ -136,7 +141,7 @@ const Register = () => {
                         required
                         disabled={!formData.role}  
                         onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
-                    ><FaLock />
+                        ><FaLock />
                     </TextInput>
 
                 <ButtonPrimary
