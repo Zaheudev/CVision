@@ -2,6 +2,8 @@ import './App.css'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
 import Dashboard from './Components/Dashboard/Dashboard'
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import useAuth from './hooks/useAuth'
 
@@ -28,11 +30,13 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        <Header />
         <Routes>
           <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   )

@@ -1,7 +1,4 @@
-/* Mobile - până la 767px */
-
-
-/* Tablet - 768px până la 1023px */
+/* Stiluri generale pentru Header */
 @media (max-width: 1023px) {
   /* Stiluri pentru tablet & mobile */
   body{
