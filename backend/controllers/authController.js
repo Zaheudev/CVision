@@ -1,6 +1,7 @@
 const Employer = require('../models/Candidate');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const Candidate = require('../models/Candidate');
 
 // Înregistrează un candidat nou
 exports.registerCandidate = async (req, res) => {
@@ -11,7 +12,7 @@ exports.registerCandidate = async (req, res) => {
     console.log({name, email, password});
     try {
         // Verifică dacă emailul este deja folosit
-        const existingCandidate = await Employer.findOne({ email });
+        const existingCandidate = await Candidate.findOne({ email });
         if (existingCandidate) {
             return res.status(400).json({ message: 'Email already in use' });
         }
@@ -20,7 +21,7 @@ exports.registerCandidate = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Creează un utilizator nou pe care îl salvează în baza de date
-        const newCandidate = new Employer({ name, email, passwordHash: hashedPassword });
+        const newCandidate = new Candidate({ name, email, passwordHash: hashedPassword });
         await newCandidate.save();
 
         res.status(201).json({ message: 'Candidate registered successfully' });

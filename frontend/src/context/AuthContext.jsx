@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     auth.clearToken();
+    console.log('User logged out');
   };
 
   return (

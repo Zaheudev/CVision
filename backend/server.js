@@ -1,11 +1,9 @@
-
-// Am generat cu copilot un script pt a pornit un server express foarte simplu dupa care il vom dezvolta pe parcurs
-// este pentru testare momentan
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const app = express();
+const errorHandler = require('./middleware/errorHandler');
 
 const corsOptions = {
    origin: '*', // Replace with your frontend URL
@@ -30,18 +28,7 @@ mongoose
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/candidate', require('./routes/candidate'));
+app.use('/api/employer', require('./routes/employer'));
 
-// Root
-app.get('/', (req, res) => {
-    res.json({ message: 'CVision backend running' });
-});
-
-// Health check
-app.get('/health', (req, res) => {
-    res.sendStatus(200);
-});
-
-// Example POST endpoint
-app.post('/echo', (req, res) => {
-    res.json({ received: req.body });
-});
+//Error handling middleware
+app.use(errorHandler);

@@ -2,3 +2,9 @@
 // are dreptul sa acceseze o resursa anume, de exemplu daca un utilizator
 // incearca sa modifice un job postat de alt angajator ar trebui sa fie
 // blocat si sa primeasca un mesaj de eroare. sau daca vrea sa obtina datele altui candidat.
+
+const checkOwnership = async (req, res, next) => {
+    
+};
+
+module.exports = checkOwnership;
