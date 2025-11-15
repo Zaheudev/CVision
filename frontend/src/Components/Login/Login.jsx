@@ -23,13 +23,20 @@ export const Login = () => {
             login(res.user);
             navigate('/dashboard');
         } catch (error) {
-            setError("Email sau parola incorectă!");
+            // Verifică dacă mesajul de eroare de la backend conține "email" sau "parola"
+            if (error?.response?.data?.message?.toLowerCase().includes("invalid credentials")) 
+                {
+                setError("Email sau parolă incorectă!");
+            } else {
+                setError("A apărut o eroare la autentificare. Te rugăm să încerci din nou.");
+            }
             console.log('Login error: ', error);
         }
     }
 
     return (
          <AuthContainer title="Conectează-te">
+            {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleLogin}>
                     <TextInput
                         type="email"
