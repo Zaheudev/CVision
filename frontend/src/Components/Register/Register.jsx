@@ -9,6 +9,7 @@ import { FaBuilding } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
+import AuthContainer from '../AuthContainer/AuthContainer.jsx';
 
 const Register = () => {
     const navigator = useNavigate();
@@ -55,12 +56,10 @@ const Register = () => {
     }
 
     return (
-        <div className="register-container">
-            <h2>Creează un cont</h2>
+        <AuthContainer title="Creează un cont">
             <form onSubmit={handleSignup}>
                 {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
                 iar dacă se alege candidat, să se afișeze un câmp suplimentar pentru detalii */}
-                <div>
                     <SelectInput
                         name="role"
                         value={formData.role}
@@ -84,11 +83,9 @@ const Register = () => {
                             <FaBuilding />
                         </TextInput>
                     )}
-                </div>
                 {/* Daca utilizatorul selecteaza optiunea - angajator, 
                 automat dispare campul nume si prenume */ }
                 {formData.role !== "Employer" && (
-                    <div>
                         <TextInput
                             type="text"
                             name="username"
@@ -98,9 +95,7 @@ const Register = () => {
                             required
                         ><IoPerson />
                         </TextInput>
-                    </div>
                 )}
-                <div>
                     <TextInput
                         type="email"
                         name="email"
@@ -110,8 +105,6 @@ const Register = () => {
                         required
                     ><MdEmail />
                     </TextInput>
-                </div>
-                <div>
                     <TextInput
                         type="password"
                         name="password"
@@ -121,8 +114,7 @@ const Register = () => {
                         required
                     ><FaLock />
                     </TextInput>
-                </div>
-                <div>
+
                     <TextInput
                         type="password"
                         name="confirmPassword"
@@ -132,13 +124,13 @@ const Register = () => {
                         required
                     ><FaLock />
                     </TextInput>
-                </div>
+
                 <ButtonPrimary
                     type="submit"
                     text="Creare cont"
                 />
             </form>
-        </div>
+        </AuthContainer>
     );
 };
 

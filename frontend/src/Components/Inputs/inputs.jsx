@@ -30,7 +30,6 @@ export function SelectInput({ label, icon, name, value, onChange, options, requi
                 value={value}
                 onChange={onChange}
                 required={required}
-                style={icon ? { paddingLeft: '40px' } : {}}
             >
                 <option value="" disabled>Candidat/Angajator</option>
                 {options.map((option) => (

@@ -7,6 +7,7 @@ import ButtonPrimary from '../Buttons/Button.jsx'
 import { TextInput } from '../Inputs/inputs.jsx'
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
+import AuthContainer from '../AuthContainer/AuthContainer.jsx';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -26,10 +27,8 @@ export const Login = () => {
     }
 
     return (
-         <div className="login-container">
-            <h2>Conectează-te</h2>
+         <AuthContainer title="Conectează-te">
             <form onSubmit={handleLogin}>
-                <div>
                     <TextInput
                         type="email"
                         name="email"
@@ -40,9 +39,6 @@ export const Login = () => {
                         required>
                         <MdEmail/>
                     </TextInput>
-                    
-                </div>
-                <div>
                     <TextInput
                         type="password"
                         name="password"
@@ -53,14 +49,13 @@ export const Login = () => {
                         required>
                         <FaLock/>
                     </TextInput>
-                </div>
                     <ButtonPrimary 
                         type="submit"
                         text="Conectare"
                     />
                 <p>Nu ai un cont? <a className="link-register" href='/register'>Înregistrează-te aici</a></p>
             </form>
-        </div>
+        </AuthContainer>
 
     )
 }

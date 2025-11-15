@@ -1,4 +1,4 @@
-.register-container {
+.auth-container{
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -10,20 +10,9 @@
     max-width: 95vw;
 }
 
-.register-container h2 {
+.auth-container h2{
     font-size: 40px;
     font-weight: semibold;
     margin-bottom: 50px;
     padding-bottom: 10px;
 }
-
-
-
-@media (max-width: 700px) {
-    .register-container {
-        width: 98vw;
-        min-width: unset;
-        padding: 10px;
-    }
-}
-
