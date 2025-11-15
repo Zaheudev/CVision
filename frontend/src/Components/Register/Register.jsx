@@ -29,6 +29,10 @@ const Register = () => {
             ...prevState,
             [name]: value
         }));
+        //Stergem eroarea daca utilizatorul selecteaza o optiune
+        if(name==="role"){
+            setError("");
+        }
     };
 
     const handleSignup = async (e) => {
@@ -55,8 +59,10 @@ const Register = () => {
         }
     }
 
+    const[error, setError]=useState("")
     return (
         <AuthContainer title="Creează un cont">
+            {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSignup}>
                 {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
                 iar dacă se alege candidat, să se afișeze un câmp suplimentar pentru detalii */}
@@ -93,6 +99,8 @@ const Register = () => {
                             value={formData.username}
                             onChange={handleChange}
                             required
+                            disabled={!formData.role}
+                            onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
                         ><IoPerson />
                         </TextInput>
                 )}
@@ -103,6 +111,8 @@ const Register = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        disabled={!formData.role}
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
                     ><MdEmail />
                     </TextInput>
                     <TextInput
@@ -112,6 +122,8 @@ const Register = () => {
                         value={formData.password}
                         onChange={handleChange}
                         required
+                        disabled={!formData.role}
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
                     ><FaLock />
                     </TextInput>
 
@@ -122,6 +134,8 @@ const Register = () => {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
+                        disabled={!formData.role}  
+                        onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
                     ><FaLock />
                     </TextInput>
 

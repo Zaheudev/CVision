@@ -1,8 +1,12 @@
 import './inputs.css';
 
-export function TextInput({ label, children, name, type = "text", value, onChange, placeholder, required = false, id}) {
+export function TextInput({ label, children, name, type = "text", value, onChange, placeholder, required = false, id, disabled=false, onDisabledClick}) {
     return (
-        <div className="input-group">
+        <div 
+            className="input-group"
+            onClick={disabled ? onDisabledClick : undefined}
+            style={{cursor: disabled?"not-allowed":"auto"}}
+        >
             {label && <label htmlFor={name}>{label}</label>} 
             <div className="icon-wrap">{children}</div> 
             <input
@@ -13,7 +17,8 @@ export function TextInput({ label, children, name, type = "text", value, onChang
                 onChange={onChange}
                 placeholder={placeholder}
                 required={required}
-                
+                disabled={disabled}
+                style={disabled?{pointerEvents: "none"}:{}}
             />
         </div>
     );

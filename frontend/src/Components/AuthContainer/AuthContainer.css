@@ -19,7 +19,7 @@
 
 @media (max-width: 700px) {
     .auth-container {
-        width: 98vw;
+        width: 80vw; /* Am ajustat latimea la 80% din viewport width pentru ecrane mai mici*/
         min-width: unset;
         padding: 10px;
     }

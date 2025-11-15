@@ -14,6 +14,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
+    const [error, setError]=useState("")
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -22,6 +23,7 @@ export const Login = () => {
             login(res.user);
             navigate('/dashboard');
         } catch (error) {
+            setError("Email sau parola incorectă!");
             console.log('Login error: ', error);
         }
     }
