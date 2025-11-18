@@ -6,6 +6,6 @@ const checkOwnership = require('../middleware/checkOwnership');
 
 // endpoints pentru înregistrare și autentificare
 router.get('/', authenticate, getEmployerProfile);
-router.put('/update', authenticate, checkOwnership, check,updateEmployerProfile);
+router.put('/update', authenticate, checkOwnership, updateEmployerProfile);
 
 module.exports = router;
