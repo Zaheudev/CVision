@@ -22,9 +22,9 @@ const getAuthHeaders = () => {
     }
 }
 
-export const login = async (email, password, role) => {
+export const login = async (email, password) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/auth/login${role}`, { email, password });
+    const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
     return response.data;
   } catch (error) {
     handleError(error);
@@ -40,28 +40,15 @@ export const register = async (formData, role) => {
   }
 };
 
-
-// se poate folosi pentru a face request-uri get catre endpoint-urile protejate precum profilul unui candidat
-export const getProtected = async (path) => {
+// functie pentru a obtine profilul utilizatorului autentificat
+export const getProfile = async () => {
     try {
         const headers = getAuthHeaders();
-        const response = await axios.get(`${API_BASE_URL}${path}`, { headers });
+        const response = await axios.get(`${API_BASE_URL}/profile`, { headers });
         return response.data;
     } catch (err) {
         handleError(err);
     }
-}
+};
 
-// asta poate fi folosit pentru a obtine profilul candidatului logat
-// dar si functia de mai sus getProtected poate fi folosita la fel de bine.
-export const getCandidateProfile = async () => {
-    try {
-        const headers = getAuthHeaders();
-        const response = await axios.get(`${API_BASE_URL}/candidate`, { headers });
-        return response.data;
-    } catch (err) {
-        handleError(err);
-    }
-}
-
-export default { login, register, getProtected };
+export default { login, register, getProfile };

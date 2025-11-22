@@ -29,6 +29,7 @@ mongoose
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/candidate', require('./routes/candidate'));
 app.use('/api/employer', require('./routes/employer'));
+app.use('/api/profile', require('./routes/profile'));
 
 //Error handling middleware
 app.use(errorHandler);

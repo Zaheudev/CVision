@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 // dar pentru scopul aplicatiei noastre momentan cred ca e ok asa
 
 const employerSchema = new mongoose.Schema({
-    companyName: {
+    name: {
         type: String,
         required: true,
         trim: true

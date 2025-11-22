@@ -1,5 +1,3 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 import api from '../../utils/api';
@@ -17,12 +15,14 @@ const Dashboard = () => {
       // toata asta o voi muta intr un context separat, sa se poata accesa datele candidatului de oriunde
       // si sa poti da fetch de oriunde. momentan nu am timp si e doar de test.
       try {
-        const res = await api.getProtected("/candidate");
+        const res = await api.getProfile();
         console.log(res);
         setCandidateData(res);
       } catch (error) {
         console.error('Error fetching candidate profile:', error);
         if (error.status === 401) {
+          logout();
+        }else if(error.status === 404){
           logout();
         }
       }

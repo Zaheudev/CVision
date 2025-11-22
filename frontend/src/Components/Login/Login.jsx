@@ -19,7 +19,7 @@ export const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.login(email, password, 'Candidate');
+            const res = await api.login(email, password);
             login(res.user);
             navigate('/dashboard');
         } catch (error) {

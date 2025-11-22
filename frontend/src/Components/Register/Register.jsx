@@ -54,6 +54,11 @@ const Register = () => {
         }
     };
 
+    const print = (e) => { 
+        console.log(e.target[0].value);
+        console.log(formData);
+        e.preventDefault();
+    }
 
     const handleSignup = async (e) => {
         e.preventDefault();
