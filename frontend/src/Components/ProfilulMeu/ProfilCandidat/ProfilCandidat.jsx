@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilCandidat.css";
+import profilePNG from "../../Assets/profile.png";
 
 const ProfilCandidat = () => {
   const [profilePic, setProfilePic] = useState(""); // Inițial fără poză
@@ -40,18 +41,14 @@ const ProfilCandidat = () => {
 
   return (
     <div className="profil-candidat container">
-      <h1 className="titlu-profile-candidat">Profilul Candidatului</h1>
-      <div className="profile-section">
-        <div className="profile-pic-container">
-          {profilePic ? (
-            <img
-              src={profilePic}
-              alt="Poza de profil"
-              className="profile-pic"
-            />
-          ) : (
-            <div className="profile-pic-placeholder">Fără poză</div>
-          )}
+      <h1 className="titlu-profil-candidat">Profilul Candidatului</h1>
+      <div className="profil-section">
+        <div className="profil-pic-container">
+          <img
+            src={profilePic || profilePNG}
+            alt="Poza de profil"
+            className="profil-pic"
+          />
           <input
             type="file"
             accept="image/*"
@@ -63,15 +60,15 @@ const ProfilCandidat = () => {
             Selectează poza
           </button>
         </div>
-        <div className="profile-details">
-          <h4 className="profile-details-h4">
+        <div className="profil-details">
+          <h4 className="profil-details-h4">
             Numele si prenumele utilizatorului
           </h4>
-          <h4 className="profile-details-h4">Adresa de email</h4>
-          <h4 className="profile-details-h4">Numar de telefon</h4>
+          <h4 className="profil-details-h4">Adresa de email</h4>
+          <h4 className="profil-details-h4">Numar de telefon</h4>
         </div>
       </div>
-      <div className="profile-btn-section">
+      <div className="profil-btn-section">
         <div className="descriere-section">
           <h4 className="descriere-section-h4">
             Scurta descriere despre utilizator
@@ -107,8 +104,8 @@ const ProfilCandidat = () => {
           </h4>
         </div>
         <div className="btn-section-my">
-          <button className="btn-my-profile">CV-ul Meu</button>
-          <button className="btn-my-profile"> Setari cont</button>
+          <button className="btn-my-profil">CV-ul Meu</button>
+          <button className="btn-my-profil"> Setari cont</button>
         </div>
       </div>
     </div>

@@ -3,51 +3,139 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="footer-container">
+    <footer className="footer-container" id="footer">
       <div className="footer-item">
-        <h3>CV</h3>
+        <h3>Despre aplicație</h3>
         <div className="lst-footer">
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
-                Creați un CV
+                Misiune
               </a>
             </li>
             <li>
               <a href="#" className="lst-element-footer">
-                Șabloane de CV
+                Viziune
               </a>
             </li>
             <li>
               <a href="#" className="lst-element-footer">
-                Angajatori
+                Problema aplicațiilor asemanătoare și soluționarea lor
               </a>
             </li>
             <li>
               <a href="#" className="lst-element-footer">
-                Aplicări
+                Folosirea Ai-ului
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Limbaje folosite
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Organizarea aplicației
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Echipa
               </a>
             </li>
           </ul>
         </div>
       </div>
       <div className="footer-item">
-        <h3>Despre noi</h3>
+        <h3>Candidați</h3>
         <div className="lst-footer">
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
-                Despre noi
+                Test de personalitate
               </a>
             </li>
             <li>
               <a href="#" className="lst-element-footer">
-                Prețuri
+                Aplicările mele
               </a>
             </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-item">
+        <h3>Angajatori</h3>
+        <div className="lst-footer">
+          <ul className="lst-ul">
+            <li>
+              <a href="#" className="lst-element-footer">
+                Jobul meu
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Top 10 candidați ideali
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-item">
+        <h3>Profilul meu</h3>
+        <div className="lst-footer">
+          <ul className="lst-ul">
+            <li>
+              <a href="#" className="lst-element-footer">
+                Profil candidat
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Profil angajator
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                CV-ul meu
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Setări cont
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-item">
+        <h3>Contact</h3>
+        <div className="lst-footer">
+          <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
                 Rețele sociale
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Feedback
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer-item">
+        <h3>Planuri de abonament</h3>
+        <div className="lst-footer">
+          <ul className="lst-ul">
+            <li>
+              <a href="#" className="lst-element-footer">
+                Planul de bază
+              </a>
+            </li>
+            <li>
+              <a href="#" className="lst-element-footer">
+                Planul premium
               </a>
             </li>
           </ul>
@@ -57,11 +145,6 @@ export default function Footer() {
         <h3>Suport</h3>
         <div className="lst-footer">
           <ul className="lst-ul">
-            <li>
-              <a href="#" className="lst-element-footer">
-                Contact
-              </a>
-            </li>
             <li>
               <a href="#" className="lst-element-footer">
                 Întrebări frecvente

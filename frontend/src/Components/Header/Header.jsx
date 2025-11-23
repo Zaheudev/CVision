@@ -39,6 +39,13 @@ export default function Header() {
     logout();
     navigate("/");
   };
+
+  const scrollToFooter = () => {
+    const element = document.getElementById('footer');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <div className="header-container">
       {" "}
@@ -87,7 +94,7 @@ export default function Header() {
             </a>
           </li>{" "}
           <li>
-            <a href="#" className="lst-item">
+            <a className="lst-item" onClick={scrollToFooter}>
               Mai multe
             </a>
           </li>{" "}
@@ -165,7 +172,7 @@ export default function Header() {
           <a href="#" className="mobile-item" onClick={toggleMenu}>
             Contact
           </a>
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
+          <a href="#" className="mobile-item" onClick={() => { scrollToFooter(); toggleMenu(); }}>
             Mai multe
           </a>
           {!user ? (

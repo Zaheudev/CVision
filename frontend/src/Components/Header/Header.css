@@ -181,6 +181,7 @@
 
   .lst-item:hover {
     color: #38b6ff;
+    cursor: pointer;
   }
 
   .lst-item:active {
