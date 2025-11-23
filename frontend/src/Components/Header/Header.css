@@ -34,6 +34,56 @@
     display: none;
   }
 
+  .profile-section {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #fff;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
   .menu-btn {
     background: #38b6ff;
     border: none;
@@ -140,7 +190,7 @@
   .lst li {
     list-style-type: none;
     /* border: 1px solid palegreen; */
-    width: 12.5%;
+    width: 20%;
     height: 100%;
   }
 
@@ -211,5 +261,62 @@
 
   .menu-btn {
     display: none;
+  }
+
+  /* Profile section */
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 10%;
+    height: 13vh;
+    margin-right: 5%;
+    position: relative;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #38b6ff;
+    opacity: 0.7;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
   }
 }

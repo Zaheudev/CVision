@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 import logoPNG from "../Assets/logo.png";
 import logosmallPNG from "../Assets/logosmall.png";
+import personPNG from "../Assets/profile.png";
+import useAuth from "../../hooks/useAuth";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
   return (
     <div className="header-container">
@@ -37,11 +64,6 @@ export default function Header() {
           {" "}
           <li>
             <a href="#" className="lst-item">
-              Despre
-            </a>
-          </li>{" "}
-          <li>
-            <a href="#" className="lst-item">
               Candidați
             </a>
           </li>{" "}
@@ -66,21 +88,11 @@ export default function Header() {
           </li>{" "}
           <li>
             <a href="#" className="lst-item">
-              Rețele sociale
-            </a>
-          </li>{" "}
-          <li>
-            <a href="#" className="lst-item">
-              Contact
-            </a>
-          </li>{" "}
-          <li>
-            <a href="#" className="lst-item">
               Mai multe
             </a>
           </li>{" "}
         </ul>{" "}
-        {!localStorage.getItem("id") && (
+        {!user ? (
           <div className="btn-section item">
             {" "}
             <div className="btn-item">
@@ -101,6 +113,22 @@ export default function Header() {
                 Înregistrare
               </button>
             </div>{" "}
+          </div>
+        ) : (
+          <div className="profile-section item" ref={dropdownRef}>
+            <div className="profile-avatar" onClick={toggleProfileMenu}>
+              <img src={personPNG} alt="Profile" className="avatar-img" />
+            </div>
+            {isProfileMenuOpen && (
+              <div className="profile-dropdown">
+                <button className="dropdown-item" onClick={() => { navigate("/profil-candidat"); setIsProfileMenuOpen(false); }}>
+                  Setări cont
+                </button>
+                <button className="dropdown-item" onClick={() => { handleLogout(); setIsProfileMenuOpen(false); }}>
+                  Ieșire din cont
+                </button>
+              </div>
+            )}
           </div>
         )}{" "}
         <button className="menu-btn" onClick={toggleMenu}>
@@ -140,7 +168,7 @@ export default function Header() {
           <a href="#" className="mobile-item" onClick={toggleMenu}>
             Mai multe
           </a>
-          {!localStorage.getItem("id") && (
+          {!user ? (
             <>
               <button
                 className="mobile-btn"
@@ -159,6 +187,27 @@ export default function Header() {
                 }}
               >
                 Înregistrare
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="mobile-btn"
+                onClick={() => {
+                  navigate("/profil-candidat");
+                  toggleMenu();
+                }}
+              >
+                Setări cont
+              </button>
+              <button
+                className="mobile-btn"
+                onClick={() => {
+                  handleLogout();
+                  toggleMenu();
+                }}
+              >
+                Ieșire din cont
               </button>
             </>
           )}
