@@ -100,7 +100,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="#" className="lst-element-footer">
+              <a href="/settingscandidat" className="lst-element-footer">
                 Setări cont
               </a>
             </li>

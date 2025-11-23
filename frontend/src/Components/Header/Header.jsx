@@ -128,7 +128,7 @@ export default function Header() {
             </div>
             {isProfileMenuOpen && (
               <div className="profile-dropdown">
-                <button className="dropdown-item" onClick={() => { navigate("/profil-candidat"); setIsProfileMenuOpen(false); }}>
+                <button className="dropdown-item" onClick={() => { navigate("/settingscandidat"); setIsProfileMenuOpen(false); }}>
                   Setări cont
                 </button>
                 <button className="dropdown-item" onClick={() => { handleLogout(); setIsProfileMenuOpen(false); }}>
@@ -201,7 +201,7 @@ export default function Header() {
               <button
                 className="mobile-btn"
                 onClick={() => {
-                  navigate("/profil-candidat");
+                  navigate("/settingscandidat");
                   toggleMenu();
                 }}
               >
