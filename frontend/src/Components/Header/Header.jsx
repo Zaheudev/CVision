@@ -12,6 +12,7 @@ export default function Header() {
   const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [profileImage, setProfileImage] = useState(personPNG);
   const dropdownRef = useRef();
 
   useEffect(() => {
@@ -26,6 +27,42 @@ export default function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const loadProfileImage = () => {
+      const userId = localStorage.getItem("id");
+      if (!userId) {
+        setProfileImage(personPNG);
+        return;
+      }
+      const storedPic =
+        localStorage.getItem(`settingsProfilePic_${userId}`) ||
+        localStorage.getItem(`profilePic_${userId}`);
+      setProfileImage(storedPic || personPNG);
+    };
+
+    loadProfileImage();
+
+    const handleStorage = (event) => {
+      if (!event.key) {
+        loadProfileImage();
+        return;
+      }
+      if (event.key.includes("profilePic")) {
+        loadProfileImage();
+      }
+    };
+
+    const handleCustomUpdate = () => loadProfileImage();
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener("profilePicUpdated", handleCustomUpdate);
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("profilePicUpdated", handleCustomUpdate);
+    };
+  }, [user]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -124,7 +161,7 @@ export default function Header() {
         ) : (
           <div className="profile-section item" ref={dropdownRef}>
             <div className="profile-avatar" onClick={toggleProfileMenu}>
-              <img src={personPNG} alt="Profile" className="avatar-img" />
+              <img src={profileImage} alt="Profile" className="avatar-img" />
             </div>
             {isProfileMenuOpen && (
               <div className="profile-dropdown">
