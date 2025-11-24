@@ -1,43 +1,86 @@
 import React, { useState, useEffect } from "react";
 import "./ProfilCandidat.css";
 import profilePNG from "../../Assets/profile.png";
+import { useNavigate } from "react-router-dom";
+
+const defaultProfileDetails = {
+  fullName: "Numele si prenumele utilizatorului",
+  email: "Adresa de email",
+  phone: "Numar de telefon",
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis risus et leo interdum, eu ornare nibh egestas. In fermentum finibus suscipit.",
+  domains: "Domeniile in care doreste sa lucreze",
+};
+
+const defaultHobbies = ["Nu există hobby-uri adăugate încă."];
 
 const ProfilCandidat = () => {
-  const [profilePic, setProfilePic] = useState(""); // Inițial fără poză
-  const [hobbies, setHobbies] = useState([]);
+  const navigate = useNavigate();
+  const [profilePic, setProfilePic] = useState("");
+  const [profileData, setProfileData] = useState(defaultProfileDetails);
+  const [hobbies, setHobbies] = useState(defaultHobbies);
 
-  useEffect(() => {
-    const userId = localStorage.getItem("id");
-    if (userId) {
-      const savedPic = localStorage.getItem(`profilePic_${userId}`);
-      if (savedPic) {
-        setProfilePic(savedPic);
-      }
-      const savedHobbies = localStorage.getItem(`hobbies_${userId}`);
-      if (savedHobbies) {
-        setHobbies(JSON.parse(savedHobbies));
-      } else {
-        // Set default hobbies if none saved
-        setHobbies(["Nu există hobby-uri adăugate încă."]);
-      }
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("id") : null;
+
+  const loadProfileInfo = () => {
+    if (!userId || typeof window === "undefined") {
+      setProfilePic("");
+      setProfileData(defaultProfileDetails);
+      setHobbies(defaultHobbies);
+      return;
     }
-  }, []);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result;
-        setProfilePic(result);
-        const userId = localStorage.getItem("id");
-        if (userId) {
-          localStorage.setItem(`profilePic_${userId}`, result);
-        }
-      };
-      reader.readAsDataURL(file);
+    const storedPic =
+      localStorage.getItem(`settingsProfilePic_${userId}`) ||
+      localStorage.getItem(`profilePic_${userId}`);
+    setProfilePic(storedPic || "");
+
+    const storedForm = localStorage.getItem(`settingsForm_${userId}`);
+    if (storedForm) {
+      const parsed = JSON.parse(storedForm);
+      setProfileData({
+        fullName: parsed.fullName || defaultProfileDetails.fullName,
+        email: parsed.email || defaultProfileDetails.email,
+        phone: parsed.phone || defaultProfileDetails.phone,
+        description: parsed.description || defaultProfileDetails.description,
+        domains: parsed.domains || defaultProfileDetails.domains,
+      });
+
+      const hobbyValues = (parsed.hobbies || "")
+        .split(",")
+        .map((hobby) => hobby.trim())
+        .filter(Boolean);
+      setHobbies(hobbyValues.length ? hobbyValues : defaultHobbies);
+    } else {
+      setProfileData(defaultProfileDetails);
+      setHobbies(defaultHobbies);
     }
   };
+
+  useEffect(() => {
+    loadProfileInfo();
+    const handleStorage = (event) => {
+      if (!event.key) {
+        loadProfileInfo();
+        return;
+      }
+      if (
+        event.key.includes("settingsForm") ||
+        event.key.includes("profilePic")
+      ) {
+        loadProfileInfo();
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener("profilePicUpdated", loadProfileInfo);
+    window.addEventListener("settingsFormUpdated", loadProfileInfo);
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("profilePicUpdated", loadProfileInfo);
+      window.removeEventListener("settingsFormUpdated", loadProfileInfo);
+    };
+  }, [userId]);
 
   return (
     <div className="profil-candidat container">
@@ -49,63 +92,39 @@ const ProfilCandidat = () => {
             alt="Poza de profil"
             className="profil-pic"
           />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            id="file-input"
-            style={{ display: "none" }}
-          />
-          <button onClick={() => document.getElementById("file-input").click()}>
-            Selectează poza
-          </button>
         </div>
         <div className="profil-details">
-          <h4 className="profil-details-h4">
-            Numele si prenumele utilizatorului
-          </h4>
-          <h4 className="profil-details-h4">Adresa de email</h4>
-          <h4 className="profil-details-h4">Numar de telefon</h4>
+          <h4 className="profil-details-h4">{profileData.fullName}</h4>
+          <h4 className="profil-details-h4">{profileData.email}</h4>
+          <h4 className="profil-details-h4">{profileData.phone}</h4>
         </div>
       </div>
       <div className="profil-btn-section">
         <div className="descriere-section">
           <h4 className="descriere-section-h4">
             Scurta descriere despre utilizator
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-              lobortis risus et leo interdum, eu ornare nibh egestas. In
-              fermentum finibus suscipit. Quisque quis enim at tortor
-              sollicitudin lacinia sed quis dolor. Curabitur ullamcorper est sed
-              est aliquet, fringilla scelerisque turpis pharetra. Maecenas
-              pellentesque est vel arcu pharetra, vel finibus elit vehicula.
-              Mauris sed nisl eu turpis hendrerit viverra. Fusce iaculis id
-              lacus vel lobortis. Vivamus imperdiet vel metus non tempus. Proin
-              vel maximus justo.
-            </p>
+            <p>{profileData.description}</p>
           </h4>
           <h4 className="descriere-section-h4">
             Hobby-uri
             <div className="hobbies-list">
-              {hobbies.length > 0 ? (
-                hobbies.map((hobby, index) => (
-                  <button key={index} className="hobby-btn">
-                    {hobby}
-                  </button>
-                ))
-              ) : (
-                <p>Niciun hobby adăugat încă.</p>
-              )}
+              {hobbies.map((hobby, index) => (
+                <button key={index} className="hobby-btn">
+                  {hobby}
+                </button>
+              ))}
             </div>
           </h4>
           <h4 className="descriere-section-h4">
             Domeniile in care doreste sa lucreze
-            <p></p>
+            <p>{profileData.domains}</p>
           </h4>
         </div>
         <div className="btn-section-my">
           <button className="btn-my-profil">CV-ul Meu</button>
-          <button className="btn-my-profil"> Setari cont</button>
+          <button className="btn-my-profil" onClick={() => navigate("/settingscandidat")}>
+            Setari cont
+          </button>
         </div>
       </div>
     </div>
