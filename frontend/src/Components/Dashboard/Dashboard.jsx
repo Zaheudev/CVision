@@ -1,38 +1,25 @@
+import { useContext } from 'react';
+
 import './Dashboard.css';
 
-import api from '../../utils/api';
+import { UserContext } from '../../context/UserContext';
 
-import useAuth from '../../hooks/useAuth';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
 const Dashboard = () => {
-  const { logout } = useAuth();
-  const [candidateData, setCandidateData] = useState(null);
+  // const { logout } = useAuth();
+  // const { user, fetchUserProfile } = useUser();
+  const { user, fetchUserProfile } = useContext(UserContext);
+  // const [candidateData, setCandidateData] = useState(null);
 
   useEffect(() => {
-    async function fetchProfile() {
-      // toata asta o voi muta intr un context separat, sa se poata accesa datele candidatului de oriunde
-      // si sa poti da fetch de oriunde. momentan nu am timp si e doar de test.
-      try {
-        const res = await api.getProfile();
-        console.log(res);
-        setCandidateData(res);
-      } catch (error) {
-        console.error('Error fetching candidate profile:', error);
-        if (error.status === 401) {
-          logout();
-        }else if(error.status === 404){
-          logout();
-        }
-      }
-    }
-    fetchProfile();
+    fetchUserProfile();
   }, []);
 
   return (
     <div>
-      <h2>Welcome {candidateData ? candidateData.name : "null"}</h2>
+      <h2>Welcome {user ? user.name : "null"}</h2>
     </div>
   );
 };

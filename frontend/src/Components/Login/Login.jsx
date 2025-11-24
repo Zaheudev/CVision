@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import api from '../../utils/api.js';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth.js';
 import ButtonPrimary from '../Buttons/Button.jsx'
 import { TextInput } from '../Inputs/inputs.jsx'
 import { MdEmail } from "react-icons/md";
@@ -14,8 +14,8 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
-    const [error, setError]=useState("")
-
+    const [error, setError]=useState("");
+    
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
