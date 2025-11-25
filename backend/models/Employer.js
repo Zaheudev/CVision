@@ -34,6 +34,7 @@ const employerSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    // adresa asta este compusa din mai multe campuri, strada, oras etc
     address: {
         street: String,
         city: String,
@@ -41,7 +42,21 @@ const employerSchema = new mongoose.Schema({
         zipCode: String,
         country: String
     },
+    // este un array de taguri pentru a ne ajuta la fitrare
+    tags: {
+        type: [String],
+        default: []
+    },
+    // industria in care activeaza angajatorul
     industry: {
+        type: String,
+        trim: true
+    },
+    employeeCount: {
+        type: Number,
+        default: 0
+    },
+    description: {
         type: String,
         trim: true
     },

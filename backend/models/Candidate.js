@@ -27,6 +27,31 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    phoneNumber: {
+        type: String,
+        trim: true
+    },
+    location: {
+        type: String,
+        trim: true
+    },
+    skills: {
+        type: [String],
+        default: []
+    },
+    experience: [{
+        type: String
+    }],
+    // campul pt educatie o sa fie compus din mai multe subcampuri, liceu si universitate
+    education: {
+        highscool: String,
+        bachelor: String,
+        trim: true
+    },
+    description: {
+        type: String,
+        trim: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

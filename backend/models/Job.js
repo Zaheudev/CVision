@@ -20,12 +20,25 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    contactEmail: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    tags: [{
+        type: String
+    }],
     requirements: [{
         type: String
     }],
     salary: {
         type: Number,
         default: null
+    },
+    level: {
+        type: String,
+        enum: ['entry', 'mid', 'senior', 'lead'],
+        required: true
     },
     type: {
         type: String,
@@ -39,7 +52,7 @@ const jobSchema = new mongoose.Schema({
     },
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Employer',
         required: true
     },
     createdAt: {
