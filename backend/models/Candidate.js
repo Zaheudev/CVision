@@ -31,6 +31,7 @@ const candidateSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    // orasul in care locuieste userul
     location: {
         type: String,
         trim: true

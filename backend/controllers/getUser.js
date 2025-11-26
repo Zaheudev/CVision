@@ -1,4 +1,9 @@
-// aici impmentam mai multe functii care utilizatorul (angajator sau candidat) 
+// aici impmentam mai multe functii care returneaza utilizatorul
+//  (angajator sau candidat) dupa un anumit criteriu de search.
+// functiile sunt folosite in mai multe locuri in backend, deci intern,
+// nu le exportam ca si route-uri. Ele returneaza un obiect user folosite de 
+// alte functii din backend pentru a evita duplicarea codului si 
+// a face codul mai usor de intretinut. 
 // in functie de de datele din parametru,
 
 const Candidate = require('../models/Candidate');

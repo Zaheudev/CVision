@@ -5,13 +5,9 @@ import './Dashboard.css';
 import { UserContext } from '../../context/UserContext';
 
 import { useEffect } from 'react';
-import { useState } from 'react';
 
 const Dashboard = () => {
-  // const { logout } = useAuth();
-  // const { user, fetchUserProfile } = useUser();
-  const { user, fetchUserProfile } = useContext(UserContext);
-  // const [candidateData, setCandidateData] = useState(null);
+  const { user, fetchUserProfile, type } = useContext(UserContext);
 
   useEffect(() => {
     fetchUserProfile();
@@ -19,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2>Welcome {user ? user.name : "null"}</h2>
+      <h2>Welcome {user.name} TYPE OF {type}</h2>
     </div>
   );
 };

@@ -1,5 +1,11 @@
 const Candidate = require('../models/Candidate');
 
+// functia asta ar putea fii considerata duplicata cu cea din profileController
+// dar ar putea fii utila daca vrem sa accesam direct profilul unui candidat
+// fara a trece prin logica comuna din profileController.
+// poate fi scoasa functia. o lasam momentan aici pentru claritate.
+// ar putea fi folosita si pentru a o accesa dupa ce trece un middleleware
+// de securitate.
 exports.getCandidateProfile = async (req, res) => {
     try {
         const candidate = await Candidate.findById(req.user.id).select('-passwordHash');
