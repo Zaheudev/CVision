@@ -1,0 +1,67 @@
+.subscription-page h1{
+    font-size: 64px;
+}
+
+.plans{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:80px;
+    margin: 30px;
+}
+
+.plan h2 {
+    font-size: 32px;
+    height: 56px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+}
+
+
+.plan{
+    width: 509px;
+    height: 546px;
+    border-radius: 50px;
+    background-color: #38B6FF;
+}
+
+
+.plan-ul li {
+    text-align: left;
+    font-size: 24px; /* Adjust as needed */
+    margin-bottom: 8px;
+    margin-left: 10px;
+}
+
+@media (max-width: 700px) {
+  .subscription-page h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  .plans {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .plan {
+    width: 95vw;
+    min-width: 220px;
+    max-width: 400px;
+    height: auto;
+    border-radius: 30px;
+    margin-bottom: 24px;
+  }
+  .plan h2 {
+    font-size: 1.3rem;
+    margin: 24px 0 16px 0;
+    height: auto;
+  }
+  .plan-ul li {
+    font-size: 1rem;
+  }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -129,14 +130,14 @@ export default function Footer() {
         <div className="lst-footer">
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
+              <Link to="/subscription" className="lst-element-footer">
                 Planul de bază
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="lst-element-footer">
+              <Link to="/subscription" className="lst-element-footer">
                 Planul premium
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

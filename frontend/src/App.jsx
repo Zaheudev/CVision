@@ -6,6 +6,7 @@ import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 import ProfilCandidat from './Components/ProfilulMeu/ProfilCandidat/ProfilCandidat'
 import LandingPage from './Components/LandingPage/LandingPage'
+import SubscriptionPage from './Components/SubscriptionPage/SubscriptionPage'
 import SettingsCandidat from './Components/Settings/SettingsCandidat/SettingsCandidat'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import useAuth from './hooks/useAuth'
@@ -41,6 +42,7 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/profil-candidat" element={<PrivateRoute><ProfilCandidat /></PrivateRoute>} />
           <Route path="/settingscandidat" element={<PrivateRoute><SettingsCandidat /></PrivateRoute>} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
         <Footer />
       </div>
