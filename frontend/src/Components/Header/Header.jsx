@@ -143,7 +143,7 @@ export default function Header() {
               <button
                 type="button"
                 className="btn btn-Login"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/login")}
               >
                 Autentificare
               </button>

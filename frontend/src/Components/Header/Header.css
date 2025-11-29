@@ -140,7 +140,7 @@
 }
 
 /* Laptop - 1024px până la 1439px-------------------------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1920px) {
   /* Stiluri pentru laptop */
   .header-container {
     width: 100%;
@@ -225,6 +225,187 @@
     font-weight: 600;
     border-radius: 8px;
     border: none;
+  }
+
+  .btn:hover {
+    background-color: #ffffff;
+    cursor: pointer;
+    border: #38b6ff 2px solid;
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+    color: #38b6ff;
+  }
+
+  /* Logo */
+  .logo-png {
+    width: 100%;
+  }
+  .logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid purple; */
+    width: 10%;
+    height: 100%;
+    padding: 0px;
+  }
+
+  .desktop-logo {
+    display: block;
+  }
+
+  .mobile-logo {
+    display: none;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  /* Profile section */
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 10%;
+    height: 13vh;
+    margin-right: 5%;
+    position: relative;
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #38b6ff;
+  }
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+  }
+
+  .dropdown-item {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+}
+/* Desktop - 1440px și peste-------------------------------------------------------------------------------------------- */
+@media (min-width: 1920px) {
+  .header-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* border: 1px solid red; */
+  }
+
+  /* Lista elemente */
+  .lst {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    width: 80%;
+  }
+
+  .lst-item {
+    /* margin-right: 20px; */
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 2rem;
+    /* border: 1px solid blue; */
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+
+  .lst-item:hover {
+    color: #38b6ff;
+    cursor: pointer;
+  }
+
+  .lst-item:active {
+    font-size: 2.1rem;
+  }
+
+  .lst li {
+    list-style-type: none;
+    /* border: 1px solid palegreen; */
+    width: 20%;
+    height: 100%;
+  }
+
+  /* Butoane */
+  .btn-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    /* border: 1px solid orange; */
+    width: 10%;
+    height: 13vh;
+    margin-right: 10px;
+  }
+
+  .btn-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid brown; */
+    margin: 5px;
+    height: 45%;
+    width: 90%;
+  }
+  
+  .btn {
+    width: 100%;
+    height: 100%;
+    background-color: #38b6ff;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.5rem;
   }
 
   .btn:hover {

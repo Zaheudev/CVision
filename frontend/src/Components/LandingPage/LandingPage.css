@@ -1,0 +1,199 @@
+/* Mobile */
+@media (max-width: 1023px) {
+}
+
+/* Desktop------------------------------------------------------------------------------------ */
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .landingImage {
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .lp-h1-section {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    right: 3%;
+    color: #000000;
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 0.9rem;
+  }
+
+  .lp-cv-section {
+    height: 100%;
+    position: absolute;
+    top: 16%;
+    left: 30%;
+  }
+
+  .cv1,
+  .cv2 {
+    width: 25%;
+    height: auto;
+  }
+
+  .cv2 {
+    position: relative;
+    left: -10%;
+    top: 15%;
+  }
+
+  .lp-descriere {
+    text-align: left;
+    margin: 5%;
+  }
+  .lp-descriere span {
+    font-weight: bold;
+  }
+
+  .lp-paragraph {
+    font-size: 1rem;
+  }
+
+  .lp-creeazacv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60vh;
+    background-color: #89cff8;
+    margin-top: 7vh;
+  }
+  .lp-creeazacv img {
+    width: 35vw;
+    height: auto;
+  }
+
+  .lp-creeazacv div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40vw;
+  }
+
+  .lp-cautajob {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70vh;
+    margin-top: 7vh;
+  }
+
+  .lp-cautajob img {
+    width: auto;
+    height: 55vh;
+  }
+  .lp-cautajob div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40vw;
+  }
+}
+
+/* Large Desktop ------------------------------------------------------------------------------------ */
+@media (min-width: 1920px) {
+  .landingImage {
+    width: 100vw;
+    height: 50vh;
+  }
+
+  .lp-h1-section {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    right: 3%;
+    color: #000000;
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 2rem;
+  }
+
+  .lp-cv-section {
+    height: 100%;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+  }
+
+  .cv1,
+  .cv2 {
+    width: 50%;
+    height: auto;
+  }
+
+  .cv2 {
+    position: relative;
+    left: -20%;
+    top: 15%;
+  }
+
+  .lp-descriere {
+    text-align: left;
+    margin: 5%;
+  }
+
+  .lp-descriere h3 {
+    font-size: 2.9rem;
+  }
+
+  .lp-descriere span {
+    font-weight: bold;
+  }
+
+  .lp-paragraph {
+    font-size: 2.4rem;
+  }
+
+  .lp-creeazacv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70vh;
+    background-color: #89cff8;
+    margin-top: 7vh;
+  }
+  .lp-creeazacv img {
+    width: 35vw;
+    height: auto;
+  }
+
+  .lp-creeazacv div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40vw;
+  }
+
+  .landing-page div h3 {
+    font-size: 3rem;
+  }
+
+  .landing-page div p {
+    font-size: 2.3rem;
+  }
+  .lp-cautajob {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70vh;
+    margin-top: 7vh;
+  }
+
+  .lp-cautajob img {
+    width: auto;
+    height: 55vh;
+  }
+  .lp-cautajob div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40vw;
+  }
+}
