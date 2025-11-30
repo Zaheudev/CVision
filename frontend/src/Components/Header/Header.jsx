@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
@@ -6,10 +6,12 @@ import logoPNG from "../Assets/logo.png";
 import logosmallPNG from "../Assets/logosmall.png";
 import personPNG from "../Assets/profile.png";
 import useAuth from "../../hooks/useAuth";
+import { UserContext } from "../../context/UserContext";
 
 export default function Header() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { type } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [profileImage, setProfileImage] = useState(personPNG);
@@ -106,16 +108,20 @@ export default function Header() {
         </div>{" "}
         <ul className="lst item">
           {" "}
-          <li>
-            <a href="#" className="lst-item">
-              Candidați
-            </a>
-          </li>{" "}
-          <li>
-            <a href="#" className="lst-item">
-              Angajatori
-            </a>
-          </li>{" "}
+          {type !== "candidate" && (
+            <li>
+              <a href="#" className="lst-item">
+                Candidați
+              </a>
+            </li>
+          )}{" "}
+          {type !== "employer" && (
+            <li>
+              <a href="#" className="lst-item">
+                Angajatori
+              </a>
+            </li>
+          )}{" "}
           <li>
             <a href="#" className="lst-item">
               Aplică acum
@@ -184,12 +190,16 @@ export default function Header() {
           <a href="#" className="mobile-item" onClick={toggleMenu}>
             Despre
           </a>
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
-            Candidați
-          </a>
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
-            Angajatori
-          </a>
+          {type !== "candidate" && (
+            <a href="#" className="mobile-item" onClick={toggleMenu}>
+              Candidați
+            </a>
+          )}
+          {type !== "employer" && (
+            <a href="#" className="mobile-item" onClick={toggleMenu}>
+              Angajatori
+            </a>
+          )}
           <a href="#" className="mobile-item" onClick={toggleMenu}>
             Aplică acum
           </a>

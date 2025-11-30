@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Footer.css";
+import { UserContext } from "../../context/UserContext";
 
 export default function Footer() {
+  const { type } = useContext(UserContext);
   return (
     <footer className="footer-container" id="footer">
       <div className="footer-item">
@@ -46,40 +48,44 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="footer-item">
-        <h3>Candidați</h3>
-        <div className="lst-footer">
-          <ul className="lst-ul">
-            <li>
-              <a href="#" className="lst-element-footer">
-                Test de personalitate
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Aplicările mele
-              </a>
-            </li>
-          </ul>
+      {type !== "employer" && (
+        <div className="footer-item">
+          <h3>Candidați</h3>
+          <div className="lst-footer">
+            <ul className="lst-ul">
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Test de personalitate
+                </a>
+              </li>
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Aplicările mele
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="footer-item">
-        <h3>Angajatori</h3>
-        <div className="lst-footer">
-          <ul className="lst-ul">
-            <li>
-              <a href="#" className="lst-element-footer">
-                Jobul meu
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Top 10 candidați ideali
-              </a>
-            </li>
-          </ul>
+      )}
+      {type !== "candidate" && (
+        <div className="footer-item">
+          <h3>Angajatori</h3>
+          <div className="lst-footer">
+            <ul className="lst-ul">
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Jobul meu
+                </a>
+              </li>
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Top 10 candidați ideali
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
       <div className="footer-item">
         <h3>Profilul meu</h3>
         <div className="lst-footer">

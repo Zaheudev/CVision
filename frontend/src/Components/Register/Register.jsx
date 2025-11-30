@@ -92,7 +92,7 @@ const Register = () => {
 
     const[error, setError]=useState("")
     return (
-        <AuthContainer title="Creează un cont">
+        <AuthContainer title="Creează cont">
             {error && <div className="error-message">{error}</div>}
             <form onSubmit={handleSignup}>
                 {/* Aici am adaugat optiunea de a alege intre candidat si angajat, 
