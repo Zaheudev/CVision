@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./SettingsCandidat.css";
 import profilePNG from "../../Assets/profile.png";
-import { TextInput } from "../../Inputs/inputs";
 
 const SettingsCandidat = () => {
   const [isTemplateListOpen, setIsTemplateListOpen] = useState(false);
@@ -19,12 +18,39 @@ const SettingsCandidat = () => {
   const userId = typeof window !== "undefined" ? localStorage.getItem("id") : null;
 
   const templates = [
-    "Modern",
-    "Minimal",
-    "Creativ",
-    "Profesional",
-    "Corporate",
+    "Auto",
+    "CV1",
+    "CV2",
+    "CV3",
+    "CV4",
+    "CV5",
+    "CV6",
+    "CV7",
+    "CV8",
   ];
+
+  const descriptionRef = useRef(null);
+  const hobbiesRef = useRef(null);
+  const domainsRef = useRef(null);
+  const fullNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
+
+  const autoResize = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.style.height = "auto";
+      ref.current.style.height = ref.current.scrollHeight + "px";
+    }
+  }, []);
+
+  useEffect(() => {
+    autoResize(descriptionRef);
+    autoResize(hobbiesRef);
+    autoResize(domainsRef);
+    autoResize(fullNameRef);
+    autoResize(emailRef);
+    autoResize(phoneRef);
+  }, [formData.description, formData.hobbies, formData.domains, formData.fullName, formData.email, formData.phone, autoResize]);
 
   useEffect(() => {
     if (!userId) return;
@@ -115,54 +141,78 @@ const SettingsCandidat = () => {
           </button>
         </div>
         <div className="settings-item text-section-st">
-          <TextInput
-            className="text-input-st"
-            name="nume-prenume"
-            id="nume-prenume"
-            placeholder="Nume și prenume"
-            value={formData.fullName}
-            onChange={handleInputChange("fullName")}
-          />
-          <TextInput
-            className="text-input-st"
-            name="adresa-email"
-            id="adresa-email"
-            placeholder="Adresa de email"
-            value={formData.email}
-            onChange={handleInputChange("email")}
-          />
-          <TextInput
-            className="text-input-st"
-            name="numar-telefon"
-            id="numar-telefon"
-            placeholder="Număr de telefon"
-            value={formData.phone}
-            onChange={handleInputChange("phone")}
-          />
-          <TextInput
-            className="text-input-st"
-            name="scurta-descriere"
-            id="scurta-descriere"
-            placeholder="Scurtă descriere"
-            value={formData.description}
-            onChange={handleInputChange("description")}
-          />
-          <TextInput
-            className="text-input-st"
-            name="hobby-uri"
-            id="hobby-uri"
-            placeholder="Hobby-uri"
-            value={formData.hobbies}
-            onChange={handleInputChange("hobbies")}
-          />
-          <TextInput
-            className="text-input-st"
-            name="domenii"
-            id="domenii"
-            placeholder="Domeniile în care îți cauți job"
-            value={formData.domains}
-            onChange={handleInputChange("domains")}
-          />
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={fullNameRef}
+              className="auto-resize-textarea"
+              name="nume-prenume"
+              id="nume-prenume"
+              placeholder="Nume și prenume"
+              value={formData.fullName}
+              onChange={handleInputChange("fullName")}
+              rows={1}
+            />
+          </div>
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={emailRef}
+              className="auto-resize-textarea"
+              name="adresa-email"
+              id="adresa-email"
+              placeholder="Adresa de email"
+              value={formData.email}
+              onChange={handleInputChange("email")}
+              rows={1}
+            />
+          </div>
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={phoneRef}
+              className="auto-resize-textarea"
+              name="numar-telefon"
+              id="numar-telefon"
+              placeholder="Număr de telefon"
+              value={formData.phone}
+              onChange={handleInputChange("phone")}
+              rows={1}
+            />
+          </div>
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={descriptionRef}
+              className="auto-resize-textarea"
+              name="scurta-descriere"
+              id="scurta-descriere"
+              placeholder="Scurtă descriere"
+              value={formData.description}
+              onChange={handleInputChange("description")}
+              rows={1}
+            />
+          </div>
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={hobbiesRef}
+              className="auto-resize-textarea"
+              name="hobby-uri"
+              id="hobby-uri"
+              placeholder="Hobby-uri"
+              value={formData.hobbies}
+              onChange={handleInputChange("hobbies")}
+              rows={1}
+            />
+          </div>
+          <div className="input-group auto-resize-group">
+            <textarea
+              ref={domainsRef}
+              className="auto-resize-textarea"
+              name="domenii"
+              id="domenii"
+              placeholder="Domeniile în care îți cauți job"
+              value={formData.domains}
+              onChange={handleInputChange("domains")}
+              rows={1}
+            />
+          </div>
         </div>
         <div className="settings-item cv-section-st">
           <h2>CV-ul meu</h2>

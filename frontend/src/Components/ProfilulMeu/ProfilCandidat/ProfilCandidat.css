@@ -15,31 +15,11 @@
 
   .profil-pic,
   .profil-pic-placeholder {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #38b6ff;
-  }
-
-  .profil-pic-container button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(56, 182, 255, 0.8);
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-size: 12px;
-  }
-
-  .profil-pic-container:hover button {
-    opacity: 1;
   }
 
   .profil-pic-placeholder {
