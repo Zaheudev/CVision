@@ -217,7 +217,7 @@ export default function Header() {
               <button
                 className="mobile-btn"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/login");
                   toggleMenu();
                 }}
               >

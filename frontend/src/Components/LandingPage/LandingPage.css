@@ -1,29 +1,28 @@
 /* Mobile */
 @media (max-width: 1023px) {
-}
-
-/* Desktop------------------------------------------------------------------------------------ */
-@media (min-width: 1024px) and (max-width: 1920px) {
-  .landingImage {
+    .landingImage {
+      margin-top: 5vh;
     width: 100vw;
-    height: 50vh;
+    height: 40vh;
+    object-fit: cover;
+    object-position: center;
   }
 
   .lp-h1-section {
     position: absolute;
-    top: 20%;
-    left: 70%;
-    right: 3%;
+    top: 25vh;
+    left: 70vw;
+    right: 3vw;
     color: #000000;
     text-shadow: 1px 1px 2px #000000;
-    font-size: 0.9rem;
+    font-size: 0.5rem;
   }
 
   .lp-cv-section {
     height: 100%;
     position: absolute;
-    top: 16%;
-    left: 30%;
+    top: 20vh;
+    left: 3%;
   }
 
   .cv1,
@@ -35,7 +34,112 @@
   .cv2 {
     position: relative;
     left: -10%;
-    top: 15%;
+    top: 15vh;
+  }
+
+  .lp-descriere {
+    text-align: left;
+    margin: 5%;
+  }
+  .lp-descriere span {
+    font-weight: bold;
+  }
+
+  .lp-paragraph {
+    font-size: 1rem;
+  }
+
+  .lp-creeazacv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    background-color: #89cff8;
+    margin-top: 7vh;
+  }
+  .lp-creeazacv img {
+    margin-top: 5vh;
+    width: 70vw;
+    height: auto;
+  }
+
+  .lp-creeazacv div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    width: 90vw;
+  }
+
+  .lp-creeazacv div h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+
+  .lp-cautajob {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    margin-top: 3vh;
+  }
+
+  .lp-cautajob img {
+    width: auto;
+    height: 55vh;
+  }
+  .lp-cautajob div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 90vw;
+  }
+
+  .lp-cautajob div h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop------------------------------------------------------------------------------------ */
+@media (min-width: 1024px) and (max-width: 1920px) {
+  .landingImage {
+    width: 100vw;
+    height: 60vh;
+  }
+
+  .lp-h1-section {
+    position: absolute;
+    top: 30vh;
+    left: 70vw;
+    right: 3vw;
+    color: #000000;
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 0.9rem;
+  }
+
+  .lp-cv-section {
+    height: 100%;
+    position: absolute;
+    top: 23vh;
+    left: 37vw;
+  }
+
+  .cv1,
+  .cv2 {
+    width: 30%;
+    height: auto;
+  }
+
+  .cv2 {
+    position: relative;
+    left: -10%;
+    top: 15vh;
   }
 
   .lp-descriere {
@@ -54,12 +158,12 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 60vh;
+    height: 70vh;
     background-color: #89cff8;
     margin-top: 7vh;
   }
   .lp-creeazacv img {
-    width: 35vw;
+    width: 30vw;
     height: auto;
   }
 
@@ -95,7 +199,7 @@
 }
 
 /* Large Desktop ------------------------------------------------------------------------------------ */
-@media (min-width: 1920px) {
+@media (min-width: 1921px) {
   .landingImage {
     width: 100vw;
     height: 50vh;
