@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 import { getProfile } from '../utils/api';
 
@@ -9,7 +9,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({name:"N/A"});
     const [type, setType] = useState(null);
-    const { logout } = useAuth();
+    const { logout, getToken } = useAuth();
 
     // in functia asta extragem datele utilizatorului curent logat
     // si tipul acestuia (candidate/employer) si le salvam in context
@@ -33,6 +33,23 @@ export const UserProvider = ({ children }) => {
             }
         }
     }
+
+    // Fetch user profile automatically when token exists
+    useEffect(() => {
+        const token = getToken();
+        if (token && type === null) {
+            fetchUserProfile();
+        }
+    }, [getToken]);
+
+    // Reset type when user logs out
+    useEffect(() => {
+        const token = getToken();
+        if (!token) {
+            setType(null);
+            setUser({name:"N/A"});
+        }
+    }, [getToken]);
 
     return (
         <UserContext.Provider value={{ user, fetchUserProfile, type }}>

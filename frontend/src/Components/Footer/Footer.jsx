@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 import { UserContext } from "../../context/UserContext";
 
 export default function Footer() {
   const { type } = useContext(UserContext);
+  const navigate = useNavigate();
   return (
     <footer className="footer-container" id="footer">
       <div className="footer-item">
@@ -91,22 +93,17 @@ export default function Footer() {
         <div className="lst-footer">
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
-                Profil candidat
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/profil"); }}>
+                Profilul meu
               </a>
             </li>
             <li>
-              <a href="#" className="lst-element-footer">
-                Profil angajator
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/profil"); }}>
                 CV-ul meu
               </a>
             </li>
             <li>
-              <a href="/settingscandidat" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/settings"); }}>
                 Setări cont
               </a>
             </li>

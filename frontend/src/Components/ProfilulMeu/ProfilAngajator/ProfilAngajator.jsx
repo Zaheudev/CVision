@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "./ProfilCandidat.css";
+import "./ProfilAngajator.css";
 import profilePNG from "../../Assets/profile.png";
 import { useNavigate } from "react-router-dom";
 
 const defaultProfileDetails = {
-  fullName: "Numele si prenumele utilizatorului",
+  companyName: "Numele companiei",
   email: "Adresa de email",
-  phone: "Numar de telefon",
+  phone: "Număr de telefon",
   description:
-    "Descrierea utilizatorului nu a fost completată. Actualizează setările contului pentru a adăuga detalii.",
-  domains: "Domeniile in care doreste sa lucreze",
+    "Descrierea companiei nu a fost completată. Actualizează setările contului pentru a adăuga detalii.",
+  industry: "Industria în care activează compania",
 };
 
-const defaultHobbies = ["Nu există hobby-uri adăugate încă."];
+const defaultBenefits = ["Nu există beneficii adăugate încă."];
 
-const ProfilCandidat = () => {
+const ProfilAngajator = () => {
   const navigate = useNavigate();
   const [profilePic, setProfilePic] = useState("");
   const [profileData, setProfileData] = useState(defaultProfileDetails);
-  const [hobbies, setHobbies] = useState(defaultHobbies);
+  const [benefits, setBenefits] = useState(defaultBenefits);
 
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("id") : null;
@@ -27,7 +27,7 @@ const ProfilCandidat = () => {
     if (!userId || typeof window === "undefined") {
       setProfilePic("");
       setProfileData(defaultProfileDetails);
-      setHobbies(defaultHobbies);
+      setBenefits(defaultBenefits);
       return;
     }
 
@@ -36,25 +36,25 @@ const ProfilCandidat = () => {
       localStorage.getItem(`profilePic_${userId}`);
     setProfilePic(storedPic || "");
 
-    const storedForm = localStorage.getItem(`settingsForm_${userId}`);
+    const storedForm = localStorage.getItem(`settingsFormEmployer_${userId}`);
     if (storedForm) {
       const parsed = JSON.parse(storedForm);
       setProfileData({
-        fullName: parsed.fullName || defaultProfileDetails.fullName,
+        companyName: parsed.companyName || defaultProfileDetails.companyName,
         email: parsed.email || defaultProfileDetails.email,
         phone: parsed.phone || defaultProfileDetails.phone,
         description: parsed.description || defaultProfileDetails.description,
-        domains: parsed.domains || defaultProfileDetails.domains,
+        industry: parsed.industry || defaultProfileDetails.industry,
       });
 
-      const hobbyValues = (parsed.hobbies || "")
+      const benefitValues = (parsed.benefits || "")
         .split(",")
-        .map((hobby) => hobby.trim())
+        .map((b) => b.trim())
         .filter(Boolean);
-      setHobbies(hobbyValues.length ? hobbyValues : defaultHobbies);
+      setBenefits(benefitValues.length ? benefitValues : defaultBenefits);
     } else {
       setProfileData(defaultProfileDetails);
-      setHobbies(defaultHobbies);
+      setBenefits(defaultBenefits);
     }
   };
 
@@ -66,7 +66,7 @@ const ProfilCandidat = () => {
         return;
       }
       if (
-        event.key.includes("settingsForm") ||
+        event.key.includes("settingsFormEmployer") ||
         event.key.includes("profilePic")
       ) {
         loadProfileInfo();
@@ -83,18 +83,18 @@ const ProfilCandidat = () => {
   }, [userId]);
 
   return (
-    <div className="profil-candidat container">
-      <h1 className="titlu-profil-candidat">Profilul Candidatului</h1>
+    <div className="profil-angajator container">
+      <h1 className="titlu-profil-angajator">Profilul Angajatorului</h1>
       <div className="profil-section">
         <div className="profil-pic-container">
           <img
             src={profilePic || profilePNG}
-            alt="Poza de profil"
+            alt="Logo companie"
             className="profil-pic"
           />
         </div>
         <div className="profil-details">
-          <h4 className="profil-details-h4">{profileData.fullName}</h4>
+          <h4 className="profil-details-h4">{profileData.companyName}</h4>
           <h4 className="profil-details-h4">{profileData.email}</h4>
           <h4 className="profil-details-h4">{profileData.phone}</h4>
         </div>
@@ -102,28 +102,28 @@ const ProfilCandidat = () => {
       <div className="profil-btn-section">
         <div className="descriere-section">
           <h4 className="descriere-section-h4">
-            Scurta descriere despre utilizator
+            Despre companie
             <p>{profileData.description}</p>
           </h4>
           <h4 className="descriere-section-h4">
-            Hobby-uri
-            <div className="hobbies-list">
-              {hobbies.map((hobby, index) => (
-                <button key={index} className="hobby-btn">
-                  {hobby}
+            Beneficii oferite
+            <div className="benefits-list">
+              {benefits.map((benefit, index) => (
+                <button key={index} className="benefit-btn">
+                  {benefit}
                 </button>
               ))}
             </div>
           </h4>
           <h4 className="descriere-section-h4">
-            Domeniile in care doreste sa lucreze
-            <p>{profileData.domains}</p>
+            Industria
+            <p>{profileData.industry}</p>
           </h4>
         </div>
         <div className="btn-section-my">
-          <button className="btn-my-profil">CV-ul Meu</button>
+          <button className="btn-my-profil">Joburile mele</button>
           <button className="btn-my-profil" onClick={() => navigate("/settings")}>
-            Setari cont
+            Setări cont
           </button>
         </div>
       </div>
@@ -131,4 +131,4 @@ const ProfilCandidat = () => {
   );
 };
 
-export default ProfilCandidat;
+export default ProfilAngajator;
