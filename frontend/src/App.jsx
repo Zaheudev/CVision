@@ -62,6 +62,7 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/profil-candidat" element={<PrivateRoute><ProfilCandidat /></PrivateRoute>} />
           <Route path="/settingscandidat" element={<PrivateRoute><SettingsCandidat /></PrivateRoute>} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
         <Footer />
       </div>
