@@ -14,7 +14,8 @@ import AuthContainer from '../AuthContainer/AuthContainer.jsx';
 const Register = () => {
     const navigator = useNavigate();
     const [formData, setFormData] = useState({
-        username: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -63,13 +64,14 @@ const Register = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.register({ name: e.target[1].value, email: e.target[2].value, password: e.target[3].value }, e.target[0].value);
+            const name = formData.role !== "Employer" ? `${formData.lastName} ${formData.firstName}` : formData.roleDetail;
+            const res = await api.register({ name, email: formData.email, password: formData.password }, formData.role);
             console.log('Registration successful: ', res);
 
             // backend doesn't return token for register, so try auto-login
             try {
                 console.log('Attempting auto-login...');
-                const loginRes = await api.login(e.target[2].value, e.target[3].value, e.target[0].value);
+                const loginRes = await api.login(formData.email, formData.password, formData.role);
                 console.log(loginRes)
                 login(loginRes.user);
                 navigator('/dashboard');
@@ -122,17 +124,30 @@ const Register = () => {
                 {/* Daca utilizatorul selecteaza optiunea - angajator, 
                 automat dispare campul nume si prenume */ }
                 {formData.role !== "Employer" && (
+                    <>
                         <TextInput
                             type="text"
-                            name="username"
-                            placeholder='Nume si prenume'
-                            value={formData.username}
+                            name="lastName"
+                            placeholder='Nume'
+                            value={formData.lastName}
                             onChange={handleChange}
                             required
                             disabled={!formData.role}
                             onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
                         ><IoPerson />
                         </TextInput>
+                        <TextInput
+                            type="text"
+                            name="firstName"
+                            placeholder='Prenume'
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                            disabled={!formData.role}
+                            onDisabledClick={() => setError("Te rugăm să selectezi o opțiune (Candidat sau Angajator)!")}
+                        ><IoPerson />
+                        </TextInput>
+                    </>
                 )}
                     <TextInput
                         type="email"

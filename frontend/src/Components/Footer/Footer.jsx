@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 import { UserContext } from "../../context/UserContext";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { type } = useContext(UserContext);
@@ -132,14 +133,14 @@ export default function Footer() {
         <div className="lst-footer">
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
+              <Link to="/subscription" className="lst-element-footer">
                 Planul de bază
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="lst-element-footer">
+              <Link to="/subscription" className="lst-element-footer">
                 Planul premium
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
