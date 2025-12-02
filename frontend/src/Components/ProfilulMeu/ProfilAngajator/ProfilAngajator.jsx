@@ -84,7 +84,7 @@ const ProfilAngajator = () => {
 
   return (
     <div className="profil-angajator container">
-      <h1 className="titlu-profil-angajator">Profilul Angajatorului</h1>
+      <h1 className="titlu-profil-angajator">Profil Angajator</h1>
       <div className="profil-section">
         <div className="profil-pic-container">
           <img
