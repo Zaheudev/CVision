@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import api from '../../utils/api.js';
@@ -62,7 +62,7 @@ export const Login = () => {
                         type="submit"
                         text="Conectare"
                     />
-                <p>Nu ai un cont? <a className="link-register" href='/register'>Înregistrează-te aici</a></p>
+                <p>Nu ai un cont? <a className="link-register" onClick={()=> navigate('/register')}>Înregistrează-te aici</a></p>
             </form>
         </AuthContainer>
 
