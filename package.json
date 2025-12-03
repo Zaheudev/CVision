@@ -1,0 +1,11 @@
+{
+  "name": "root-app",
+  "description": "Script pentru a rula backend-ul din subfolder",
+  "scripts": {
+    "install": "cd backend && npm install",
+    "start": "cd backend && npm start"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
