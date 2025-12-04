@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Footer.css";
 import { UserContext } from "../../context/UserContext";
@@ -7,11 +7,20 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   const { type } = useContext(UserContext);
   const navigate = useNavigate();
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (sectionName) => {
+    setOpenSection(openSection === sectionName ? null : sectionName);
+  };
+
   return (
     <footer className="footer-container" id="footer">
       <div className="footer-item">
-        <h3>Despre aplicație</h3>
-        <div className="lst-footer">
+        <h3 className="footer-title" onClick={() => toggleSection("despre")}>
+          Despre aplicație
+          <span className={`footer-arrow ${openSection === "despre" ? "open" : ""}`}>▼</span>
+        </h3>
+        <div className={`lst-footer ${openSection === "despre" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
@@ -53,8 +62,11 @@ export default function Footer() {
       </div>
       {type !== "employer" && (
         <div className="footer-item">
-          <h3>Candidați</h3>
-          <div className="lst-footer">
+          <h3 className="footer-title" onClick={() => toggleSection("candidati")}>
+            Candidați
+            <span className={`footer-arrow ${openSection === "candidati" ? "open" : ""}`}>▼</span>
+          </h3>
+          <div className={`lst-footer ${openSection === "candidati" ? "open" : ""}`}>
             <ul className="lst-ul">
               <li>
                 <a href="#" className="lst-element-footer">
@@ -72,8 +84,11 @@ export default function Footer() {
       )}
       {type !== "candidate" && (
         <div className="footer-item">
-          <h3>Angajatori</h3>
-          <div className="lst-footer">
+          <h3 className="footer-title" onClick={() => toggleSection("angajatori")}>
+            Angajatori
+            <span className={`footer-arrow ${openSection === "angajatori" ? "open" : ""}`}>▼</span>
+          </h3>
+          <div className={`lst-footer ${openSection === "angajatori" ? "open" : ""}`}>
             <ul className="lst-ul">
               <li>
                 <a href="#" className="lst-element-footer">
@@ -90,8 +105,11 @@ export default function Footer() {
         </div>
       )}
       <div className="footer-item">
-        <h3>Profilul meu</h3>
-        <div className="lst-footer">
+        <h3 className="footer-title" onClick={() => toggleSection("profil")}>
+          Profilul meu
+          <span className={`footer-arrow ${openSection === "profil" ? "open" : ""}`}>▼</span>
+        </h3>
+        <div className={`lst-footer ${openSection === "profil" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/profil"); }}>
@@ -112,8 +130,11 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-item">
-        <h3>Contact</h3>
-        <div className="lst-footer">
+        <h3 className="footer-title" onClick={() => toggleSection("contact")}>
+          Contact
+          <span className={`footer-arrow ${openSection === "contact" ? "open" : ""}`}>▼</span>
+        </h3>
+        <div className={`lst-footer ${openSection === "contact" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
@@ -129,8 +150,11 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-item">
-        <h3>Planuri de abonament</h3>
-        <div className="lst-footer">
+        <h3 className="footer-title" onClick={() => toggleSection("abonament")}>
+          Planuri de abonament
+          <span className={`footer-arrow ${openSection === "abonament" ? "open" : ""}`}>▼</span>
+        </h3>
+        <div className={`lst-footer ${openSection === "abonament" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
               <Link to="/subscription" className="lst-element-footer">
@@ -146,8 +170,11 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-item">
-        <h3>Suport</h3>
-        <div className="lst-footer">
+        <h3 className="footer-title" onClick={() => toggleSection("suport")}>
+          Suport
+          <span className={`footer-arrow ${openSection === "suport" ? "open" : ""}`}>▼</span>
+        </h3>
+        <div className={`lst-footer ${openSection === "suport" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">

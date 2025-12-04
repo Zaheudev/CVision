@@ -60,8 +60,8 @@ function App() {
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/profil-candidat" element={<PrivateRoute><ProfilCandidat /></PrivateRoute>} />
-          <Route path="/settingscandidat" element={<PrivateRoute><SettingsCandidat /></PrivateRoute>} />
+          <Route path="/profil" element={<PrivateRoute><ProfilRoute /></PrivateRoute>} />
+          <Route path="/settings" element={<PrivateRoute><SettingsRoute /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
         <Footer />
