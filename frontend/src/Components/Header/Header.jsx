@@ -131,7 +131,7 @@ export default function Header() {
             <a
               href="#"
               className="lst-item"
-              onClick={() => navigate("/profil")}
+              onClick={() => navigate("/profil-candidat")}
             >
               Profilul meu
             </a>
@@ -171,7 +171,7 @@ export default function Header() {
             </div>
             {isProfileMenuOpen && (
               <div className="profile-dropdown">
-                <button className="dropdown-item" onClick={() => { navigate("/settings"); setIsProfileMenuOpen(false); }}>
+                <button className="dropdown-item" onClick={() => { navigate("/settingscandidat"); setIsProfileMenuOpen(false); }}>
                   Setări cont
                 </button>
                 <button className="dropdown-item" onClick={() => { handleLogout(); setIsProfileMenuOpen(false); }}>
@@ -207,7 +207,7 @@ export default function Header() {
             href="#"
             className="mobile-item"
             onClick={() => {
-              navigate("/profil");
+              navigate("/profil-candidat");
               toggleMenu();
             }}
           >
