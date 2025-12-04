@@ -56,4 +56,14 @@ export const getProfile = async () => {
     }
 };
 
-export default { login, register, getProfile };
+export const updateProfile = async (profileData) => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.put(`${API_BASE_URL}/profile`, profileData, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+}
+
+export default { login, register, getProfile, updateProfile };

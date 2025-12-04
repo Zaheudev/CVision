@@ -23,3 +23,20 @@ exports.getProfileData = async (req, res) => {
         console.log(error);
     }
 }
+
+exports.updateProfileData = async (req, res) => {
+    try {
+        const user = await getUserById(req.user.id);
+        if(user instanceof Candidate) {
+            const updatedCandidate = await Candidate.findByIdAndUpdate(req.user.id, req.body, { new: true }).select('-passwordHash');
+            return res.status(200).json(updatedCandidate);
+        } else if (user instanceof Employer) {
+            const updatedEmployer = await Employer.findByIdAndUpdate(req.user.id, req.body, { new: true }).select('-passwordHash');
+            return res.status(200).json(updatedEmployer);
+        }
+        return res.status(404).json({ message: 'Profile not found' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+        console.log(error);
+    }
+}
