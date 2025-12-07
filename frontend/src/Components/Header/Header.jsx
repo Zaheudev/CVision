@@ -131,7 +131,7 @@ export default function Header() {
             <a
               href="#"
               className="lst-item"
-              onClick={() => navigate("/profil-candidat")}
+              onClick={() => navigate("/profil")}
             >
               Profilul meu
             </a>

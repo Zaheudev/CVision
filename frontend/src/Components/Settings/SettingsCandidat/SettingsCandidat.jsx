@@ -2,17 +2,19 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./SettingsCandidat.css";
 import profilePNG from "../../Assets/profile.png";
 
+import { updateProfile } from '../../../utils/api';
+
 const SettingsCandidat = () => {
   const [isTemplateListOpen, setIsTemplateListOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState("Selectează șablonul");
   const [profilePic, setProfilePic] = useState(profilePNG);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     description: "",
-    hobbies: "",
-    domains: "",
+    experience: [],
+    skills: [],
   });
 
   const userId = typeof window !== "undefined" ? localStorage.getItem("id") : null;
@@ -50,7 +52,7 @@ const SettingsCandidat = () => {
     autoResize(fullNameRef);
     autoResize(emailRef);
     autoResize(phoneRef);
-  }, [formData.description, formData.hobbies, formData.domains, formData.fullName, formData.email, formData.phone, autoResize]);
+  }, [formData.description, formData.hobbies, formData.domains, formData.name, formData.email, formData.phone, autoResize]);
 
   useEffect(() => {
     if (!userId) return;
@@ -115,6 +117,16 @@ const SettingsCandidat = () => {
     });
   };
 
+  const sendData = async () => {
+    // Function to send data to backend if needed
+    try{
+      const response =  await updateProfile(formData);
+      console.log('Profile updated successfully:', response);
+    }catch(error){
+      console.log('Error updating profile:', error);
+    }
+  }
+
   return (
     <div className="settings-candidat container">
       <h1 className="titlu-settings-candidat">Setări Cont</h1>
@@ -148,8 +160,8 @@ const SettingsCandidat = () => {
               name="nume-prenume"
               id="nume-prenume"
               placeholder="Nume și prenume"
-              value={formData.fullName}
-              onChange={handleInputChange("fullName")}
+              value={formData.name}
+              onChange={handleInputChange("name")}
               rows={1}
             />
           </div>
@@ -236,7 +248,7 @@ const SettingsCandidat = () => {
               ))}
             </div>
           </div>
-          <button className="btn-st">Salvează modificările</button>
+          <button className="btn-st" onClick={sendData}>Salvează modificările</button>
         </div>
       </div>
     </div>
