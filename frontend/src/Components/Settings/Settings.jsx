@@ -233,14 +233,36 @@ const Settings = () => {
 
       if (type === "candidate") {
         console.log("Updating candidate profile...", candidateData);
-        await updateCandidateProfile(candidateData);
+        
+        // Format data before sending
+        const formattedData = {
+          ...candidateData,
+          skills: Array.isArray(candidateData.skills) 
+            ? candidateData.skills 
+            : candidateData.skills.split(',').map(s => s.trim()).filter(s => s),
+          experience: Array.isArray(candidateData.experience)
+            ? candidateData.experience
+            : candidateData.experience.split(',').map(e => e.trim()).filter(e => e),
+        };
+        
+        await updateCandidateProfile(formattedData);
         console.log("Candidate profile updated successfully");
         setInitialData(JSON.parse(JSON.stringify(candidateData)));
         setHasUnsavedChanges(false);
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       } else if (type === "employer") {
         console.log("Updating employer profile...", employerData);
-        await updateEmployerProfile(employerData);
+        
+        // Format data before sending
+        const formattedData = {
+          ...employerData,
+          tags: Array.isArray(employerData.tags)
+            ? employerData.tags
+            : employerData.tags.split(',').map(t => t.trim()).filter(t => t),
+          employeeCount: employerData.employeeCount ? parseInt(employerData.employeeCount, 10) : 0,
+        };
+        
+        await updateEmployerProfile(formattedData);
         console.log("Employer profile updated successfully");
         setInitialData(JSON.parse(JSON.stringify(employerData)));
         setHasUnsavedChanges(false);
