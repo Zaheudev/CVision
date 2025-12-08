@@ -103,15 +103,27 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
   }
 
   .text-section-st .input-group {
-    width: 90%;
+    width: 100%;
     max-width: 350px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
+  }
+
+  .text-section-st .input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
   }
 
   .text-section-st .input-group input {
@@ -122,10 +134,9 @@
   }
 
   .settings .input-group {
-    width: 90% !important;
+    width: 100% !important;
     max-width: 350px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin: 0 !important;
   }
 
   .settings .input-group input {
@@ -134,9 +145,21 @@
   }
 
   .auto-resize-group {
-    width: 90%;
+    width: 100%;
     max-width: 350px;
-    margin: 0 auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auto-resize-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
   }
 
   .auto-resize-textarea {
@@ -374,7 +397,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    align-items: stretch;
+    align-items: flex-start;
     width: 100%;
   }
 
@@ -383,6 +406,15 @@
     max-width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  .text-section-st .input-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
   }
 
   .text-section-st .input-group input {
@@ -406,6 +438,18 @@
 
   .auto-resize-group {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auto-resize-group label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
   }
 
   .auto-resize-textarea {

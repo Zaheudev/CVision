@@ -415,6 +415,7 @@ const Settings = () => {
           {type === "candidate" ? (
             <>
               <div className="input-group auto-resize-group">
+                <label htmlFor="firstName">Prenume</label>
                 <textarea
                   ref={firstNameRef}
                   className="auto-resize-textarea"
@@ -427,6 +428,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="lastName">Nume de familie</label>
                 <textarea
                   ref={lastNameRef}
                   className="auto-resize-textarea"
@@ -439,6 +441,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="email">Adresa de email</label>
                 <textarea
                   ref={emailRef}
                   className="auto-resize-textarea"
@@ -451,6 +454,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="phoneNumber">Număr de telefon</label>
                 <textarea
                   ref={phoneRef}
                   className="auto-resize-textarea"
@@ -463,6 +467,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="location">Locație (oraș)</label>
                 <textarea
                   ref={locationRef}
                   className="auto-resize-textarea"
@@ -475,6 +480,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="skills">Competențe</label>
                 <textarea
                   ref={skillsRef}
                   className="auto-resize-textarea"
@@ -487,6 +493,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="experience">Experiență</label>
                 <textarea
                   ref={experienceRef}
                   className="auto-resize-textarea"
@@ -499,6 +506,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="highschool">Liceu</label>
                 <textarea
                   ref={highschoolRef}
                   className="auto-resize-textarea"
@@ -511,6 +519,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="bachelor">Universitate (Bachelor)</label>
                 <textarea
                   ref={bachelorRef}
                   className="auto-resize-textarea"
@@ -523,6 +532,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="description">Scurtă descriere</label>
                 <textarea
                   ref={descriptionRef}
                   className="auto-resize-textarea"
@@ -538,6 +548,7 @@ const Settings = () => {
           ) : (
             <>
               <div className="input-group auto-resize-group">
+                <label htmlFor="name-employer">Numele companiei</label>
                 <textarea
                   ref={nameRef}
                   className="auto-resize-textarea"
@@ -550,6 +561,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="email-employer">Adresa de email</label>
                 <textarea
                   ref={emailRef}
                   className="auto-resize-textarea"
@@ -562,6 +574,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="phoneNumber-employer">Număr de telefon</label>
                 <textarea
                   ref={phoneRef}
                   className="auto-resize-textarea"
@@ -574,6 +587,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="street">Strada</label>
                 <textarea
                   ref={streetRef}
                   className="auto-resize-textarea"
@@ -586,6 +600,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="city">Oraș</label>
                 <textarea
                   ref={cityRef}
                   className="auto-resize-textarea"
@@ -598,6 +613,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="state">Județ/Stat</label>
                 <textarea
                   ref={stateRef}
                   className="auto-resize-textarea"
@@ -610,6 +626,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="zipCode">Cod poștal</label>
                 <textarea
                   ref={zipCodeRef}
                   className="auto-resize-textarea"
@@ -622,6 +639,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="country">Țară</label>
                 <textarea
                   ref={countryRef}
                   className="auto-resize-textarea"
@@ -634,6 +652,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="tags">Tag-uri</label>
                 <textarea
                   ref={tagsRef}
                   className="auto-resize-textarea"
@@ -646,6 +665,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="industry">Industria în care activați</label>
                 <textarea
                   ref={industryRef}
                   className="auto-resize-textarea"
@@ -658,6 +678,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="employeeCount">Număr de angajați</label>
                 <textarea
                   ref={employeeCountRef}
                   className="auto-resize-textarea"
@@ -670,6 +691,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="description-employer">Descriere companie</label>
                 <textarea
                   ref={descriptionRef}
                   className="auto-resize-textarea"
@@ -682,6 +704,7 @@ const Settings = () => {
                 />
               </div>
               <div className="input-group auto-resize-group">
+                <label htmlFor="website">Website</label>
                 <textarea
                   ref={websiteRef}
                   className="auto-resize-textarea"
