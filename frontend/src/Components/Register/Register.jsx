@@ -64,7 +64,7 @@ const Register = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const name = formData.role !== "Employer" ? `${formData.lastName} ${formData.firstName}` : formData.roleDetail;
+            const name = formData.role !== "Employer" ? {lastName: formData.lastName, firstName: formData.firstName} : formData.roleDetail;
             const res = await api.register({ name, email: formData.email, password: formData.password }, formData.role);
             console.log('Registration successful: ', res);
 

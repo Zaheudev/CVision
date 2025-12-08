@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 // campuri pe masura ce dezvoltam aplicatia.
 
 const candidateSchema = new mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
-        required: true,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        trim: true
     },
     email: {
         type: String,
@@ -18,14 +22,6 @@ const candidateSchema = new mongoose.Schema({
     passwordHash: {
         type: String,
         required: true
-    },
-    firstName: {
-        type: String,
-        trim: true
-    },
-    lastName: {
-        type: String,
-        trim: true
     },
     phoneNumber: {
         type: String,
