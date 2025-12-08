@@ -207,7 +207,7 @@ export default function Header() {
             href="#"
             className="mobile-item"
             onClick={() => {
-              navigate("/profil");
+              navigate("/profil-candidat");
               toggleMenu();
             }}
           >
