@@ -5,9 +5,23 @@
 .plans{
     display: flex;
     flex-direction: row;
+    gap: 80px;
     justify-content: center;
-    gap:80px;
+    align-items: center;
     margin: 30px;
+}
+
+.plan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plans_photos {
+    width: 509px;
+    height: 546px;
+    object-fit: contain;
+    margin-bottom: 25px;
 }
 
 .plan h2 {
@@ -44,9 +58,22 @@
     margin: 24px 0 12px 0;
   }
   .plans {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
+  }
+  .plan-container {
+    width: 95vw;
+    min-width: 220px;
+    max-width: 400px;
+    align-items: center;
+  }
+  .plans_photos {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    margin-bottom: 18px;
   }
   .plan {
     width: 95vw;

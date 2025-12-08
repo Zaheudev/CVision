@@ -239,10 +239,10 @@ const Settings = () => {
           ...candidateData,
           skills: Array.isArray(candidateData.skills) 
             ? candidateData.skills 
-            : candidateData.skills.split(',').map(s => s.trim()).filter(s => s),
+            : candidateData.skills.split(/\s*;\s*/).map(s => s.trim()).filter(s => s),
           experience: Array.isArray(candidateData.experience)
             ? candidateData.experience
-            : candidateData.experience.split(',').map(e => e.trim()).filter(e => e),
+            : candidateData.experience.split(/\s*;\s*/).map(e => e.trim()).filter(e => e),
         };
         
         await updateCandidateProfile(formattedData);
@@ -328,10 +328,13 @@ const Settings = () => {
           },
         };
       } else if (field === "skills" || field === "experience") {
-        // Convert comma-separated string to array
+        // Split by semicolon (;) as main separator, allow commas and spaces inside each item
         updated = {
           ...prev,
-          [field]: value.split(",").map((item) => item.trim()).filter(Boolean),
+          [field]: value
+            .split(/\s*;\s*/)
+            .map((item) => item.trim())
+            .filter(Boolean),
         };
       } else {
         updated = { ...prev, [field]: value };
@@ -486,8 +489,8 @@ const Settings = () => {
                   className="auto-resize-textarea"
                   name="skills"
                   id="skills"
-                  placeholder="Competențe (separate prin virgulă)"
-                  value={Array.isArray(candidateData.skills) ? candidateData.skills.join(", ") : ""}
+                  placeholder="Competențe (descriere liberă, idei separate prin punct și virgulă)"
+                  value={Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : ""}
                   onChange={handleCandidateInputChange("skills")}
                   rows={1}
                 />
@@ -499,8 +502,8 @@ const Settings = () => {
                   className="auto-resize-textarea"
                   name="experience"
                   id="experience"
-                  placeholder="Experiență (separate prin virgulă)"
-                  value={Array.isArray(candidateData.experience) ? candidateData.experience.join(", ") : ""}
+                  placeholder="Experiență (descriere liberă, idei separate prin punct și virgulă)"
+                  value={Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : ""}
                   onChange={handleCandidateInputChange("experience")}
                   rows={1}
                 />
