@@ -6,6 +6,7 @@ import { getProfile, updateCandidateProfile, updateEmployerProfile } from "../..
 
 const Settings = () => {
   const { type } = useContext(UserContext);
+  // Stare pentru lista de șabloane deschisă/închisă
   const [isTemplateListOpen, setIsTemplateListOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState("Selectează șablonul");
   const [profilePic, setProfilePic] = useState(profilePNG);
@@ -15,7 +16,7 @@ const Settings = () => {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [initialData, setInitialData] = useState(null);
   
-  // Candidate form data
+  // Stare pentru datele formularului candidatului
   const [candidateData, setCandidateData] = useState({
     firstName: "",
     lastName: "",
@@ -31,7 +32,7 @@ const Settings = () => {
     description: "",
   });
 
-  // Employer form data
+  // Stare pentru datele formularului angajatorului
   const [employerData, setEmployerData] = useState({
     name: "",
     email: "",
@@ -50,8 +51,14 @@ const Settings = () => {
     website: "",
   });
 
+  // Stări pentru textul brut introdus la competențe și experiență (ce scrie utilizatorul direct în câmpuri)
+  const [skillsInput, setSkillsInput] = useState("");
+  const [experienceInput, setExperienceInput] = useState("");
+
+  // Id-ul utilizatorului din localStorage (dacă există)
   const userId = typeof window !== "undefined" ? localStorage.getItem("id") : null;
 
+  // Lista de șabloane disponibile pentru CV
   const templates = [
     "Auto",
     "CV1",
@@ -64,7 +71,7 @@ const Settings = () => {
     "CV8",
   ];
 
-  // Refs for auto-resize textareas
+  // Referințe către fiecare textarea pentru auto-redimensionare
   const nameRef = useRef(null);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -86,6 +93,7 @@ const Settings = () => {
   const employeeCountRef = useRef(null);
   const websiteRef = useRef(null);
 
+  // Funcție pentru auto-redimensionarea textarea-urilor la modificarea conținutului
   const autoResize = useCallback((ref) => {
     if (ref.current) {
       ref.current.style.height = "auto";
@@ -93,7 +101,7 @@ const Settings = () => {
     }
   }, []);
 
-  // Auto-resize all textareas when data changes
+  // Auto-redimensionează toate textarea-urile când se modifică datele
   useEffect(() => {
     if (type === "candidate") {
       autoResize(firstNameRef);
@@ -123,7 +131,7 @@ const Settings = () => {
     }
   }, [candidateData, employerData, type, autoResize]);
 
-  // Load data from backend on mount
+  // Încarcă datele din backend la montarea componentei
   useEffect(() => {
     const fetchProfileData = async () => {
       if (!type) return;
@@ -181,7 +189,15 @@ const Settings = () => {
     fetchProfileData();
   }, [type]);
 
-  // Load template and profile pic from localStorage
+  // La fiecare modificare a datelor candidatului, actualizăm și textul brut din câmpuri (pentru a reflecta ce e salvat deja)
+  useEffect(() => {
+    if (type === "candidate" && candidateData) {
+      setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : "");
+      setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
+    }
+  }, [candidateData, type]);
+
+  // Încarcă șablonul și poza de profil din localStorage (dacă există)
   useEffect(() => {
     if (!userId) return;
 
@@ -200,7 +216,7 @@ const Settings = () => {
     }
   }, [userId, type]);
 
-  // Warn user before leaving page with unsaved changes
+  // Avertizează utilizatorul dacă părăsește pagina cu modificări nesalvate
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       if (hasUnsavedChanges) {
@@ -217,14 +233,17 @@ const Settings = () => {
     };
   }, [hasUnsavedChanges]);
 
+  // Funcție goală (nu mai salvează local, datele vin din backend)
   const persistCandidateForm = (data) => {
-    // Removed localStorage persistence - data comes from backend
+    // Salvarea locală a fost eliminată - datele vin din backend
   };
 
+  // Funcție goală (nu mai salvează local, datele vin din backend)
   const persistEmployerForm = (data) => {
-    // Removed localStorage persistence - data comes from backend
+    // Salvarea locală a fost eliminată - datele vin din backend
   };
 
+  // Funcție pentru salvarea datelor (trimite datele la server)
   const handleSave = async () => {
     try {
       console.log("handleSave started");
@@ -234,26 +253,23 @@ const Settings = () => {
       if (type === "candidate") {
         console.log("Updating candidate profile...", candidateData);
         
-        // Format data before sending
+        // La salvare, transformăm textul introdus de utilizator în array (folosind ";" ca separator) pentru a fi trimis la server
         const formattedData = {
           ...candidateData,
-          skills: Array.isArray(candidateData.skills) 
-            ? candidateData.skills 
-            : candidateData.skills.split(/\s*;\s*/).map(s => s.trim()).filter(s => s),
-          experience: Array.isArray(candidateData.experience)
-            ? candidateData.experience
-            : candidateData.experience.split(/\s*;\s*/).map(e => e.trim()).filter(e => e),
+          skills: skillsInput.split(/\s*;\s*/).map(s => s.trim()).filter(Boolean),
+          experience: experienceInput.split(/\s*;\s*/).map(e => e.trim()).filter(Boolean),
         };
         
         await updateCandidateProfile(formattedData);
         console.log("Candidate profile updated successfully");
-        setInitialData(JSON.parse(JSON.stringify(candidateData)));
+        setCandidateData(formattedData);
+        setInitialData(JSON.parse(JSON.stringify(formattedData)));
         setHasUnsavedChanges(false);
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       } else if (type === "employer") {
         console.log("Updating employer profile...", employerData);
         
-        // Format data before sending
+        // Formatează datele înainte de trimitere
         const formattedData = {
           ...employerData,
           tags: Array.isArray(employerData.tags)
@@ -269,12 +285,12 @@ const Settings = () => {
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       }
 
-      // Dispatch event for other components
+      // Trimite un eveniment pentru alte componente (dacă e nevoie de actualizare în altă parte)
       if (typeof window !== "undefined") {
         window.dispatchEvent(new Event("settingsFormUpdated"));
       }
 
-      // Clear message after 3 seconds
+      // Șterge mesajul după 3 secunde
       setTimeout(() => {
         setMessage({ text: "", type: "" });
       }, 3000);
@@ -290,8 +306,10 @@ const Settings = () => {
     }
   };
 
+  // Deschide/închide lista de șabloane
   const toggleTemplateList = () => setIsTemplateListOpen((prev) => !prev);
 
+  // Selectează un șablon și îl salvează în localStorage
   const handleTemplateSelect = (template) => {
     setSelectedTemplate(template);
     setIsTemplateListOpen(false);
@@ -300,6 +318,7 @@ const Settings = () => {
     }
   };
 
+  // Schimbă poza de profil (încarcă fișierul și îl salvează local)
   const handleProfilePicChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -315,6 +334,7 @@ const Settings = () => {
     reader.readAsDataURL(file);
   };
 
+  // Gestionează modificările din câmpurile formularului pentru candidat
   const handleCandidateInputChange = (field, subfield = null) => (event) => {
     const value = event.target.value;
     setCandidateData((prev) => {
@@ -327,15 +347,6 @@ const Settings = () => {
             [subfield]: value,
           },
         };
-      } else if (field === "skills" || field === "experience") {
-        // Split by semicolon (;) as main separator, allow commas and spaces inside each item
-        updated = {
-          ...prev,
-          [field]: value
-            .split(/\s*;\s*/)
-            .map((item) => item.trim())
-            .filter(Boolean),
-        };
       } else {
         updated = { ...prev, [field]: value };
       }
@@ -344,6 +355,7 @@ const Settings = () => {
     });
   };
 
+  // Gestionează modificările din câmpurile formularului pentru angajator
   const handleEmployerInputChange = (field, subfield = null) => (event) => {
     const value = event.target.value;
     setEmployerData((prev) => {
@@ -357,7 +369,7 @@ const Settings = () => {
           },
         };
       } else if (field === "tags") {
-        // Convert comma-separated string to array
+        // Transformă textul separat prin virgulă într-un array
         updated = {
           ...prev,
           [field]: value.split(",").map((item) => item.trim()).filter(Boolean),
@@ -490,8 +502,11 @@ const Settings = () => {
                   name="skills"
                   id="skills"
                   placeholder="Competențe (descriere liberă, idei separate prin punct și virgulă)"
-                  value={Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : ""}
-                  onChange={handleCandidateInputChange("skills")}
+                  value={skillsInput}
+                  onChange={e => {
+                    setSkillsInput(e.target.value);
+                    setHasUnsavedChanges(true);
+                  }}
                   rows={1}
                 />
               </div>
@@ -503,8 +518,11 @@ const Settings = () => {
                   name="experience"
                   id="experience"
                   placeholder="Experiență (descriere liberă, idei separate prin punct și virgulă)"
-                  value={Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : ""}
-                  onChange={handleCandidateInputChange("experience")}
+                  value={experienceInput}
+                  onChange={e => {
+                    setExperienceInput(e.target.value);
+                    setHasUnsavedChanges(true);
+                  }}
                   rows={1}
                 />
               </div>
