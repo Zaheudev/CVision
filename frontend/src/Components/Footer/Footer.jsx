@@ -18,7 +18,6 @@ export default function Footer() {
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("despre")}>
           Despre aplicație
-          <span className={`footer-arrow ${openSection === "despre" ? "open" : ""}`}>▼</span>
         </h3>
         <div className={`lst-footer ${openSection === "despre" ? "open" : ""}`}>
           <ul className="lst-ul">
@@ -64,7 +63,6 @@ export default function Footer() {
         <div className="footer-item">
           <h3 className="footer-title" onClick={() => toggleSection("candidati")}>
             Candidați
-            <span className={`footer-arrow ${openSection === "candidati" ? "open" : ""}`}>▼</span>
           </h3>
           <div className={`lst-footer ${openSection === "candidati" ? "open" : ""}`}>
             <ul className="lst-ul">
@@ -86,7 +84,6 @@ export default function Footer() {
         <div className="footer-item">
           <h3 className="footer-title" onClick={() => toggleSection("angajatori")}>
             Angajatori
-            <span className={`footer-arrow ${openSection === "angajatori" ? "open" : ""}`}>▼</span>
           </h3>
           <div className={`lst-footer ${openSection === "angajatori" ? "open" : ""}`}>
             <ul className="lst-ul">
@@ -107,7 +104,6 @@ export default function Footer() {
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("profil")}>
           Profilul meu
-          <span className={`footer-arrow ${openSection === "profil" ? "open" : ""}`}>▼</span>
         </h3>
         <div className={`lst-footer ${openSection === "profil" ? "open" : ""}`}>
           <ul className="lst-ul">
@@ -132,7 +128,6 @@ export default function Footer() {
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("contact")}>
           Contact
-          <span className={`footer-arrow ${openSection === "contact" ? "open" : ""}`}>▼</span>
         </h3>
         <div className={`lst-footer ${openSection === "contact" ? "open" : ""}`}>
           <ul className="lst-ul">
@@ -152,7 +147,6 @@ export default function Footer() {
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("abonament")}>
           Planuri de abonament
-          <span className={`footer-arrow ${openSection === "abonament" ? "open" : ""}`}>▼</span>
         </h3>
         <div className={`lst-footer ${openSection === "abonament" ? "open" : ""}`}>
           <ul className="lst-ul">
@@ -172,7 +166,6 @@ export default function Footer() {
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("suport")}>
           Suport
-          <span className={`footer-arrow ${openSection === "suport" ? "open" : ""}`}>▼</span>
         </h3>
         <div className={`lst-footer ${openSection === "suport" ? "open" : ""}`}>
           <ul className="lst-ul">

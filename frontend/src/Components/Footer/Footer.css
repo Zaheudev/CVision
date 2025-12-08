@@ -30,7 +30,7 @@
 
   .footer-title {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 12px 10px;
     margin: 0;
@@ -42,18 +42,6 @@
 
   .footer-title:active {
     background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  .footer-arrow {
-    font-size: 0.6rem;
-    transition: transform 0.3s ease;
-    display: inline-block;
-    margin-left: 5px;
-    flex-shrink: 0;
-  }
-
-  .footer-arrow.open {
-    transform: rotate(180deg);
   }
 
   .lst-footer {

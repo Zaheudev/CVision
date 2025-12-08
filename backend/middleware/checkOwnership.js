@@ -4,7 +4,9 @@
 // blocat si sa primeasca un mesaj de eroare. sau daca vrea sa obtina datele altui candidat.
 
 const checkOwnership = async (req, res, next) => {
-    
+    // Pentru moment, permitem accesul pentru actualizarea propriului profil
+    // Utilizatorul actualizează propriul profil (req.user.id este setat de middleware-ul authenticate)
+    next();
 };
 
 module.exports = checkOwnership;
