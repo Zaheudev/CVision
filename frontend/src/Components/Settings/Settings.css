@@ -103,14 +103,14 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
   }
 
   .text-section-st .input-group {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
     padding: 0;
   }
 
@@ -122,10 +122,10 @@
   }
 
   .settings .input-group {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    width: 90% !important;
+    max-width: 350px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .settings .input-group input {
@@ -134,7 +134,9 @@
   }
 
   .auto-resize-group {
-    width: 100%;
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
   }
 
   .auto-resize-textarea {

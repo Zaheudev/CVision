@@ -128,7 +128,7 @@ const Profil = () => {
 
   if (loading) {
     return (
-      <div className="profil container">
+      <div className="profil-container">
         <p className="loading-message">Se încarcă profilul...</p>
       </div>
     );
@@ -147,7 +147,7 @@ const Profil = () => {
       : "Nu există educație adăugată încă.";
 
     return (
-      <div className="profil container">
+      <div className="profil-container">
         <h1 className="titlu-profil">Profil Candidat</h1>
         <div className="profil-section">
           <div className="profil-pic-container">
@@ -226,7 +226,7 @@ const Profil = () => {
     const displayWebsite = employerData.website || "Website neconfigurat";
 
     return (
-      <div className="profil container">
+      <div className="profil-container">
         <h1 className="titlu-profil">Profil Angajator</h1>
         <div className="profil-section">
           <div className="profil-pic-container">
