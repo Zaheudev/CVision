@@ -192,7 +192,7 @@ const Settings = () => {
   // La fiecare modificare a datelor candidatului, actualizăm și textul brut din câmpuri (pentru a reflecta ce e salvat deja)
   useEffect(() => {
     if (type === "candidate" && candidateData) {
-      setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : "");
+      setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join(", ") : "");
       setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
     }
   }, [candidateData, type]);
@@ -256,7 +256,7 @@ const Settings = () => {
         // La salvare, transformăm textul introdus de utilizator în array (folosind ";" ca separator) pentru a fi trimis la server
         const formattedData = {
           ...candidateData,
-          skills: skillsInput.split(/\s*;\s*/).map(s => s.trim()).filter(Boolean),
+          skills: skillsInput.split(/\s*,\s*/).map(s => s.trim()).filter(Boolean),
           experience: experienceInput.split(/\s*;\s*/).map(e => e.trim()).filter(Boolean),
         };
         
