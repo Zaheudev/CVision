@@ -11,11 +11,11 @@ const Employer = require('../models/Employer');
 
 exports.getUserByEmail = async (email) => {
     try {
-        const candidate = await Candidate.findOne({ email });
+        const candidate = await Candidate.findOne({ email }).select('-passwordHash');
         if (candidate) {
             return candidate;
         }
-        const employer = await Employer.findOne({ email });
+        const employer = await Employer.findOne({ email }).select('-passwordHash');
         if (employer) {
             return employer;
         }
@@ -27,11 +27,11 @@ exports.getUserByEmail = async (email) => {
 
 exports.getUserById = async (id) => {
     try {
-        const candidate = await Candidate.findById(id);
+        const candidate = await Candidate.findById(id).select('-passwordHash');
         if (candidate) {
             return candidate;
         }
-        const employer = await Employer.findById(id);
+        const employer = await Employer.findById(id).select('-passwordHash');
         if (employer) {
             return employer;
         }
