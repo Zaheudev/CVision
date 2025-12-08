@@ -8,10 +8,11 @@ const { getUserByEmail, getUserById } = require('./getUser');
 // Înregistrează un candidat nou
 exports.registerCandidate = async (req, res) => {
     // const { username, email, password } = req.body;
-    const name = req.body.name;
+    const firstName = req.body.name.firstName;
+    const lastName = req.body.name.lastName;
     const email = req.body.email;
     const password = req.body.password;
-    console.log({name, email, password});
+    console.log({firstName,lastName, email, password});
     try {
         // Verifică dacă emailul este deja folosit in tabela pentru candidati
         // dar trebuie sa verificam si in tabela angajatorilor pentru a evita conflicte
@@ -24,7 +25,7 @@ exports.registerCandidate = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Creează un utilizator nou pe care îl salvează în baza de date
-        const newCandidate = new Candidate({ name, email, passwordHash: hashedPassword });
+        const newCandidate = new Candidate({ firstName, lastName, email, passwordHash: hashedPassword });
         await newCandidate.save();
 
         res.status(201).json({ message: 'Candidate registered successfully' });
