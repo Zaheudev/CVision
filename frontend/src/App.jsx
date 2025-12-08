@@ -4,8 +4,7 @@ import Register from './Components/Register/Register'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
-import ProfilCandidat from './Components/ProfilulMeu/ProfilCandidat/ProfilCandidat'
-import ProfilAngajator from './Components/ProfilulMeu/ProfilAngajator/ProfilAngajator'
+import Profil from './Components/ProfilulMeu/Profil'
 import LandingPage from './Components/LandingPage/LandingPage'
 import SubscriptionPage from './Components/SubscriptionPage/SubscriptionPage'
 import Settings from './Components/Settings/Settings'
@@ -32,13 +31,7 @@ const PrivateRoute = ({ children }) => {
   return children;
 }
 
-const ProfilRoute = () => {
-  const { type } = useContext(UserContext);
-  if (type === 'employer') {
-    return <ProfilAngajator />;
-  }
-  return <ProfilCandidat />;
-}
+
 
 
 function App() {
@@ -51,7 +44,7 @@ function App() {
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/profil" element={<PrivateRoute><ProfilRoute /></PrivateRoute>} />
+          <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
         </Routes>
