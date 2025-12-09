@@ -54,6 +54,7 @@ const Settings = () => {
   // Stări pentru textul brut introdus la competențe și experiență (ce scrie utilizatorul direct în câmpuri)
   const [skillsInput, setSkillsInput] = useState("");
   const [experienceInput, setExperienceInput] = useState("");
+  const [tagsInput, setTagsInput] = useState("");
 
   // Id-ul utilizatorului din localStorage (dacă există)
   const userId = typeof window !== "undefined" ? localStorage.getItem("id") : null;
@@ -139,7 +140,6 @@ const Settings = () => {
       try {
         setLoading(true);
         const response = await getProfile();
-        
         if (type === "candidate" && response.user) {
           const data = {
             firstName: response.user.firstName || "",
@@ -189,13 +189,22 @@ const Settings = () => {
     fetchProfileData();
   }, [type]);
 
-  // La fiecare modificare a datelor candidatului, actualizăm și textul brut din câmpuri (pentru a reflecta ce e salvat deja)
+  // La fiecare modificare a datelor candidatului/angajatorului, actualizăm și textul brut din câmpuri (pentru a reflecta ce e salvat deja)
   useEffect(() => {
     if (type === "candidate" && candidateData) {
       setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join(", ") : "");
       setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
+    } else if (type === "employer" && employerData) {
+      setTagsInput(Array.isArray(employerData.tags) ? employerData.tags.join(", ") : "");
     }
-  }, [candidateData, type]);
+  }, [candidateData,employerData, type]);
+
+  // Populare separată pentru tags la angajator
+ // useEffect(() => {
+ //   if (type === "employer" && employerData) {
+ //     setTagsInput(Array.isArray(employerData.tags) ? employerData.tags.join(", ") : "");
+ //   }
+ // }, [employerData, type]);
 
   // Încarcă șablonul și poza de profil din localStorage (dacă există)
   useEffect(() => {
@@ -258,6 +267,7 @@ const Settings = () => {
           ...candidateData,
           skills: skillsInput.split(/\s*,\s*/).map(s => s.trim()).filter(Boolean),
           experience: experienceInput.split(/\s*;\s*/).map(e => e.trim()).filter(Boolean),
+          education: { ...candidateData.education }
         };
         
         await updateCandidateProfile(formattedData);
@@ -269,18 +279,17 @@ const Settings = () => {
       } else if (type === "employer") {
         console.log("Updating employer profile...", employerData);
         
-        // Formatează datele înainte de trimitere
+        // Conversie tags din string la array la salvare
         const formattedData = {
           ...employerData,
-          tags: Array.isArray(employerData.tags)
-            ? employerData.tags
-            : employerData.tags.split(',').map(t => t.trim()).filter(t => t),
+          tags: tagsInput.split(/\s*,\s*/).map(t => t.trim()).filter(Boolean),
           employeeCount: employerData.employeeCount ? parseInt(employerData.employeeCount, 10) : 0,
         };
         
         await updateEmployerProfile(formattedData);
         console.log("Employer profile updated successfully");
-        setInitialData(JSON.parse(JSON.stringify(employerData)));
+        setEmployerData(formattedData); // actualizez employerData cu array-ul corect
+        setInitialData(JSON.parse(JSON.stringify(formattedData)));
         setHasUnsavedChanges(false);
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       }
@@ -367,12 +376,6 @@ const Settings = () => {
             ...prev[field],
             [subfield]: value,
           },
-        };
-      } else if (field === "tags") {
-        // Transformă textul separat prin virgulă într-un array
-        updated = {
-          ...prev,
-          [field]: value.split(",").map((item) => item.trim()).filter(Boolean),
         };
       } else {
         updated = { ...prev, [field]: value };
@@ -680,8 +683,11 @@ const Settings = () => {
                   name="tags"
                   id="tags"
                   placeholder="Tag-uri (separate prin virgulă)"
-                  value={Array.isArray(employerData.tags) ? employerData.tags.join(", ") : ""}
-                  onChange={handleEmployerInputChange("tags")}
+                  value={tagsInput}
+                  onChange={e => {
+                    setTagsInput(e.target.value);
+                    setHasUnsavedChanges(true);
+                  }}
                   rows={1}
                 />
               </div>
