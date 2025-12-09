@@ -41,7 +41,7 @@ const candidateSchema = new mongoose.Schema({
     }],
     // campul pt educatie o sa fie compus din mai multe subcampuri, liceu si universitate
     education: {
-        highscool: {
+        highschool: {
             type: String,
             trim: true
         },
