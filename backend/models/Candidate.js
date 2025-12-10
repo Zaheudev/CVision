@@ -39,6 +39,10 @@ const candidateSchema = new mongoose.Schema({
     experience: [{
         type: String
     }],
+    appliedJobs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job'
+    }],
     // campul pt educatie o sa fie compus din mai multe subcampuri, liceu si universitate
     education: {
         highschool: {

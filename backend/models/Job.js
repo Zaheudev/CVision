@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Employer = require('./Employer');
 
 // asta e modelul pentru joburi in baza de date, urmeaza sa adaugam 
 // campuri pe masura ce dezvoltam aplicatia.
@@ -8,8 +9,13 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    applications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Candidate'
+    }],
     company: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employer',
         required: true
     },
     location: {
@@ -28,13 +34,16 @@ const jobSchema = new mongoose.Schema({
     tags: [{
         type: String
     }],
-    requirements: [{
+    requirements: {
         type: String
-    }],
+    },
     salary: {
         type: Number,
         default: null
     },
+    benefits: [{
+        type: String
+    }],
     level: {
         type: String,
         enum: ['entry', 'mid', 'senior', 'lead'],
@@ -49,11 +58,6 @@ const jobSchema = new mongoose.Schema({
         type: String,
         enum: ['active', 'closed', 'draft'],
         default: 'active'
-    },
-    postedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Employer',
-        required: true
     },
     createdAt: {
         type: Date,
