@@ -1,5 +1,6 @@
 const Candidate = require('../models/Candidate');
 const Job = require('../models/Job');
+const serviceAi = require('./serviceAi');
 
 // functia asta ar putea fii considerata duplicata cu cea din profileController
 // dar ar putea fii utila daca vrem sa accesam direct profilul unui candidat
@@ -53,6 +54,21 @@ exports.updateCandidateProfile = async (req, res) => {
             return res.status(404).json({ message: 'Candidate not found' });
         }
         res.status(200).json(candidate);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+        console.log(error);
+    }
+};
+
+exports.generateCVContent = async (req, res) => {
+    try {
+        const candidate = await Candidate.findById(req.user.id);
+        if (!candidate) {
+            return res.status(404).json({ message: 'Candidate not found' });
+        }
+
+        const cvContent = await serviceAi.enhanceCVDescription(candidate);
+        res.status(200).json({ cvContent });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
         console.log(error);
