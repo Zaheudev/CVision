@@ -13,6 +13,8 @@ app.use(cors(corsOptions))
 app.use(express.json()); // Middleware to parse JSON bodies
 dotenv.config();
 
+console.log("GEMINI KEY:", process.env.GEMINI_API_KEY);
+
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
