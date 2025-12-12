@@ -88,4 +88,14 @@ export const updateEmployerProfile = async (data) => {
     }
 };
 
-export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile };
+export const generateCv = async () => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.get(`${API_BASE_URL}/candidate/generate-cv`, { headers });
+        return response.data;
+    }catch (err) {
+        handleError(err);
+    }
+}
+
+export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv };

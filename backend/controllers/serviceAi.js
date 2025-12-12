@@ -26,6 +26,8 @@ async function enhanceCVDescription(userText) {
     4. **Language**: The output must be in the SAME LANGUAGE as the input (if input is Romanian, output Romanian).
     5. **Output Format**: You must output ONLY a valid JSON object. No Markdown, no explanations.
     6. If a field is missing in the input, omit it in the output or set it to N/A.
+    7. Elaborate everyfield , example at language add level of proficiency, etc. at location if you got only
+    a city add full location etc.
     
     REQUIRED JSON OUTPUT STRUCTURE:
     {
@@ -41,7 +43,16 @@ async function enhanceCVDescription(userText) {
       "skills": {
         "hard": ["Skill 1", "Skill 2"],
         "soft": ["Skill 1", "Skill 2"]
-      }
+      },
+      "education": [
+        {
+          "institution": "String",
+          "degree": "String",
+          "period": "String"
+        }
+      ],
+      "languages": ["Language 1", "Language 2"],
+      "location": "String"
     }
 
     USER RAW DATA:
