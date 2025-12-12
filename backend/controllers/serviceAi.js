@@ -75,7 +75,7 @@ async function enhanceCVDescription(userText) {
 
   } catch (error) {
     console.error("Eroare la Gemini:", error);
-    return "Eroare: Nu am putut genera textul. Verifică consola.";
+    return error;
   }
 }
 
