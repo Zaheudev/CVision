@@ -12,7 +12,7 @@ export default function LandingPage() {
 
   return (
     <div className="landing-page">
-      <secction className="lp-section">
+      <section className="lp-section">
         <img className="landingImage" src={landingImage} alt="Landing" />
         <div className="lp-h1-section">
           <h1>Te-ai săturat să îți faci singur CV-ul?</h1>
@@ -22,7 +22,7 @@ export default function LandingPage() {
           <img className="cv1" src={cv1image} alt="cv" />
           <img className="cv2" src={cv2image} alt="cv" />
         </div>
-      </secction>
+      </section>
       <div className="lp-descriere">
         <h3>
           CVision – Soluția completă pentru crearea automată de CV-uri și

@@ -46,3 +46,28 @@ export function SelectInput({ label, icon, name, value, onChange, options, requi
         </div>
     );
 }
+
+export function DescriptionInput({ label, name, value, onChange, placeholder, required = false, id, disabled = false, onDisabledClick }) {
+    return (
+        <div className="description-group" onClick={disabled ? onDisabledClick : undefined} style={{ cursor: disabled ? "not-allowed" : "auto" }}>
+            {label && <label htmlFor={name}>{label}</label>}
+            <textarea
+                className="add-job-input"
+                name={name}
+                id={id || name}
+                value={value}
+                onChange={e => {
+                    onChange && onChange(e);
+                    // auto-resize logic
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 'px';
+                }}
+                placeholder={placeholder}
+                required={required}
+                disabled={disabled}
+                style={disabled ? { pointerEvents: "none" } : {}}
+                rows={3}
+            />
+        </div>
+    );
+}
