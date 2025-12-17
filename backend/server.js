@@ -13,6 +13,8 @@ app.use(cors(corsOptions))
 app.use(express.json()); // Middleware to parse JSON bodies
 dotenv.config();
 
+console.log("GEMINI KEY:", process.env.GEMINI_API_KEY);
+
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
@@ -30,6 +32,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/candidate', require('./routes/candidate'));
 app.use('/api/employer', require('./routes/employer'));
 app.use('/api/profile', require('./routes/profile'));
+app.use('/api/jobs', require('./routes/job'));
 
 //Error handling middleware
 app.use(errorHandler);

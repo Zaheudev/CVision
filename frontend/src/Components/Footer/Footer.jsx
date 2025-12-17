@@ -17,42 +17,12 @@ export default function Footer() {
     <footer className="footer-container" id="footer">
       <div className="footer-item">
         <h3 className="footer-title" onClick={() => toggleSection("despre")}>
-          Despre aplicație
+          Despre noi
         </h3>
         <div className={`lst-footer ${openSection === "despre" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
-                Misiune
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Viziune
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Problema aplicațiilor asemanătoare și soluționarea lor
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Folosirea Ai-ului
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Limbaje folosite
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Organizarea aplicației
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/echipa"); }}>
                 Echipa
               </a>
             </li>
@@ -67,8 +37,8 @@ export default function Footer() {
           <div className={`lst-footer ${openSection === "candidati" ? "open" : ""}`}>
             <ul className="lst-ul">
               <li>
-                <a href="#" className="lst-element-footer">
-                  Test de personalitate
+                <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/cv"); }}>
+                  CV-ul meu
                 </a>
               </li>
               <li>
@@ -89,12 +59,17 @@ export default function Footer() {
             <ul className="lst-ul">
               <li>
                 <a href="#" className="lst-element-footer">
-                  Jobul meu
+                  Job-urile mele
                 </a>
               </li>
               <li>
                 <a href="#" className="lst-element-footer">
-                  Top 10 candidați ideali
+                  Top 10 candidați
+                </a>
+              </li>
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Ideali
                 </a>
               </li>
             </ul>
@@ -109,12 +84,7 @@ export default function Footer() {
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/profil"); }}>
-                Profilul meu
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/profil"); }}>
-                CV-ul meu
+                {type === "candidate" ? "Profil candidat" : "Profil angajator"}
               </a>
             </li>
             <li>
@@ -133,7 +103,7 @@ export default function Footer() {
           <ul className="lst-ul">
             <li>
               <a href="#" className="lst-element-footer">
-                Rețele sociale
+                Rețele de socializare
               </a>
             </li>
             <li>
@@ -150,40 +120,20 @@ export default function Footer() {
         </h3>
         <div className={`lst-footer ${openSection === "abonament" ? "open" : ""}`}>
           <ul className="lst-ul">
-            <li>
-              <Link to="/subscription" className="lst-element-footer">
-                Planul de bază
-              </Link>
-            </li>
-            <li>
-              <Link to="/subscription" className="lst-element-footer">
-                Planul premium
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div className="footer-item">
-        <h3 className="footer-title" onClick={() => toggleSection("suport")}>
-          Suport
-        </h3>
-        <div className={`lst-footer ${openSection === "suport" ? "open" : ""}`}>
-          <ul className="lst-ul">
-            <li>
-              <a href="#" className="lst-element-footer">
-                Întrebări frecvente
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Termeni și condiții
-              </a>
-            </li>
-            <li>
-              <a href="#" className="lst-element-footer">
-                Politica de confidențialitate
-              </a>
-            </li>
+            {type === "candidate" && (
+              <li>
+                <Link to="/subscription" className="lst-element-footer">
+                  Candidați
+                </Link>
+              </li>
+            )}
+            {type === "employer" && (
+              <li>
+                <a href="#" className="lst-element-footer">
+                  Angajatori
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
