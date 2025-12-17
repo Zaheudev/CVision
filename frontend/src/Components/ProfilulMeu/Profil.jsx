@@ -143,8 +143,8 @@ const Profil = () => {
     const displaySkills = candidateData.skills.length > 0 ? candidateData.skills : ["Nu există competențe adăugate încă."];
     const displayExperience = candidateData.experience.length > 0 ? candidateData.experience : ["Nu există experiență adăugată încă."];
     const displayEducation = candidateData.education.highschool || candidateData.education.bachelor 
-      ? [candidateData.education.highschool, candidateData.education.bachelor].filter(Boolean).join(", ")
-      : "Nu există educație adăugată încă.";
+      ? [candidateData.education.highschool, candidateData.education.bachelor].filter(Boolean)
+      : [];
 
     return (
       <div className="profil-container">
@@ -158,17 +158,31 @@ const Profil = () => {
             />
           </div>
           <div className="profil-details">
-            <h4 className="profil-details-h4">{fullName}</h4>
-            <h4 className="profil-details-h4">{displayEmail}</h4>
-            <h4 className="profil-details-h4">{displayPhone}</h4>
-            <h4 className="profil-details-h4">{displayLocation}</h4>
+            <div className="profil-detail-item">
+              <span className="detail-icon">👤</span>
+              <h4 className="profil-details-h4">{fullName}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📧</span>
+              <h4 className="profil-details-h4">{displayEmail}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📱</span>
+              <h4 className="profil-details-h4">{displayPhone}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📍</span>
+              <h4 className="profil-details-h4">{displayLocation}</h4>
+            </div>
           </div>
         </div>
         <div className="profil-btn-section">
           <div className="descriere-section">
             <h4 className="descriere-section-h4">
               Scurtă descriere
-              <p>{displayDescription}</p>
+              <div className="description-box">
+                <p>{displayDescription}</p>
+              </div>
             </h4>
             <h4 className="descriere-section-h4">
               Competențe
@@ -192,7 +206,15 @@ const Profil = () => {
             </h4>
             <h4 className="descriere-section-h4">
               Educație
-              <p>{displayEducation}</p>
+              {displayEducation.length > 0 ? (
+                <div className="education-container">
+                  {displayEducation.map((edu, index) => (
+                    <div key={index} className="education-item">{edu}</div>
+                  ))}
+                </div>
+              ) : (
+                <p>Nu există educație adăugată încă.</p>
+              )}
             </h4>
           </div>
           <div className="btn-section-my">
@@ -237,17 +259,31 @@ const Profil = () => {
             />
           </div>
           <div className="profil-details">
-            <h4 className="profil-details-h4">{displayName}</h4>
-            <h4 className="profil-details-h4">{displayEmail}</h4>
-            <h4 className="profil-details-h4">{displayPhone}</h4>
-            <h4 className="profil-details-h4">{displayAddress}</h4>
+            <div className="profil-detail-item">
+              <span className="detail-icon">🏢</span>
+              <h4 className="profil-details-h4">{displayName}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📧</span>
+              <h4 className="profil-details-h4">{displayEmail}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📱</span>
+              <h4 className="profil-details-h4">{displayPhone}</h4>
+            </div>
+            <div className="profil-detail-item">
+              <span className="detail-icon">📍</span>
+              <h4 className="profil-details-h4">{displayAddress}</h4>
+            </div>
           </div>
         </div>
         <div className="profil-btn-section">
           <div className="descriere-section">
             <h4 className="descriere-section-h4">
               Despre companie
-              <p>{displayDescription}</p>
+              <div className="description-box">
+                <p>{displayDescription}</p>
+              </div>
             </h4>
             <h4 className="descriere-section-h4">
               Tag-uri
@@ -261,15 +297,21 @@ const Profil = () => {
             </h4>
             <h4 className="descriere-section-h4">
               Industria
-              <p>{displayIndustry}</p>
+              <div className="description-box">
+                <p>{displayIndustry}</p>
+              </div>
             </h4>
             <h4 className="descriere-section-h4">
               Număr angajați
-              <p>{displayEmployeeCount}</p>
+              <div className="description-box">
+                <p>{displayEmployeeCount}</p>
+              </div>
             </h4>
             <h4 className="descriere-section-h4">
               Website
-              <p>{displayWebsite}</p>
+              <div className="description-box">
+                <p>{displayWebsite}</p>
+              </div>
             </h4>
           </div>
           <div className="btn-section-my">
