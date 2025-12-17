@@ -218,7 +218,9 @@ const Profil = () => {
             </h4>
           </div>
           <div className="btn-section-my">
-            <button className="btn-my-profil">CV-ul Meu</button>
+            <button className="btn-my-profil" onClick={() => navigate("/cv")}>
+              CV-ul Meu
+            </button>
             <button className="btn-my-profil" onClick={() => navigate("/settings")}>
               Setări cont
             </button>
