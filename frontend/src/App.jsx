@@ -8,6 +8,8 @@ import Profil from './Components/ProfilulMeu/Profil'
 import LandingPage from './Components/LandingPage/LandingPage'
 import SubscriptionPage from './Components/SubscriptionPage/SubscriptionPage'
 import Settings from './Components/Settings/Settings'
+import CVulMeu from './Components/CVulMeu/CVulMeu'
+import Echipa from './Components/Echipa/Echipa'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import useAuth from './hooks/useAuth'
@@ -47,8 +49,10 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+          <Route path="/cv" element={<PrivateRoute><CVulMeu /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/my-jobs" element={<PrivateRoute><MyJobs /></PrivateRoute>} />
+          <Route path="/echipa" element={<Echipa />} />
         </Routes>
         <Footer />
       </div>

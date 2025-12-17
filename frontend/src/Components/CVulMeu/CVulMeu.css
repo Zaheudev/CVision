@@ -1,0 +1,126 @@
+.cv-container {
+  max-width: 1400px;
+  margin: 0.5rem auto 2rem;
+  padding: 2rem;
+  padding-top: 0;
+  min-height: calc(100vh - 200px);
+}
+
+.cv-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cv-templates-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.cv-template-card {
+  position: relative;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.cv-template-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cv-template-card.selected {
+  border: 3px solid #38b6ff;
+  box-shadow: 0 8px 20px rgba(56, 182, 255, 0.4);
+}
+
+.cv-template-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  background: white;
+}
+
+.cv-template-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cv-selected-badge {
+  background: linear-gradient(135deg, #38b6ff 0%, #6bbaeb 100%);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(56, 182, 255, 0.5);
+}
+
+.cv-generate-section {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.cv-generate-btn {
+  background: linear-gradient(135deg, #38b6ff 0%, #6bbaeb 100%);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(56, 182, 255, 0.3);
+}
+
+.cv-generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(56, 182, 255, 0.5);
+}
+
+.cv-generate-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cv-container {
+    padding: 1rem;
+  }
+
+  .cv-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .cv-templates-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .cv-generate-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}

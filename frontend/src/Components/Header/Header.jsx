@@ -136,6 +136,17 @@ export default function Header() {
               Profilul meu
             </a>
           </li>{" "}
+          {type === "candidate" && (
+            <li>
+              <a
+                href="#"
+                className="lst-item"
+                onClick={() => navigate("/cv")}
+              >
+                CV-ul meu
+              </a>
+            </li>
+          )}{" "}
           <li>
             <a className="lst-item" onClick={scrollToFooter}>
               Mai multe
@@ -213,6 +224,18 @@ export default function Header() {
           >
             Profilul meu
           </a>
+          {type === "candidate" && (
+            <a
+              href="#"
+              className="mobile-item"
+              onClick={() => {
+                navigate("/cv");
+                toggleMenu();
+              }}
+            >
+              CV-ul meu
+            </a>
+          )}
           <a href="#" className="mobile-item" onClick={toggleMenu}>
             Rețele sociale
           </a>

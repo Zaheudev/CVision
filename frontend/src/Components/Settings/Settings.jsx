@@ -159,6 +159,9 @@ const Settings = () => {
           };
           setCandidateData(data);
           setInitialData(JSON.parse(JSON.stringify(data)));
+          // Setează și input-urile text la încărcare
+          setSkillsInput(Array.isArray(data.skills) ? data.skills.join("; ") : "");
+          setExperienceInput(Array.isArray(data.experience) ? data.experience.join("; ") : "");
         } else if (type === "employer" && response.user) {
           const data = {
             name: response.user.name || "",
@@ -179,6 +182,8 @@ const Settings = () => {
           };
           setEmployerData(data);
           setInitialData(JSON.parse(JSON.stringify(data)));
+          // Setează și input-urile text la încărcare
+          setTagsInput(Array.isArray(data.tags) ? data.tags.join(", ") : "");
         }
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -190,16 +195,6 @@ const Settings = () => {
 
     fetchProfileData();
   }, [type]);
-
-  // La fiecare modificare a datelor candidatului/angajatorului, actualizăm și textul brut din câmpuri
-  useEffect(() => {
-    if (type === "candidate" && candidateData) {
-      setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join(", ") : "");
-      setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
-    } else if (type === "employer" && employerData) {
-      setTagsInput(Array.isArray(employerData.tags) ? employerData.tags.join(", ") : "");
-    }
-  }, [candidateData, employerData, type]);
 
   // Încarcă șablonul și poza de profil din localStorage (dacă există)
   useEffect(() => {
@@ -260,7 +255,7 @@ const Settings = () => {
         // La salvare, transformăm textul introdus de utilizator în array (folosind ";" ca separator) pentru a fi trimis la server
         const formattedData = {
           ...candidateData,
-          skills: skillsInput.split(/\s*,\s*/).map(s => s.trim()).filter(Boolean),
+          skills: skillsInput.split(/\s*;\s*/).map(s => s.trim()).filter(Boolean),
           experience: experienceInput.split(/\s*;\s*/).map(e => e.trim()).filter(Boolean),
         };
         
@@ -268,6 +263,9 @@ const Settings = () => {
         console.log("Candidate profile updated successfully");
         setCandidateData(formattedData);
         setInitialData(JSON.parse(JSON.stringify(formattedData)));
+        // Actualizează input-urile după salvare
+        setSkillsInput(formattedData.skills.join("; "));
+        setExperienceInput(formattedData.experience.join("; "));
         setHasUnsavedChanges(false);
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       } else if (type === "employer") {
@@ -284,6 +282,8 @@ const Settings = () => {
         console.log("Employer profile updated successfully");
         setEmployerData(formattedData);
         setInitialData(JSON.parse(JSON.stringify(formattedData)));
+        // Actualizează input-urile după salvare
+        setTagsInput(formattedData.tags.join(", "));
         setHasUnsavedChanges(false);
         setMessage({ text: "Profilul a fost actualizat cu succes!", type: "success" });
       }
