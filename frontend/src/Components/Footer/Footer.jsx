@@ -22,7 +22,7 @@ export default function Footer() {
         <div className={`lst-footer ${openSection === "despre" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/echipa"); }}>
                 Echipa
               </a>
             </li>

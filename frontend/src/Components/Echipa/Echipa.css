@@ -1,0 +1,152 @@
+.echipa-container {
+  max-width: 1400px;
+  margin: 0.5rem auto 2rem;
+  padding: 2rem;
+  padding-top: 0;
+  min-height: calc(100vh - 200px);
+}
+
+.echipa-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.echipa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem 2rem;
+  justify-items: center;
+}
+
+.echipa-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  transition: transform 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.echipa-member:hover {
+  transform: translateY(-10px);
+}
+
+.echipa-image-wrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(56, 182, 255, 0.3) 0%, rgba(107, 186, 235, 0.2) 50%, rgba(56, 182, 255, 0.3) 100%);
+  padding: 3px;
+  box-shadow: 0 8px 20px rgba(56, 182, 255, 0.12), 0 0 0 0 rgba(56, 182, 255, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.echipa-image-wrapper:hover {
+  background: linear-gradient(135deg, rgba(107, 186, 235, 0.4) 0%, rgba(56, 182, 255, 0.35) 50%, rgba(107, 186, 235, 0.4) 100%);
+  box-shadow: 0 12px 30px rgba(56, 182, 255, 0.2), 0 0 0 8px rgba(56, 182, 255, 0.1);
+  transform: scale(1.08) rotate(5deg);
+}
+
+.echipa-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #38b6ff 0%, #6bbaeb 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(56, 182, 255, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.echipa-image-wrapper:hover .echipa-tooltip {
+  opacity: 1;
+}
+
+.echipa-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: white;
+}
+
+.echipa-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0.5rem 0 0.2rem 0;
+}
+
+.echipa-role {
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+.echipa-member:nth-child(13) {
+  grid-column: 2 / 3;
+}
+
+.echipa-member:nth-child(14) {
+  grid-column: 3 / 4;
+}
+
+@media (max-width: 768px) {
+  .echipa-container {
+    padding: 1rem;
+  }
+
+  .echipa-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .echipa-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
+
+  .echipa-member:nth-child(13),
+  .echipa-member:nth-child(14) {
+    grid-column: auto;
+  }
+
+  .echipa-image-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .echipa-name {
+    font-size: 1rem;
+  }
+
+  .echipa-role {
+    font-size: 0.85rem;
+  }
+}

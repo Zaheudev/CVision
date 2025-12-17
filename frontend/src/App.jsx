@@ -9,6 +9,7 @@ import LandingPage from './Components/LandingPage/LandingPage'
 import SubscriptionPage from './Components/SubscriptionPage/SubscriptionPage'
 import Settings from './Components/Settings/Settings'
 import CVulMeu from './Components/CVulMeu/CVulMeu'
+import Echipa from './Components/Echipa/Echipa'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import useAuth from './hooks/useAuth'
@@ -49,6 +50,7 @@ function App() {
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
           <Route path="/cv" element={<PrivateRoute><CVulMeu /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/echipa" element={<Echipa />} />
         </Routes>
         <Footer />
       </div>
