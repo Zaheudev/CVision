@@ -100,6 +100,16 @@ export const updateEmployerProfile = async (data) => {
     }
 };
 
+export const createJob = async (jobData) => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.post(`${API_BASE_URL}/jobs/create`, jobData, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+};
+
 export const generateCv = async () => {
     try {
         const headers = getAuthHeaders();
@@ -110,4 +120,4 @@ export const generateCv = async () => {
     }
 };
 
-export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv };
+export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv, getJobs };
