@@ -1,28 +1,137 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
-import landingImage from "../../Components/Assets/landingpage.png";
-import cv1image from "../../Components/Assets/cv1lp.png";
-import cv2image from "../../Components/Assets/cv2lp.png";
+import slide1Image from "../../Components/Assets/LandingPage/generare+cv.png";
+import slide2Image from "../../Components/Assets/LandingPage/angajare.png";
+import slide3Image from "../../Components/Assets/LandingPage/anagajator.png";
 import cvuriImage from "../../Components/Assets/cvuri-lp.png";
 import PeopleImage from "../../Components/Assets/people-lp.png";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const slides = [
+    {
+      image: slide1Image,
+      text: "Te-ai săturat să îți faci singur CV-ul?\nLasă AI-ul să facă treaba în locul tău!",
+      imagePosition: "left"
+    },
+    {
+      image: slide2Image,
+      text: "Obține job-ul visat rapid!\nCreează CV-ul perfect în câteva minute cu AI-ul nostru.",
+      imagePosition: "right"
+    },
+    {
+      image: slide3Image,
+      text: "Recrutare inteligentă și eficientă,\ndecizii rapide bazate pe date și AI!",
+      imagePosition: "left"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
+  const handleNext = () => {
+    if (isTransitioning) return;
+    const next = (currentSlide + 1) % slides.length;
+    setNextSlide(next);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(next);
+      setNextSlide(null);
+      setIsTransitioning(false);
+    }, 1000);
+  };
+
+  const handlePrev = () => {
+    if (isTransitioning) return;
+    const prev = (currentSlide - 1 + slides.length) % slides.length;
+    setNextSlide(prev);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(prev);
+      setNextSlide(null);
+      setIsTransitioning(false);
+    }, 1000);
+  };
+
+  const goToSlide = (index) => {
+    if (isTransitioning || index === currentSlide) return;
+    setNextSlide(index);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setNextSlide(null);
+      setIsTransitioning(false);
+    }, 1000);
+  };
 
   return (
     <div className="landing-page">
-      <secction className="lp-section">
-        <img className="landingImage" src={landingImage} alt="Landing" />
-        <div className="lp-h1-section">
-          <h1>Te-ai săturat să îți faci singur CV-ul?</h1>
-          <h1>Lasă AI-ul să facă treaba în locul tău!</h1>
+      <section className="lp-carousel">
+        <div className="carousel-container">
+          {/* Slide curent - exit animation */}
+          <div className={`carousel-slide ${slides[currentSlide].imagePosition === 'left' ? 'image-left' : 'image-right'} ${isTransitioning ? 'exiting' : 'active'}`}>
+            <div className="carousel-image-wrapper">
+              <img src={slides[currentSlide].image} alt="Slide" className="carousel-image" />
+            </div>
+            <div className="carousel-text-wrapper">
+              <h1 className="carousel-text">
+                {slides[currentSlide].text.split('\n').map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    {i < slides[currentSlide].text.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </h1>
+            </div>
+          </div>
+
+          {/* Slide următor - enter animation */}
+          {nextSlide !== null && (
+            <div className={`carousel-slide ${slides[nextSlide].imagePosition === 'left' ? 'image-left' : 'image-right'} entering`}>
+              <div className="carousel-image-wrapper">
+                <img src={slides[nextSlide].image} alt="Slide" className="carousel-image" />
+              </div>
+              <div className="carousel-text-wrapper">
+                <h1 className="carousel-text">
+                  {slides[nextSlide].text.split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < slides[nextSlide].text.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </h1>
+              </div>
+            </div>
+          )}
         </div>
-        <div className="lp-cv-section">
-          <img className="cv1" src={cv1image} alt="cv" />
-          <img className="cv2" src={cv2image} alt="cv" />
+
+        <button className="carousel-arrow carousel-arrow-left" onClick={handlePrev}>
+          <span>‹</span>
+        </button>
+        <button className="carousel-arrow carousel-arrow-right" onClick={handleNext}>
+          <span>›</span>
+        </button>
+
+        <div className="carousel-dots">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
         </div>
-      </secction>
+      </section>
       <div className="lp-descriere">
         <h3>
           CVision – Soluția completă pentru crearea automată de CV-uri și
@@ -49,8 +158,42 @@ export default function LandingPage() {
           <br /> CVision înseamnă mai puțin timp pierdut și o potrivire corectă
           între oameni și joburi.
         </p>
+      </div>      <div className="lp-descriere">
+        <h3>MISIUNE</h3>
+        <p>Simplificăm recrutarea prin tehnologie inteligentă.</p>
+        <p>
+          Misiunea noastră este să conectăm oamenii potriviți cu oportunitățile potrivite, eliminând barierele inutile din procesul tradițional de angajare.
+          Prin generarea automată de CV-uri și potrivirea instantă între abilități și cerințe, cVision transformă un proces greoi într-o experiență rapidă, intuitivă și transparentă.
+        </p>
+        <p><strong>Ne propunem să:</strong></p>
+        <ul>
+          <li>oferim fiecărui candidat un CV profesionist, creat ușor și fără stres;</li>
+          <li>creștem vizibilitatea competențelor reale ale utilizatorilor;</li>
+          <li>ajutăm angajatorii să găsească rapid talente potrivite;</li>
+          <li>creăm o platformă accesibilă, eficientă și orientată spre rezultate.</li>
+        </ul>
+        <p>
+          La cVision, credem că fiecare abilitate merită să fie descoperită, iar tehnologia ne ajută să facem asta la scară mare.
+        </p>
       </div>
-      <div className="lp-creeazacv">
+      <div className="lp-descriere">
+        <h3>VIZIUNE</h3>
+        <p>Reinventăm modul în care oamenii și companiile se întâlnesc profesional.</p>
+        <p>
+          Viziunea cVision este să devină platforma preferată pentru crearea de CV-uri automatizate și matching inteligent între candidați și angajatori, la nivel național și internațional.
+        </p>
+        <p><strong>Ne dorim o piață a muncii în care:</strong></p>
+        <ul>
+          <li>timpul nu mai reprezintă un obstacol în găsirea jobului potrivit;</li>
+          <li>abilitățile fiecărui candidat sunt valorificate corect;</li>
+          <li>companiile își pot construi echipe eficient, bazate pe date reale;</li>
+          <li>tehnologia facilitează decizii mai bune și mai rapide.</li>
+        </ul>
+        <p>
+          Construim un ecosistem digital în care talentul întâlnește oportunitatea într-un mod modern, automatizat și echitabil.
+          În viitor, cVision va deveni un standard al recrutării inteligente — o punte între oameni, profesii și viitorul muncii.
+        </p>
+      </div>      <div className="lp-creeazacv">
         <img src={cvuriImage} alt="" />
         <div className="lp-creeazacv-text">
           <h3>Creează un CV</h3>
@@ -87,6 +230,17 @@ export default function LandingPage() {
           </p>
         </div>
         <img src={PeopleImage} alt="" />
+      </div>
+
+      <div className="lp-descriere lp-tehnologii">
+        <h3>TEHNOLOGII UTILIZATE</h3>
+        <p className="lp-paragraph">
+          CVision este construită folosind tehnologii moderne pentru a oferi o experiență rapidă, intuitivă și performantă. 
+          Interfața aplicației este realizată cu React, HTML, CSS și JavaScript, oferind un design dinamic și responsiv. 
+          Partea de backend este dezvoltată cu Node.js și Express, iar datele sunt stocate în siguranță folosind 
+          MongoDB (MongoDB Atlas). Echipa utilizează Git & GitHub pentru versionarea codului și respectă metodologia 
+          SCRUM pentru o dezvoltare agilă și organizată, asigurând astfel o platformă stabilă și ușor de întreținut.
+        </p>
       </div>
     </div>
   );
