@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// const API_BASE_URL = 'http://localhost:3000/api';
+//const API_BASE_URL = 'http://localhost:3000/api';
 // URL asta e pt backend-ul deploy-uit pe Heroku. o sa 
 // modific sa fie mai usor de folosit atunci cand vrei sa 
 // lucrezi local si cand vrei sa lucrezi cu backend-ul deploy-uit.
@@ -56,6 +56,18 @@ export const getProfile = async () => {
     }
 };
 
+//functie pentru a prelua joburile din baza de date angajator
+export const getJobsByEmployer=async(employerId)=>{
+    try{
+        const headers=getAuthHeaders();
+        const response=await axios.get(`${API_BASE_URL}/job/employer/${employerId}`,{headers});
+        return response.data;
+    }catch(err){
+        console.error("API: getJobsByEmployer error:", err);
+        handleError(err);
+    }
+}
+
 // functie pentru a actualiza profilul candidatului
 export const updateCandidateProfile = async (data) => {
     try {
@@ -93,9 +105,9 @@ export const generateCv = async () => {
         const headers = getAuthHeaders();
         const response = await axios.get(`${API_BASE_URL}/candidate/generate-cv`, { headers });
         return response.data;
-    }catch (err) {
+    } catch (err) {
         handleError(err);
     }
-}
+};
 
 export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv };

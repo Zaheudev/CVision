@@ -317,7 +317,7 @@ const Profil = () => {
             </h4>
           </div>
           <div className="btn-section-my">
-            <button className="btn-my-profil">Joburile mele</button>
+            <button className="btn-my-profil" onClick={() => navigate("/my-jobs")}>Joburile mele</button>
             <button className="btn-my-profil" onClick={() => navigate("/settings")}>
               Setări cont
             </button>

@@ -14,6 +14,7 @@ import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import useAuth from './hooks/useAuth'
 import { UserContext } from './context/UserContext'
+import MyJobs from './Components/MyJobs/MyJobs'
 
 const PublicRoute = ({ children }) => {
   const { getToken } = useAuth();
@@ -50,6 +51,7 @@ function App() {
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
           <Route path="/cv" element={<PrivateRoute><CVulMeu /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/my-jobs" element={<PrivateRoute><MyJobs /></PrivateRoute>} />
           <Route path="/echipa" element={<Echipa />} />
         </Routes>
         <Footer />

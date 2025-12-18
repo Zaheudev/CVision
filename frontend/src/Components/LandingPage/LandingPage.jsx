@@ -132,6 +132,7 @@ export default function LandingPage() {
           ))}
         </div>
       </section>
+
       <div className="lp-descriere">
         <h3>
           CVision – Soluția completă pentru crearea automată de CV-uri și
@@ -158,7 +159,9 @@ export default function LandingPage() {
           <br /> CVision înseamnă mai puțin timp pierdut și o potrivire corectă
           între oameni și joburi.
         </p>
-      </div>      <div className="lp-descriere">
+      </div>
+
+      <div className="lp-descriere">
         <h3>MISIUNE</h3>
         <p>Simplificăm recrutarea prin tehnologie inteligentă.</p>
         <p>
@@ -176,6 +179,7 @@ export default function LandingPage() {
           La cVision, credem că fiecare abilitate merită să fie descoperită, iar tehnologia ne ajută să facem asta la scară mare.
         </p>
       </div>
+
       <div className="lp-descriere">
         <h3>VIZIUNE</h3>
         <p>Reinventăm modul în care oamenii și companiile se întâlnesc profesional.</p>
@@ -193,7 +197,9 @@ export default function LandingPage() {
           Construim un ecosistem digital în care talentul întâlnește oportunitatea într-un mod modern, automatizat și echitabil.
           În viitor, cVision va deveni un standard al recrutării inteligente — o punte între oameni, profesii și viitorul muncii.
         </p>
-      </div>      <div className="lp-creeazacv">
+      </div>
+
+      <div className="lp-creeazacv">
         <img src={cvuriImage} alt="" />
         <div className="lp-creeazacv-text">
           <h3>Creează un CV</h3>
@@ -211,6 +217,7 @@ export default function LandingPage() {
           </p>
         </div>
       </div>
+
       <div className="lp-cautajob">
         <div className="lp-cautajob-text">
           <h3>Caută jobul potrivit pentru tine</h3>
@@ -235,10 +242,10 @@ export default function LandingPage() {
       <div className="lp-descriere lp-tehnologii">
         <h3>TEHNOLOGII UTILIZATE</h3>
         <p className="lp-paragraph">
-          CVision este construită folosind tehnologii moderne pentru a oferi o experiență rapidă, intuitivă și performantă. 
-          Interfața aplicației este realizată cu React, HTML, CSS și JavaScript, oferind un design dinamic și responsiv. 
-          Partea de backend este dezvoltată cu Node.js și Express, iar datele sunt stocate în siguranță folosind 
-          MongoDB (MongoDB Atlas). Echipa utilizează Git & GitHub pentru versionarea codului și respectă metodologia 
+          CVision este construită folosind tehnologii moderne pentru a oferi o experiență rapidă, intuitivă și performantă.
+          Interfața aplicației este realizată cu React, HTML, CSS și JavaScript, oferind un design dinamic și responsiv.
+          Partea de backend este dezvoltată cu Node.js și Express, iar datele sunt stocate în siguranță folosind
+          MongoDB (MongoDB Atlas). Echipa utilizează Git & GitHub pentru versionarea codului și respectă metodologia
           SCRUM pentru o dezvoltare agilă și organizată, asigurând astfel o platformă stabilă și ușor de întreținut.
         </p>
       </div>

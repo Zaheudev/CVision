@@ -3,6 +3,7 @@ import "./Settings.css";
 import profilePNG from "../Assets/profile.png";
 import { UserContext } from "../../context/UserContext";
 import { getProfile, updateCandidateProfile, updateEmployerProfile } from "../../utils/api";
+import ButtonPrimary from "../Buttons/Button";
 
 const Settings = () => {
   const { type } = useContext(UserContext);
@@ -780,9 +781,11 @@ const Settings = () => {
               {message.text}
             </div>
           )}
-          <button className="btn-st" onClick={handleSave} disabled={saving}>
-            {saving ? "Se salvează..." : "Salvează modificările"}
-          </button>
+          <ButtonPrimary
+            text={saving ? "Se salvează..." : "Salvează modificările"}
+            onClick={handleSave}
+            disabled={saving}
+          />
         </div>
       </div>
     </div>
