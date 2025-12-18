@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import MyJobsContainer from "../MyJobsContainer/MyJobsContainer.jsx";
 import Button from "../Buttons/Button.jsx";
-import { getJobsByEmployer } from "../../utils/api";
+import { getJobs } from "../../utils/api";
 import ButtonPrimary from "../Buttons/Button.jsx";
 import { TextInput, DescriptionInput } from "../Inputs/inputs.jsx";
 
@@ -18,7 +18,7 @@ export default function MyJobs() {
             if (type === "employer" && user?._id) {
                 setLoading(true);
                 try {
-                    const data = await getJobsByEmployer(user._id);
+                    const data = await getJobs(user._id);
                     setJobs(data || []);
                 } catch (err) {
                     setJobs([]);

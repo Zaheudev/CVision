@@ -27,6 +27,17 @@ exports.getAllJobs = async (req, res) => {
     }
 };
 
+exports.getJobs = async (req, res) => {
+    try {
+        const employerId = req.user.id;
+        const jobs = await Job.find({ company: employerId }).populate('company', '-passwordHash');
+        res.status(200).json(jobs);
+    } catch (error) {
+        res.status(500).json({ message: 'Eroare la obtinerea joburilor angajatorului' });
+        console.log(error);
+    }
+};
+
 // functia pentru a obtine toate joburile pentru un angajator specific
 exports.getJobsByEmployer = async (req, res) => {
     try {
