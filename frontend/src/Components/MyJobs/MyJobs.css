@@ -18,18 +18,18 @@
 /* Grila pentru input-uri (partea stângă) */
 .add-job-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Două coloane egale */
+  grid-template-columns: 1fr 1fr; 
   column-gap: 40px;
   row-gap: 30px;
   width: 100%;
 }
 
 .add-job-grid .form-title {
-  grid-column: span 2; /* Ocupă toată lățimea de sus a grilei */
+  grid-column: span 2; 
   text-align: left;
   margin: 10px;
-  font-size: 2.5rem; /* Ajustează dimensiunea dacă e nevoie */
-  color: #000; /* Sau culoarea dorită */
+  font-size: 2.5rem; 
+  color: #000; 
 }
 
 /* Facem input-urile să ocupe tot spațiul celulei din grid */
@@ -38,8 +38,8 @@
 .add-job-grid .input-group input,
 .add-job-grid .description-group {
   width: 100%;
-  max-width: 100%; /* Suprascrie limita de 350px din inputs.css pentru a arăta bine în grid */
-  margin-bottom: 0; /* Scoatem marginea de jos pentru că folosim row-gap */
+  max-width: 100%; 
+  margin-bottom: 0; 
 }
 
 .add-job-grid .description-group {
@@ -57,15 +57,12 @@
   font-size: 16px;
 }
 
-/* Asigură-te că textarea arată bine */
 .input-group textarea.add-job-input {
   width: 100%;
   max-width: 100%;
-  min-height: 40px; /* Sau dimensiunea dorită */
+  min-height: 40px; 
 }
 
-/* MEDIA QUERY PENTRU MOBILE */
-/* Pe ecrane mici, totul revine la o singură coloană verticală */
 @media (max-width: 850px) {
   .add-job-wrapper {
     flex-direction: column; /* Inputurile sus, butoanele jos */
@@ -73,7 +70,7 @@
   }
 
   .add-job-grid {
-    grid-template-columns: 1fr; /* O singură coloană */
+    grid-template-columns: 1fr; 
   }
 
   .add-job-grid .description-group {
@@ -89,6 +86,6 @@
 
   .add-job-grid .form-title {
     grid-column: span 1;
-    text-align: center; /* Opțional: pe mobil arată bine centrat */
+    text-align: center; 
   }
 }
