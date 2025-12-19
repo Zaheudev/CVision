@@ -110,6 +110,26 @@ export const createJob = async (jobData) => {
     }
 };
 
+export const deleteJob = async (jobId) => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.delete(`${API_BASE_URL}/jobs/${jobId}`, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+};
+
+export const updateJob= async (jobId, jobData) => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.put(`${API_BASE_URL}/jobs/${jobId}`, jobData, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+};
+
 export const generateCv = async () => {
     try {
         const headers = getAuthHeaders();
@@ -120,4 +140,4 @@ export const generateCv = async () => {
     }
 };
 
-export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv, getJobs };
+export default { login, register, getProfile, updateCandidateProfile, updateEmployerProfile, generateCv, getJobs, deleteJob, createJob, updateJob };

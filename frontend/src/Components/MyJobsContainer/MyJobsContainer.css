@@ -1,6 +1,6 @@
 .my-jobs-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
@@ -8,6 +8,31 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
+}
+
+.delete-job-button {
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.edit-job-button {
+    background: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.container-butoane {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
 }
 
 /* Stiluri specifice pentru când nu sunt joburi */
@@ -48,4 +73,9 @@
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
+}
+
+.salary-info {
+    color: #38B6FF;
+    font-size: 0.9em;
 }
