@@ -1,9 +1,9 @@
 import './Button.css';
 
-export default function ButtonPrimary({ text, onClick }) {
+export default function ButtonPrimary({ text, onClick, children }) {
     return (
         <button className="button-form" onClick={onClick}>
-            {text}
+            {text || children}
         </button>
     );
 }

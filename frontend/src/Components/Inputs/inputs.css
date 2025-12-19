@@ -1,6 +1,7 @@
 .input-group,
 .select-group,
-.description-group{
+.description-group
+{
     position: relative;
     box-sizing: border-box;
     max-width: 350px;
@@ -31,7 +32,7 @@
 
 .input-group input,
 .select-group select,
-.add-job-input {
+.description-group textarea {
     height: 40px;
     width: 100%;
     max-width: 350px;
@@ -53,7 +54,7 @@
     }
 
     .input-group input,
-    .select-group select {
+    .select-group select{
         width: 80vw;
         min-width: 140px;
         max-width: 320px;
