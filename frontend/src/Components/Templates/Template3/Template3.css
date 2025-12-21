@@ -1,0 +1,221 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* Root colors and fonts */
+.template3 {
+  --sidebar-green: #2f8a57;
+  --main-gray: #f2f4f6;
+  --text-dark: #1f2933;
+  --muted: #6b7280;
+  --rule: #d6d9dc;
+  --placeholder: #e6edf0;
+  --accent: #2f8a57;
+  --font: "Segoe UI", Arial, sans-serif;
+  font-family: var(--font);
+  color: var(--text-dark);
+}
+
+/* A4 fixed page */
+.cv-page.template3 {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0;
+  display: flex;
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+
+/* Sidebar (stânga) */
+.template3 .sidebar {
+  width: 72mm;
+  background: var(--sidebar-green);
+  color: #fff;
+  padding: 14mm 12mm;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+}
+
+.template3 .sidebar-inner {
+  width: 100%;
+}
+
+.template3 .photo {
+  width: 40mm;
+  height: 40mm;
+  border-radius: 50%;
+  background: var(--placeholder);
+  margin: 0 auto 10mm;
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+}
+
+.template3 .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Blocks in sidebar */
+.template3 .block {
+  margin-bottom: 10mm;
+}
+
+.template3 .sidebar h4 {
+  margin: 0 0 4mm 0;
+  font-size: 11pt;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 3mm;
+}
+
+.template3 .info-text,
+.template3 .about-text {
+  font-size: 9pt;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 4mm 0;
+  line-height: 1.4;
+}
+
+.template3 .about-text {
+  min-height: 15mm;
+}
+
+/* Skills list */
+.template3 .skills {
+  list-style: none;
+  padding: 0;
+  margin: 6mm 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 8px;
+}
+
+.template3 .skill {
+  background: rgba(255,255,255,0.12);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 10pt;
+  text-align: center;
+}
+
+/* Main content (dreapta) */
+.template3 .main {
+  flex: 1;
+  background: var(--main-gray);
+  padding: 14mm 16mm;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header name */
+.template3 .main-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8mm;
+}
+
+.template3 .name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+
+.template3 .name-line {
+  font-size: 22pt;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+/* Sections */
+.template3 .section {
+  margin-bottom: 8mm;
+  padding-bottom: 2mm;
+}
+
+.template3 .section h3 {
+  margin: 0 0 4mm 0;
+  font-size: 12pt;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Entry items */
+.template3 .entry {
+  margin-top: 4mm;
+  padding-top: 3mm;
+  border-top: 1px solid var(--rule);
+}
+
+.template3 .entry:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.template3 .entry-title {
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.template3 .entry-period {
+  font-size: 9pt;
+  color: var(--muted);
+  margin: 1mm 0;
+}
+
+.template3 .entry-degree {
+  font-size: 9pt;
+  color: var(--text-dark);
+}
+
+.template3 .entry-desc {
+  font-size: 9pt;
+  color: #444;
+  margin: 2mm 0 0 4mm;
+  padding-left: 3mm;
+}
+
+.template3 .entry-desc li {
+  margin-bottom: 1mm;
+}
+
+/* Entry placeholders */
+.template3 .entry-title.placeholder.medium {
+  height: 6.5mm;
+  width: 70%;
+  background: var(--placeholder);
+  border-radius: 3mm;
+}
+
+.template3 .entry-desc.placeholder {
+  height: 10mm;
+  width: 100%;
+  background: var(--placeholder);
+  border-radius: 3mm;
+  margin-top: 4mm;
+}
+
+/* Pills for hobbies */
+.template3 .pill-row {
+  display: flex;
+  gap: 6mm;
+  margin-top: 6mm;
+}
+
+.template3 .pill {
+  width: 30mm;
+  height: 7mm;
+  border-radius: 4mm;
+  background: var(--placeholder);
+}
