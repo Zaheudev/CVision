@@ -9,6 +9,7 @@ import LandingPage from './Components/LandingPage/LandingPage'
 import SubscriptionPage from './Components/SubscriptionPage/SubscriptionPage'
 import Settings from './Components/Settings/Settings'
 import CVulMeu from './Components/CVulMeu/CVulMeu'
+import CVulMeuGenerat from './Components/CVulMeuGenerat/CVulMeuGenerat'
 import Echipa from './Components/Echipa/Echipa'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
@@ -50,6 +51,7 @@ function App() {
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
           <Route path="/cv" element={<PrivateRoute><CVulMeu /></PrivateRoute>} />
+          <Route path="/cv-generat" element={<PrivateRoute><CVulMeuGenerat /></PrivateRoute>} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/my-jobs" element={<PrivateRoute><MyJobs /></PrivateRoute>} />
           <Route path="/echipa" element={<Echipa />} />

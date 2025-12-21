@@ -1,0 +1,208 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* Template 1 Styles */
+.template1 {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.cv-page.template1 {
+  width: 210mm;
+  min-height: 297mm;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin: 0;
+  background: #fff;
+}
+
+/* Sidebar */
+.template1 .sidebar {
+  width: 70mm;
+  background: #0b2c4d;
+  color: #fff;
+  padding: 15mm 10mm;
+  box-sizing: border-box;
+}
+
+.template1 .profile-pic {
+  width: 35mm;
+  height: 35mm;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  margin: 0 auto 10mm;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template1 .profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.template1 .placeholder-photo {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+}
+
+.template1 .sidebar section {
+  margin-bottom: 6mm;
+}
+
+.template1 .sidebar h3 {
+  font-size: 12pt;
+  margin: 8mm 0 3mm;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 2mm;
+}
+
+.template1 .contact-info p {
+  font-size: 9pt;
+  margin: 2mm 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.template1 .education-item {
+  margin-bottom: 4mm;
+}
+
+.template1 .edu-institution {
+  font-size: 9pt;
+  font-weight: 600;
+  margin: 0;
+}
+
+.template1 .edu-degree,
+.template1 .edu-period {
+  font-size: 8pt;
+  color: rgba(255,255,255,0.7);
+  margin: 1mm 0;
+}
+
+.template1 .skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+
+.template1 .skill-item {
+  font-size: 9pt;
+  margin: 1mm 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.template1 .languages-list .language-item {
+  font-size: 9pt;
+  margin: 2mm 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.template1 .contact-item {
+  font-size: 9pt;
+  margin: 2mm 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.template1 .placeholder-line {
+  height: 4mm;
+  background: rgba(255,255,255,0.3);
+  margin: 2mm 0;
+  border-radius: 2mm;
+}
+
+/* Main content */
+.template1 .main-content {
+  flex: 1;
+  padding: 15mm;
+  box-sizing: border-box;
+}
+
+.template1 header h1 {
+  font-size: 20pt;
+  margin: 0;
+  color: #0b2c4d;
+}
+
+.template1 header h2 {
+  font-size: 12pt;
+  margin: 2mm 0 8mm;
+  color: #555;
+  font-weight: 400;
+}
+
+.template1 .main-content section {
+  margin-bottom: 6mm;
+}
+
+.template1 .main-content h3 {
+  font-size: 12pt;
+  color: #0b2c4d;
+  margin: 5mm 0 3mm;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2mm;
+}
+
+.template1 .summary-text {
+  font-size: 10pt;
+  line-height: 1.5;
+  color: #333;
+  text-align: justify;
+}
+
+.template1 .experience-item {
+  margin-bottom: 5mm;
+}
+
+.template1 .exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template1 .exp-role {
+  font-size: 10pt;
+  font-weight: 600;
+  color: #0b2c4d;
+}
+
+.template1 .exp-period {
+  font-size: 8pt;
+  color: #777;
+}
+
+.template1 .exp-company {
+  font-size: 9pt;
+  color: #555;
+  margin: 1mm 0;
+}
+
+.template1 .exp-description {
+  font-size: 9pt;
+  color: #444;
+  margin: 2mm 0 0 4mm;
+  padding-left: 3mm;
+}
+
+.template1 .exp-description li {
+  margin-bottom: 1mm;
+}
+
+.template1 .main-content .placeholder-line {
+  height: 4mm;
+  background: #e8edf3;
+  margin: 2mm 0;
+  border-radius: 2mm;
+}
+
+.template1 .recommendations-text {
+  font-size: 10pt;
+  color: #333;
+  min-height: 10mm;
+}

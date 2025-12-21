@@ -64,12 +64,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#" className="lst-element-footer">
-                  Top 10 candidați
-                </a>
-              </li>
-              <li>
-                <a href="#" className="lst-element-footer">
-                  Ideali
+                  Top 10 candidați ideali
                 </a>
               </li>
             </ul>
