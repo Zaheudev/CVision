@@ -9,7 +9,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 async function enhanceCVDescription(userText) {
   try {
     // Folosim modelul 'gemini-1.5-flash' - e cel mai bun pentru free tier
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
 
     // Instrucțiunea (Prompt-ul) - Aici e secretul
     const prompt = `
