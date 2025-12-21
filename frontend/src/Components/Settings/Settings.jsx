@@ -195,15 +195,15 @@ const Settings = () => {
     fetchProfileData();
   }, [type]);
 
-  // La fiecare modificare a datelor candidatului/angajatorului, actualizăm și textul brut din câmpuri (pentru a reflecta ce e salvat deja)
-  useEffect(() => {
-    if (type === "candidate" && candidateData) {
-      setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : "");
-      setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
-    } else if (type === "employer" && employerData) {
-      setTagsInput(Array.isArray(employerData.tags) ? employerData.tags.join(", ") : "");
-    }
-  }, [candidateData, employerData, type]);
+  // Comentat pentru a preveni resetarea inputurilor când se modifică alte câmpuri
+  // useEffect(() => {
+  //   if (type === "candidate" && candidateData) {
+  //     setSkillsInput(Array.isArray(candidateData.skills) ? candidateData.skills.join("; ") : "");
+  //     setExperienceInput(Array.isArray(candidateData.experience) ? candidateData.experience.join("; ") : "");
+  //   } else if (type === "employer" && employerData) {
+  //     setTagsInput(Array.isArray(employerData.tags) ? employerData.tags.join(", ") : "");
+  //   }
+  // }, [candidateData, employerData, type]);
 
   // Încarcă șablonul și poza de profil din localStorage (dacă există)
   useEffect(() => {
