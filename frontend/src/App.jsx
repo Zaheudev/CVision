@@ -11,6 +11,7 @@ import Settings from './Components/Settings/Settings'
 import CVulMeu from './Components/CVulMeu/CVulMeu'
 import CVulMeuGenerat from './Components/CVulMeuGenerat/CVulMeuGenerat'
 import Echipa from './Components/Echipa/Echipa'
+import Contact from './Components/Contact/Contact'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import useAuth from './hooks/useAuth'
@@ -55,6 +56,7 @@ function App() {
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/my-jobs" element={<PrivateRoute><MyJobs /></PrivateRoute>} />
           <Route path="/echipa" element={<Echipa />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </div>

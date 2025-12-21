@@ -97,12 +97,12 @@ export default function Footer() {
         <div className={`lst-footer ${openSection === "contact" ? "open" : ""}`}>
           <ul className="lst-ul">
             <li>
-              <a href="#" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>
                 Rețele de socializare
               </a>
             </li>
             <li>
-              <a href="#" className="lst-element-footer">
+              <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>
                 Feedback
               </a>
             </li>
