@@ -124,15 +124,6 @@ const Template3 = ({ data, profilePic }) => {
             </>
           )}
         </section>
-
-        <section className="section">
-          <h3>Hobby-uri</h3>
-          <div className="pill-row">
-            <div className="pill"></div>
-            <div className="pill"></div>
-            <div className="pill"></div>
-          </div>
-        </section>
       </main>
     </div>
   );

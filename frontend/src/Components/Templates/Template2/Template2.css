@@ -46,20 +46,20 @@
 }
 
 .template2 .field p {
-    font-size: 13px;
+    font-size: 14px;
     margin: 0 0 4px;
     color: #333;
 }
 
 .template2 .field .company,
 .template2 .field .degree {
-    font-size: 11px;
+    font-size: 12px;
     color: #666;
     margin: 2px 0;
 }
 
 .template2 .exp-desc {
-    font-size: 11px;
+    font-size: 12px;
     color: #555;
     margin: 4px 0 4px 15px;
     padding: 0;
@@ -81,7 +81,7 @@
 }
 
 .template2 .languages-text p {
-    font-size: 12px;
+    font-size: 13px;
     color: #333;
     margin: 3px 0;
 }
@@ -118,7 +118,7 @@
 }
 
 .template2 .text {
-    font-size: 12px;
+    font-size: 13px;
     margin-bottom: 15px;
     color: #333;
     line-height: 1.5;
@@ -137,6 +137,6 @@
     border-radius: 5px;
     padding: 8px;
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #2f4fd8;
 }

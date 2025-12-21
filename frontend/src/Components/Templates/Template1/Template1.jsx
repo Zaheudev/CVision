@@ -49,31 +49,11 @@ const Template1 = ({ data, profilePic }) => {
         </section>
 
         <section>
-          <h3>Educație</h3>
-          <div className="education-list">
-            {education && education.length > 0 ? (
-              education.map((edu, index) => (
-                <div key={index} className="education-item">
-                  <p className="edu-institution">{edu.institution}</p>
-                  {edu.degree && <p className="edu-degree">{edu.degree}</p>}
-                  {edu.period && <p className="edu-period">{edu.period}</p>}
-                </div>
-              ))
-            ) : (
-              <>
-                <div className="placeholder-line"></div>
-                <div className="placeholder-line"></div>
-              </>
-            )}
-          </div>
-        </section>
-
-        <section>
           <h3>Skill-uri</h3>
           <div className="skills-list">
             {allSkills.length > 0 ? (
               allSkills.map((skill, index) => (
-                <p key={index} className="skill-item">{skill}</p>
+                <span key={index} className="skill-item">{skill}</span>
               ))
             ) : (
               <>
@@ -104,7 +84,6 @@ const Template1 = ({ data, profilePic }) => {
       <main className="main-content">
         <header>
           <h1>{fullName}</h1>
-          <h2>Funcția</h2>
         </header>
 
         <section>
@@ -144,9 +123,23 @@ const Template1 = ({ data, profilePic }) => {
         </section>
 
         <section>
-          <h3>Recomandări</h3>
-          <div className="placeholder-line"></div>
-          <div className="placeholder-line short"></div>
+          <h3>Educație</h3>
+          {education && education.length > 0 ? (
+            education.map((edu, index) => (
+              <div key={index} className="education-item">
+                <div className="edu-header">
+                  <p className="edu-degree"><strong>{edu.degree}</strong></p>
+                  {edu.period && edu.period !== 'N/A' && <p className="edu-period">{edu.period}</p>}
+                </div>
+                <p className="edu-institution">{edu.institution}</p>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="placeholder-line"></div>
+              <div className="placeholder-line"></div>
+            </>
+          )}
         </section>
       </main>
     </div>

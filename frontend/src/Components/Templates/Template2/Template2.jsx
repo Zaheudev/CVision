@@ -120,10 +120,10 @@ const Template2 = ({ data, profilePic }) => {
         <div className="skills-grid">
           {skills.hard?.length > 0 || skills.soft?.length > 0 ? (
             <>
-              {skills.hard?.slice(0, 2).map((skill, index) => (
+              {skills.hard?.map((skill, index) => (
                 <span key={`hard-${index}`} className="skill-item">{skill}</span>
               ))}
-              {skills.soft?.slice(0, 2).map((skill, index) => (
+              {skills.soft?.map((skill, index) => (
                 <span key={`soft-${index}`} className="skill-item">{skill}</span>
               ))}
             </>
