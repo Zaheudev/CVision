@@ -34,18 +34,27 @@
 
 /* Facem input-urile să ocupe tot spațiul celulei din grid */
 .add-job-grid .input-group, 
+.add-job-grid .select-group,         
 .add-job-grid .add-job-input,
 .add-job-grid .input-group input,
+.add-job-grid .select-group select,  
 .add-job-grid .description-group {
   width: 100%;
   max-width: 100%; 
   margin-bottom: 0; 
+  padding-left: 10px;
 }
 
 .add-job-grid .description-group {
   /*grid-column: span 2;*/
   width: 100%;
   max-width: 100%;
+}
+
+.my-jobs-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color);
 }
 
 /* Stil pentru zona de butoane (partea dreaptă) */

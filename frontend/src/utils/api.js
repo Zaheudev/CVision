@@ -130,6 +130,16 @@ export const updateJob= async (jobId, jobData) => {
     }
 };
 
+export const getAllJobs = async () => {
+    try {
+        const headers = getAuthHeaders();
+        const response = await axios.get(`${API_BASE_URL}/jobs`, { headers });
+        return response.data;
+    } catch (err) {
+        handleError(err);
+    }
+};
+
 export const generateCv = async () => {
     try {
         const headers = getAuthHeaders();
