@@ -167,7 +167,7 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                     <div className="job-details-modal-content" onClick={(e) => e.stopPropagation()}>
                         
                         <div className="modal-header">
-                            <h3>Candidați Aplicați</h3>
+                            <h3>Aplicații candidați</h3>
                             <button className="close-modal-btn" onClick={closeApplicantsModal}>&times;</button>
                         </div>
                         
@@ -182,28 +182,54 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                                     {applicants.map((candidate) => (
                                         <div key={candidate._id} className="details-text applicant-card">
                                             
+                                            {/* Header Candidat */}
                                             <div className="applicant-header">
                                                 <h4>
                                                     {candidate.firstName} {candidate.lastName}
                                                 </h4>
                                                 {candidate.skills && candidate.skills.length > 0 && (
                                                     <span className="applicant-skills">
-                                                        {candidate.skills.slice(0, 2).join(', ')} 
-                                                        {candidate.skills.length > 2 && '...'}
+                                                        {candidate.skills.slice(0, 3).join(', ')} 
+                                                        {candidate.skills.length > 3 && '...'}
                                                     </span>
                                                 )}
                                             </div>
 
+                                            {/* Corp Candidat: Contact, Locație, Educație, Descriere */}
                                             <div className="applicant-info">
-                                                <p>📧 {candidate.email}</p>
+                                                <p>📧 <strong>Email:</strong> {candidate.email}</p>
+                                                
                                                 {candidate.phoneNumber && (
-                                                    <p>📞 {candidate.phoneNumber}</p>
+                                                    <p>📞 <strong>Telefon:</strong> {candidate.phoneNumber}</p>
                                                 )}
-                                                {candidate.education?.bachelor && (
-                                                    <p>🎓 {candidate.education.bachelor}</p>
+                                                
+                                                {candidate.location && (
+                                                    <p>📍 <strong>Locație:</strong> {candidate.location}</p>
+                                                )}
+
+                                                {/* Secțiune Educație (afișăm doar dacă există date) */}
+                                                {candidate.education && (candidate.education.bachelor || candidate.education.highschool) && (
+                                                    <div style={{ marginTop: '12px', paddingTop: '8px', borderTop: '1px solid #dcdcdc' }}>
+                                                        {candidate.education.bachelor && (
+                                                            <p>🎓 <strong>Studii Superioare:</strong> {candidate.education.bachelor}</p>
+                                                        )}
+                                                        {candidate.education.highschool && (
+                                                            <p>🏫 <strong>Liceu:</strong> {candidate.education.highschool}</p>
+                                                        )}
+                                                    </div>
+                                                )}
+
+                                                {/* Secțiune Descriere Candidat */}
+                                                {candidate.description && (
+                                                    <div className="details-text">
+                                                        <p><strong>📝 Despre candidat:</strong></p>
+                                                        <p style={{ fontStyle: 'italic', marginTop: '4px', color: '#555' }}>
+                                                            "{candidate.description}"
+                                                        </p>
+                                                    </div>
                                                 )}
                                             </div>
-
+                                            
                                             <div className="applicant-actions">
                                                  <Button 
                                                     onClick={() => alert(`Aici vom deschide CV-ul lui ${candidate.firstName}`)}
@@ -216,11 +242,11 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                                 </div>
                             )}
                         </div>
-
-                        <Button 
-                            onClick={closeApplicantsModal}>
-                            Închide Lista
-                        </Button>
+                        <div className="modal-footer">
+                            <Button onClick={closeApplicantsModal}>
+                                Închide Lista
+                            </Button>
+                        </div>
                     </div>
                 </div>
             )}
