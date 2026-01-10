@@ -58,12 +58,12 @@ export default function Footer() {
           <div className={`lst-footer ${openSection === "angajatori" ? "open" : ""}`}>
             <ul className="lst-ul">
               <li>
-                <a href="#" className="lst-element-footer">
+                <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/my-jobs"); }}>
                   Job-urile mele
                 </a>
               </li>
               <li>
-                <a href="#" className="lst-element-footer">
+                <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/candidati?top=true"); }}>
                   Top 10 candidați ideali
                 </a>
               </li>
@@ -124,7 +124,7 @@ export default function Footer() {
             )}
             {type === "employer" && (
               <li>
-                <a href="#" className="lst-element-footer">
+                <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/subscription"); }}>
                   Angajatori
                 </a>
               </li>

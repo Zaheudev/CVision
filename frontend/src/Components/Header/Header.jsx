@@ -110,7 +110,7 @@ export default function Header() {
           {" "}
           {type !== "candidate" && (
             <li>
-              <a href="#" className="lst-item">
+              <a href="#" className="lst-item" onClick={() => navigate("/candidati")}>
                 Candidați
               </a>
             </li>
@@ -122,11 +122,19 @@ export default function Header() {
               </a>
             </li>
           )}{" "}
-          <li>
-            <a href="#" className="lst-item">
-              Aplică acum
-            </a>
-          </li>{" "}
+          {type === "employer" ? (
+            <li>
+              <a href="#" className="lst-item" onClick={() => navigate("/my-jobs")}>
+                Joburile mele
+              </a>
+            </li>
+          ) : (
+            <li>
+              <a href="#" className="lst-item">
+                Aplică acum
+              </a>
+            </li>
+          )}{" "}
           <li>
             <a
               href="#"
