@@ -25,33 +25,25 @@ exports.applyToJob = async (req, res) => {
     try {
         const candidate = await Candidate.findById(req.user.id);
         const job = await Job.findById(req.params.jobId);
-        
-        if (!candidate) return res.status(404).json({ message: 'Candidate not found' });
-        if (!job) return res.status(404).json({ message: 'Job not found' });
+        if (!candidate) {
+            return res.status(404).json({ message: 'Candidate not found' });
+        }else if (!job) {
+            return res.status(404).json({ message: 'Job not found' });
+        }
 
-        // --- PROTECȚIE CRITICĂ ---
-        // Inițializăm array-urile dacă nu există, ca să nu primim eroare la .includes()
-        if (!job.applications) job.applications = [];
-        if (!candidate.appliedJobs) candidate.appliedJobs = [];
-
-        // Verificăm duplicatele
-        // Folosim OR (||) nu AND (&&) pentru că vrem să blocăm dacă apare oriunde
-        const alreadyApplied = job.applications.some(id => id.toString() === req.user.id.toString());
-        const jobInCandidate = candidate.appliedJobs.some(id => id.toString() === req.params.jobId.toString());
-
-        if (alreadyApplied || jobInCandidate) {
+        // Verificam daca candidatul a aplicat deja la acest job
+        if (candidate.appliedJobs.includes(req.params.jobId) && job.applications.includes(req.user.id)) {
             return res.status(400).json({ message: 'Already applied to this job' });
-        } else {
+        }else {
             candidate.appliedJobs.push(req.params.jobId);
             job.applications.push(req.user.id);
-            
             await job.save();
             await candidate.save();
             return res.status(200).json({ message: 'Applied to job successfully' });
         }
     } catch (error) {
-        console.error("Error applying:", error);
         res.status(500).json({ message: 'Server error' });
+        console.log(error);
     }
 }
 
