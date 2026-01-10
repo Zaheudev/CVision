@@ -51,8 +51,13 @@ export const UserProvider = ({ children }) => {
         }
     }, [getToken]);
 
+    const resetUser = () => {
+        setType(null);
+        setUser({name:"N/A"});
+    };
+
     return (
-        <UserContext.Provider value={{ user, fetchUserProfile, type }}>
+        <UserContext.Provider value={{ user, fetchUserProfile, type, resetUser }}>
             {children}
         </UserContext.Provider>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
 import api from '../../utils/api.js';
@@ -8,12 +8,14 @@ import { TextInput } from '../Inputs/inputs.jsx'
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 import AuthContainer from '../AuthContainer/AuthContainer.jsx';
+import { UserContext } from '../../context/UserContext.jsx';
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { fetchUserProfile } = useContext(UserContext);
     const [error, setError]=useState("");
     
     const handleLogin = async (e) => {
@@ -21,6 +23,7 @@ export const Login = () => {
         try {
             const res = await api.login(email, password);
             login(res.user);
+            await fetchUserProfile();
             // navigate('/oula');
         } catch (error) {
             // Verifică dacă mesajul de eroare de la backend conține "email" sau "parola"

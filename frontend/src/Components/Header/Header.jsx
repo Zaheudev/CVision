@@ -11,7 +11,7 @@ import { UserContext } from "../../context/UserContext";
 export default function Header() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const { type } = useContext(UserContext);
+  const { type, resetUser } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [profileImage, setProfileImage] = useState(personPNG);
@@ -76,6 +76,7 @@ export default function Header() {
 
   const handleLogout = () => {
     logout();
+    resetUser();
     navigate("/");
   };
 
@@ -106,29 +107,31 @@ export default function Header() {
             />{" "}
           </a>{" "}
         </div>{" "}
+        {user ? (
         <ul className="lst item">
           {" "}
-          {type !== "candidate" && (
+          {type === "employer" && (
             <li>
               <a href="#" className="lst-item" onClick={() => navigate("/candidati")}>
                 Candidați
               </a>
             </li>
           )}{" "}
-          {type !== "employer" && (
+          {type === "candidate" && (
             <li>
               <a href="#" className="lst-item">
                 Angajatori
               </a>
             </li>
           )}{" "}
-          {type === "employer" ? (
+          {type === "employer" && (
             <li>
               <a href="#" className="lst-item" onClick={() => navigate("/my-jobs")}>
                 Joburile mele
               </a>
             </li>
-          ) : (
+          )}
+          {type === "candidate" && (
             <li>
               <a onClick={() => navigate("/my-jobs")} className="lst-item">
                 Aplică acum
@@ -160,7 +163,10 @@ export default function Header() {
               Mai multe
             </a>
           </li>{" "}
-        </ul>{" "}
+        </ul>
+        ) : (
+          <div className="lst item"></div>
+        )}{" "}
         {!user ? (
           <div className="btn-section item">
             {" "}
