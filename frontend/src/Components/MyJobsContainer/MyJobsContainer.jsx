@@ -2,7 +2,7 @@ import "./MyJobsContainer.css";
 import Button from "../Buttons/Button.jsx";
 import { useState } from "react";
 
-export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob, isCandidateView=false }) {
+export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob, onApply,isCandidateView=false }) {
     const [selectedJob, setSelectedJob] = useState(null);
     const closeDetails = () => setSelectedJob(null);
     
@@ -141,6 +141,15 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                         </div>
 
                         <div className="modal-footer">
+                            {isCandidateView && (
+                                <Button 
+                                    onClick={() => {
+                                        onApply(selectedJob._id);
+                                        closeDetails();
+                                    }} >
+                                    Aplică 
+                                </Button>
+                            )}
                             <Button onClick={closeDetails}>Închide</Button>
                         </div>
                     </div>
