@@ -117,13 +117,6 @@ export default function Header() {
               </a>
             </li>
           )}{" "}
-          {type === "candidate" && (
-            <li>
-              <a href="#" className="lst-item">
-                Angajatori
-              </a>
-            </li>
-          )}{" "}
           {type === "employer" && (
             <li>
               <a href="#" className="lst-item" onClick={() => navigate("/my-jobs")}>

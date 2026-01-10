@@ -42,7 +42,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="lst-element-footer">
+                <a href="#" className="lst-element-footer" onClick={(e) => { e.preventDefault(); navigate("/my-jobs"); }}>
                   Aplicările mele
                 </a>
               </li>
