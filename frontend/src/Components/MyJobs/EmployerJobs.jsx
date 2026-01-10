@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import MyJobsContainer from "../MyJobsContainer/MyJobsContainer.jsx";
 import ButtonPrimary from "../Buttons/Button.jsx";
-import { getProfile, getJobs, createJob, deleteJob, updateJob } from "../../utils/api"; 
+import { getProfile, getJobs, createJob, deleteJob, updateJob, getJobApplicants } from "../../utils/api"; 
 import { TextInput, DescriptionInput, SelectInput } from "../Inputs/inputs.jsx";
 import "./MyJobs.css"; 
 
@@ -30,8 +30,12 @@ export default function EmployerJobs() {
         experienceLevel: "entry",
     });
 
+    const [applicants, setApplicants] = useState([]);
+    const [showApplicantsModal, setShowApplicantsModal] = useState(false);
+    const [loadingApplicants, setLoadingApplicants] = useState(false);
+
     useEffect(() => {
-        // --- LOGICĂ NOUĂ: Preluare nume angajator din profil ---
+        // Preluare nume angajator din profil
         const fetchEmployerData = async () => {
             if (type === "employer") {
                 try {
@@ -50,7 +54,6 @@ export default function EmployerJobs() {
             }
         };
         fetchEmployerData();
-        // -------------------------------------------------------
 
         if(user?.companyName){
             setFormData(prev => ({ ...prev, companyName: user.companyName }));
@@ -172,6 +175,26 @@ export default function EmployerJobs() {
             alert("Nu s-a putut salva jobul. Verifică consola.");
         }
     };
+
+    const handleViewApplicants = async (jobId) => {
+        setLoadingApplicants(true);
+        setShowApplicantsModal(true);
+        try {
+            const data = await getJobApplicants(jobId);
+            setApplicants(data);
+        } catch (error) {
+            console.error("Eroare la preluarea aplicanților:", error);
+            alert("Nu s-au putut încărca aplicațiile.");
+            setShowApplicantsModal(false);
+        }finally{
+            setLoadingApplicants(false);
+        }
+    };
+
+    const closeApplicantsModal = () => {
+        setShowApplicantsModal(false);
+        setApplicants([]);
+    }
 
     if (type !== "employer") return <p>Doar angajatorii pot accesa această pagină.</p>;
     if (loading) return <p>Se încarcă joburile...</p>;
@@ -311,6 +334,11 @@ export default function EmployerJobs() {
                 }}
                 onDeleteJob={handleDeleteJob}
                 onEditJob={handleStartEdit} // Pasăm funcția nouă
+                onViewApplicants={handleViewApplicants}
+                applicants={applicants}
+                showApplicantsModal={showApplicantsModal}
+                closeApplicantsModal={closeApplicantsModal}
+                loadingApplicants={loadingApplicants}
             />
         </div>
     );

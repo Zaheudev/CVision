@@ -2,7 +2,7 @@ import "./MyJobsContainer.css";
 import Button from "../Buttons/Button.jsx";
 import { useState } from "react";
 
-export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob, onApply,isCandidateView=false }) {
+export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob, onApply,isCandidateView=false, onViewApplicants, applicants, showApplicantsModal, closeApplicantsModal, loadingApplicants }) {
     const [selectedJob, setSelectedJob] = useState(null);
     const closeDetails = () => setSelectedJob(null);
     
@@ -64,6 +64,13 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                                     </div>
                                     {!isCandidateView && (
                                         <div className="container-butoane">
+                                            <button
+                                                className="view-applicants-button"
+                                                onClick={() => onViewApplicants(job._id)}
+                                                title="Vezi aplicanții"
+                                            >
+                                                👥
+                                            </button>
                                             <button
                                                 className="delete-job-button"
                                                 onClick={() => onDeleteJob(job._id)}
@@ -152,6 +159,68 @@ export default function MyJobsContainer({ jobs, onAddJob, onDeleteJob, onEditJob
                             )}
                             <Button onClick={closeDetails}>Închide</Button>
                         </div>
+                    </div>
+                </div>
+            )}
+            {showApplicantsModal && (
+                <div className="job-details-modal-overlay" onClick={closeApplicantsModal}>
+                    <div className="job-details-modal-content" onClick={(e) => e.stopPropagation()}>
+                        
+                        <div className="modal-header">
+                            <h3>Candidați Aplicați</h3>
+                            <button className="close-modal-btn" onClick={closeApplicantsModal}>&times;</button>
+                        </div>
+                        
+                        <div className="modal-body applicants-list-container">
+                            
+                            {loadingApplicants ? (
+                                <div className="loading-state">Se încarcă lista de candidați...</div>
+                            ) : (!applicants || applicants.length === 0) ? (
+                                <div className="empty-applicants">Nu există încă aplicanți pentru acest job.</div>
+                            ) : (
+                                <div className="applicants-grid">
+                                    {applicants.map((candidate) => (
+                                        <div key={candidate._id} className="details-text applicant-card">
+                                            
+                                            <div className="applicant-header">
+                                                <h4>
+                                                    {candidate.firstName} {candidate.lastName}
+                                                </h4>
+                                                {candidate.skills && candidate.skills.length > 0 && (
+                                                    <span className="applicant-skills">
+                                                        {candidate.skills.slice(0, 2).join(', ')} 
+                                                        {candidate.skills.length > 2 && '...'}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <div className="applicant-info">
+                                                <p>📧 {candidate.email}</p>
+                                                {candidate.phoneNumber && (
+                                                    <p>📞 {candidate.phoneNumber}</p>
+                                                )}
+                                                {candidate.education?.bachelor && (
+                                                    <p>🎓 {candidate.education.bachelor}</p>
+                                                )}
+                                            </div>
+
+                                            <div className="applicant-actions">
+                                                 <Button 
+                                                    onClick={() => alert(`Aici vom deschide CV-ul lui ${candidate.firstName}`)}
+                                                >
+                                                    Vezi CV
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <Button 
+                            onClick={closeApplicantsModal}>
+                            Închide Lista
+                        </Button>
                     </div>
                 </div>
             )}

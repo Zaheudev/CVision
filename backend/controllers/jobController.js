@@ -105,3 +105,36 @@ exports.deleteJob = async (req, res) => {
         console.log(error);
     }
 };
+
+// Functia pentru a obtine candidatii care au aplicat la un job specific
+exports.getJobApplicants = async (req, res) => {
+    try {
+        const jobId = req.params.id;
+
+        // 1. Cautam jobul dupa ID
+        // 2. Folosim .populate('applications') pentru a transforma ID-urile in date reale despre candidati
+        // 3. Excludem campul 'passwordHash' pentru securitate
+        const job = await Job.findById(jobId).populate({
+            path: 'applications',
+            select: '-passwordHash' 
+        });
+
+        if (!job) {
+            return res.status(404).json({ message: 'Jobul nu a fost gasit' });
+        }
+
+        // 4. VERIFICARE DE SECURITATE:
+        // Ne asiguram ca cel care cere datele este chiar angajatorul care a creat jobul.
+        // req.user.id vine din middleware-ul de autentificare.
+        if (job.company.toString() !== req.user.id) {
+            return res.status(403).json({ message: 'Nu aveti dreptul sa vedeti aplicantii pentru acest job.' });
+        }
+
+        // Returnam doar lista de aplicanti, nu tot jobul
+        res.status(200).json(job.applications);
+
+    } catch (error) {
+        console.error("Eroare la preluarea aplicanților:", error);
+        res.status(500).json({ message: 'Eroare la obtinerea aplicantilor' });
+    }
+};

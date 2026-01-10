@@ -9,6 +9,14 @@
     flex-direction: column;
 }
 
+.view-applicants-button {
+    background: transparent;
+    border: 1px solid #00ffb7;
+    color: #00ffb7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
 
 .delete-job-button {
     background: transparent;
