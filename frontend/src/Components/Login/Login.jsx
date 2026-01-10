@@ -21,7 +21,7 @@ export const Login = () => {
         try {
             const res = await api.login(email, password);
             login(res.user);
-            navigate('/dashboard');
+            // navigate('/oula');
         } catch (error) {
             // Verifică dacă mesajul de eroare de la backend conține "email" sau "parola"
             if (error?.response?.data?.message?.toLowerCase().includes("invalid credentials")) 

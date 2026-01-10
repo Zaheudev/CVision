@@ -22,7 +22,7 @@ import MyJobs from './Components/MyJobs/MyJobs'
 const PublicRoute = ({ children }) => {
   const { getToken } = useAuth();
   if (getToken()) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return children;
@@ -49,7 +49,6 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/profil" element={<PrivateRoute><Profil /></PrivateRoute>} />
           <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
           <Route path="/cv" element={<PrivateRoute><CVulMeu /></PrivateRoute>} />

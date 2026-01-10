@@ -130,7 +130,7 @@ export default function Header() {
             </li>
           ) : (
             <li>
-              <a href="#" className="lst-item">
+              <a onClick={() => navigate("/my-jobs")} className="lst-item">
                 Aplică acum
               </a>
             </li>

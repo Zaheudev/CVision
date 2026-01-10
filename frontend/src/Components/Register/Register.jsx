@@ -74,7 +74,7 @@ const Register = () => {
                 const loginRes = await api.login(formData.email, formData.password, formData.role);
                 console.log(loginRes)
                 login(loginRes.user);
-                navigator('/dashboard');
+                navigator('/');
                 return;
             } catch (err) {
                 console.log('Auto-login failed: ', err);
