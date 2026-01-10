@@ -219,9 +219,29 @@ export default function Header() {
               Angajatori
             </a>
           )}
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
-            Aplică acum
-          </a>
+          {type === "employer" ? (
+            <a 
+              href="#" 
+              className="mobile-item" 
+              onClick={() => {
+                navigate("/my-jobs");
+                toggleMenu();
+              }}
+            >
+              Joburile mele
+            </a>
+          ) : (
+            <a 
+              href="#" 
+              className="mobile-item" 
+              onClick={() => {
+                navigate("/my-jobs");
+                toggleMenu();
+              }}
+            >
+              Aplică acum
+            </a>
+          )}
           <a
             href="#"
             className="mobile-item"
@@ -244,10 +264,10 @@ export default function Header() {
               CV-ul meu
             </a>
           )}
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
+          <a href="#" className="mobile-item" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>
             Rețele sociale
           </a>
-          <a href="#" className="mobile-item" onClick={toggleMenu}>
+          <a href="#" className="mobile-item" onClick={(e) => { e.preventDefault(); navigate("/contact"); }}>
             Contact
           </a>
           <a href="#" className="mobile-item" onClick={() => { scrollToFooter(); toggleMenu(); }}>
