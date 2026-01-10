@@ -92,3 +92,120 @@
     font-size: 1rem;
   }
 }
+
+/* ==================== EMPLOYER PLANS STYLES ==================== */
+
+.employer-hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 1100px;
+}
+
+.employer-hero-image {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: contain;
+}
+
+.employer-plans {
+  gap: 40px;
+  align-items: stretch;
+}
+
+.employer-plan {
+  background: linear-gradient(135deg, #a8d8ff 0%, #38B6FF 100%);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  min-height: 450px;
+  box-sizing: border-box;
+}
+
+.employer-plan h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  height: auto;
+  color: #000;
+}
+
+.plan-price {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #000;
+}
+
+.plan-price-year {
+  font-size: 18px;
+  margin: 0 0 20px 0;
+  color: #333;
+}
+
+.employer-ul {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+}
+
+.employer-ul li {
+  text-align: center;
+  margin-left: 0;
+  position: relative;
+}
+
+.employer-ul li::before {
+  content: "•";
+  margin-right: 8px;
+}
+
+.employer-plan-pro {
+  background: linear-gradient(135deg, #7cc4f5 0%, #2a9fd8 100%);
+}
+
+/* Responsive pentru employer plans */
+@media (max-width: 900px) {
+  .employer-plans {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .employer-hero-image {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 700px) {
+  .employer-plan {
+    width: 95vw;
+    min-width: 220px;
+    max-width: 400px;
+    padding: 20px;
+    min-height: auto;
+  }
+  
+  .employer-plan h2 {
+    font-size: 1.4rem;
+  }
+  
+  .plan-price {
+    font-size: 1.2rem;
+  }
+  
+  .plan-price-year {
+    font-size: 1rem;
+  }
+  
+  .employer-ul li {
+    font-size: 0.95rem;
+  }
+  
+  .employer-hero-section {
+    margin: 20px auto;
+  }
+}

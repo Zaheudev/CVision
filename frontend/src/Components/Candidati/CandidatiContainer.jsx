@@ -1,6 +1,7 @@
 import "./CandidatiContainer.css";
 import Button from "../Buttons/Button.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 // Date fictive pentru candidați - vor fi înlocuite cu date reale din backend
 const mockCandidates = [
@@ -426,10 +427,18 @@ const mockTopCandidates = [
 ];
 
 export default function CandidatiContainer() {
+    const [searchParams] = useSearchParams();
     const [selectedCandidate, setSelectedCandidate] = useState(null);
     const [showTopCandidates, setShowTopCandidates] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [filterSkill, setFilterSkill] = useState("");
+
+    // Verifică dacă vine din link-ul cu ?top=true
+    useEffect(() => {
+        if (searchParams.get("top") === "true") {
+            setShowTopCandidates(true);
+        }
+    }, [searchParams]);
 
     const closeDetails = () => setSelectedCandidate(null);
 
